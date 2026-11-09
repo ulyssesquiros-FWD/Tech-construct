@@ -97,3 +97,4 @@ const Material = sequelize.define('materials', {
 });
 
 module.exports = Material;
+

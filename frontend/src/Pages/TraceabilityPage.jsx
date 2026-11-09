@@ -252,3 +252,4 @@ export default function TraceabilityPage({ showToast, preselectedMaterialId }) {
     </div>
   );
 }
+

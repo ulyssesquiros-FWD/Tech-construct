@@ -72,3 +72,4 @@ export default function Sidebar({ activeSection, onSelectSection, badges = {} })
     </aside>
   );
 }
+

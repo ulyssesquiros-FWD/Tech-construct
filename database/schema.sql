@@ -374,3 +374,4 @@ LEFT JOIN inventory_movements im
   ON m.id = im.material_id AND l.id = im.location_id
 WHERE m.status = 'activo' AND l.status = 'activo'
 GROUP BY m.id, m.internal_code, m.name, m.unit, m.reorder_point, m.safety_stock, l.id, l.name, l.type;
+

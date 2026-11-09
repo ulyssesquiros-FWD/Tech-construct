@@ -50,3 +50,4 @@ const Supplier = sequelize.define('suppliers', {
 });
 
 module.exports = Supplier;
+

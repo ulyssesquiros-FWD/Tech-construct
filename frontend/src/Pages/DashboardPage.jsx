@@ -328,3 +328,4 @@ export default function DashboardPage({ onNavigate, showToast }) {
     </div>
   );
 }
+

@@ -516,3 +516,4 @@ export default function PurchaseOrdersPage({ showToast, onNavigate }) {
     </div>
   );
 }
+

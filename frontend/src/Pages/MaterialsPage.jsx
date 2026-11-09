@@ -441,3 +441,4 @@ export default function MaterialsPage({ showToast, onSelectMaterialTrace }) {
     </div>
   );
 }
+

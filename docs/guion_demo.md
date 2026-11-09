@@ -64,3 +64,4 @@
   > *"Finalmente, en el módulo de Trazabilidad seleccionamos cualquier material y el sistema reconstruye su historia completa: cada recepción con su orden de compra y proveedor, sus traslados inter-obra y sus salidas a cuadrillas, vinculando fecha, hora y usuario responsable.*
   > *Adicionalmente, en la pestaña de Reportes se encuentran detallados todos los cálculos del informe: el ahorro potencial de ₡89 000 por taxonomía estandarizada, la fuga de valor de ₡223 000 mensuales en contratos y la evaluación ponderada de Construplaza como proveedor principal con 4.28 puntos.*
   > *Con esto demostramos un sistema funcional, robusto y 100 % alineado a los criterios de evaluación del Quiz #2. Quedamos a su disposición para cualquier consulta."*
+

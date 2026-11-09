@@ -421,3 +421,4 @@ export default function MovementsPage({ showToast }) {
     </div>
   );
 }
+

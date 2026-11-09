@@ -75,3 +75,4 @@ export const api = {
   getCategories: () => request('/categorias'),
   createCategory: (data) => request('/categorias', { method: 'POST', body: JSON.stringify(data) })
 };
+

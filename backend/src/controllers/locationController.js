@@ -142,3 +142,4 @@ class LocationController {
 }
 
 module.exports = new LocationController();
+

@@ -7,3 +7,4 @@ router.post('/:id/aprobar', (req, res) => approvalController.approve(req, res));
 router.post('/:id/rechazar', (req, res) => approvalController.reject(req, res));
 
 module.exports = router;
+

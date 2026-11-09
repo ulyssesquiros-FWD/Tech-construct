@@ -8,3 +8,4 @@ router.get('/:id', (req, res) => locationController.getById(req, res));
 router.get('/:id/inventario', (req, res) => locationController.getInventoryByLocation(req, res));
 
 module.exports = router;
+

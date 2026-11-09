@@ -44,3 +44,4 @@ const ReorderAlert = sequelize.define('reorder_alerts', {
 });
 
 module.exports = ReorderAlert;
+

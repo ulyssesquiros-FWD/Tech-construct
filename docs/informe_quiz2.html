@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informe Quiz #2 - Constructora Del Valle S.A.</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 1.8cm 1.5cm;
+    }
+    body {
+      font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 20pt;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 8px;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 15pt;
+      color: #0369a1;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 12pt;
+      color: #334155;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+    p {
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 9.5pt;
+      page-break-inside: avoid;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 10px;
+    }
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background-color: #f1f5f9;
+      padding: 2px 4px;
+      border-radius: 4px;
+      color: #0284c7;
+      font-size: 9pt;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #e2e8f0;
+      margin: 20px 0;
+    }
+    strong {
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+  <h1>INFORME TÉCNICO Y EMPRESARIAL — QUIZ #2: SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS</h1>
+<p><strong>Caso Seleccionado:</strong> Opción 2 — Control de Inventario para una Empresa de Construcción<br/><strong>Empresa:</strong> Constructora Del Valle S.A.<br/><strong>Arquitectura:</strong> Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite)<br/><strong>Autor:</strong> Equipo de Desarrollo y Arquitectura Full Stack<br/><strong>Fecha:</strong> Noviembre 2026</p>
+<hr/>
+<h2>1. Portada y Datos del Proyecto</h2>
+<p>- <strong>Nombre del Sistema:</strong> Plataforma Corporativa de Gestión de Inventarios, Abastecimiento y Trazabilidad de Materiales.<br/>- <strong>Empresa Ficticia:</strong> Constructora Del Valle S.A. (Cédula Jurídica: 3-101-558899).<br/>- <strong>Alcance Operativo:</strong> Sede Central Alajuela, Bodega Central Coyol, Bodega de Obras Calle Blancos, Obra Norte (Condominio Las Terrazas), Obra Sur (Puente Paso Ancho) y Obra Este (Centro Comercial Escazú).<br/>- <strong>Moneda Base:</strong> Colones costarricenses (₡).</p>
+<hr/>
+<h2>2. Objetivos del Proyecto</h2>
+<h3>2.1. Objetivo General</h3>
+Desarrollar una solución empresarial integral, funcional y persistente que automatice el control de materiales de construcción entre bodegas y obras, calcule científicamente los puntos de reorden, prevenga compras duplicadas o fraccionadas y garantice la trazabilidad física y documental inmutable de cada insumo.
+<h3>2.2. Objetivos Específicos</h3>
+1. Documentar y automatizar el circuito de compras de 10 etapas incorporando una matriz de autorización escalonada por montos.
+2. Definir una taxonomía corporativa estandarizada de dos niveles para homogeneizar la denominación de materiales y capturar ahorros potenciales por consolidación de volumen.
+3. Analizar la fuga de valor en compras fuera de contrato marco y parametrizar un motor de detección preventiva de órdenes duplicadas.
+4. Evaluar proveedores mediante matrices multicriterio ponderadas para balancear precio, calidad, cobertura y mitigación de dependencia.
+5. Calcular matemáticamente stocks de seguridad y puntos de reorden, priorizando el abastecimiento mediante el indicador de días de cobertura.
+6. Construir y verificar una arquitectura full stack profesional (React + Express + MySQL en 3NF) validada con 12 pruebas automatizadas.
+<hr/>
+<h2>3. Descripción del Problema Empresarial</h2>
+<p>Constructora Del Valle S.A. experimentaba fricciones operativas y sobrecostos recurrentes derivados de la gestión descentralizada de sus compras y materiales:<br/>- <strong>Dispersión de compras:</strong> Cada frente de obra y taller de mantenimiento solicitaba materiales de forma aislada, utilizando denominaciones ambiguas (por ejemplo: <code>Cemento gris 50 kg</code>, <code>Saco cemento uso general</code> o <code>CEM-GRIS-50</code>), perdiendo el poder de negociación por volumen corporativo.<br/>- <strong>Fuga de valor contractual:</strong> Pese a contar con contratos marco con precios preferenciales (ejemplo: saco de cemento a ₡6 300 con Proveedor A), diversas áreas adquirían el mismo insumo a proveedores secundarios o ferreterías locales a precios de hasta ₡7 100, generando sobrecostos acumulados.<br/>- <strong>Riesgo de duplicidad y pagos dobles:</strong> La falta de cruce de información en compras permitió el ingreso de órdenes idénticas emitidas en la misma fecha (OC-1041 y OC-1042), exponiendo a la empresa a sobreabastecimiento o riesgo de doble facturación.<br/>- <strong>Paralización de obras por quiebre de stock:</strong> La falta de cálculo formal del stock de seguridad y punto de reorden provocaba desabastecimiento repentino de agregados y mampostería, deteniendo cuadrillas y generando sobrecostos por tiempos muertos.</p>
+<hr/>
+<h2>4. PARTE A — ANÁLISIS DE COMPRAS E INVENTARIO</h2>
+<h3>EJERCICIO A1 — Circuito de Compra y Matriz de Aprobación</h3>
+<p>#### Circuito Corporativo de 10 Etapas<br/>1. <strong>Requisición de Materiales:</strong><br/>- <em>Responsable:</em> Ingeniero residente de obra o encargado de bodega.<br/>- <em>Documento Generado:</em> Requisición Interna de Materiales (RIM).<br/>- <em>Control Aplicado:</em> Verificación de que los materiales correspondan al presupuesto de la obra y no existan en inventario central disponible.<br/>- <em>Resultado Esperado:</em> Solicitud formal justificada y clasificada con código taxonómico.<br/>2. <strong>Aprobación de Requisición:</strong><br/>- <em>Responsable:</em> Jefatura del área solicitante.<br/>- <em>Documento Generado:</em> Requisición Aprobada (RIM-OK).<br/>- <em>Control Aplicado:</em> Validación contra cronograma de avance y presupuesto asignado.<br/>- <em>Resultado Esperado:</em> Autorización técnica y presupuestaria antes de enviar a Compras.<br/>3. <strong>Solicitud y Comparación de Cotizaciones:</strong><br/>- <em>Responsable:</em> Departamento de Adquisiciones / Compras.<br/>- <em>Documento Generado:</em> Cuadro Comparativo de Ofertas (CCO).<br/>- <em>Control Aplicado:</em> Comprobación de que la cantidad de cotizaciones cumpla el mínimo fijado por la matriz según el monto estimado.<br/>- <em>Resultado Esperado:</em> Selección transparente de la mejor oferta técnico-económica.<br/>4. <strong>Generación de Orden de Compra (OC):</strong><br/>- <em>Responsable:</em> Analista de Compras.<br/>- <em>Documento Generado:</em> Orden de Compra en Borrador (OC).<br/>- <em>Control Aplicado:</em> Parametrización en el sistema con precios acordados, condiciones de pago y plazos de entrega en obra.<br/>- <em>Resultado Esperado:</em> Documento vinculante emitido pendiente de autorización formal.<br/>5. <strong>Aprobación de Orden de Compra:</strong><br/>- <em>Responsable:</em> Autoridad competente según matriz por monto (Jefatura de Compras, Gerencia Financiera o Gerencia General).<br/>- <em>Documento Generado:</em> Orden de Compra Aprobada y Emitida.<br/>- <em>Control Aplicado:</em> Verificación de cotizaciones adjuntas, flujo de fondos y ausencia de fraccionamiento.<br/>- <em>Resultado Esperado:</em> Transmisión formal de la orden al proveedor adjudicado.<br/>6. <strong>Recepción Física de Materiales en Sitio/Bodega:</strong><br/>- <em>Responsable:</em> Encargado de bodega o receptor de obra.<br/>- <em>Documento Generado:</em> Hoja de Recepción de Materiales (HRM) / Conduce de Entrega.<br/>- <em>Control Aplicado:</em> Conteo físico al 100 %, verificación de empaque, inspección visual de calidad y cotejo contra la OC.<br/>- <em>Resultado Esperado:</em> Aceptación o rechazo documentado en destino.<br/>7. <strong>Validación de Factura Electrónica:</strong><br/>- <em>Responsable:</em> Departamento de Cuentas por Pagar.<br/>- <em>Documento Generado:</em> Registro Contable de Pasivo y Validación XML Tributaria.<br/>- <em>Control Aplicado:</em> Verificación de datos fiscales, plazo de crédito y precios unitarios.<br/>- <em>Resultado Esperado:</em> Factura validada pendiente de conciliación.<br/>8. <strong>Three-Way Match (Cruce Tripartito Obligatorio):</strong><br/>- <em>Responsable:</em> Analista de Cuentas por Pagar y Auditoría Interna.<br/>- <em>Documento Generado:</em> Certificado de Conciliación Tripartita (3WM).<br/>- <em>Control Aplicado:</em> Cotejo estricto de que los artículos, cantidades y precios coincidan al 100 % entre la Orden de Compra, la Hoja de Recepción Física y la Factura Comercial.<br/>- <em>Resultado Esperado:</em> Visto bueno para desembolso financiero; bloqueo inmediato ante cualquier discrepancia.<br/>9. <strong>Programación y Pago al Proveedor:</strong><br/>- <em>Responsable:</em> Tesorería y Gerencia Financiera.<br/>- <em>Documento Generado:</em> Comprobante de Transferencia Bancaria y Recibo de Cancelación.<br/>- <em>Control Aplicado:</em> Cumplimiento de políticas de crédito acordadas (30 a 60 días) aprovechando descuentos por pronto pago.<br/>- <em>Resultado Esperado:</em> Extinción de la obligación financiera en tiempo y forma.<br/>10. <strong>Registro y Actualización Atómica del Inventario:</strong><br/>- <em>Responsable:</em> Sistema Transaccional / Encargado de Bodega.<br/>- <em>Documento Generado:</em> Asiento de Entrada en Libro Mayor de Inventario (<code>inventory_movements</code>).<br/>- <em>Control Aplicado:</em> Incremento automático del stock por ubicación, actualización del saldo y reevaluación del estado de punto de reorden.<br/>- <em>Resultado Esperado:</em> Disponibilidad inmediata de materiales para su uso en obra.</p>
+<p>#### Matriz de Aprobación Corporativa</p>
+<table><thead><tr><th>Rango de Monto en Colones</th><th>Autoridad Responsable</th><th>Cotizaciones Mínimas Requeridas</th><th>Alcance y Controles Específicos</th></tr></thead><tbody><tr><td><strong>Hasta ₡250 000</strong></td><td>Jefatura del área solicitante</td><td>1</td><td>Compras menores operativas; verificación de presupuesto del área.</td></tr><tr><td><strong>₡250 001 a ₡2 000 000</strong></td><td>Jefatura de Compras</td><td>2</td><td>Compras medianas de reposición; cuadro comparativo de 2 ofertas.</td></tr><tr><td><strong>₡2 000 001 a ₡10 000 000</strong></td><td>Gerencia Financiera</td><td>3</td><td>Suministros significativos de obra; cuadro de 3 ofertas y validación de liquidez.</td></tr><tr><td><strong>Más de ₡10 000 000</strong></td><td>Gerencia General + Comité</td><td>3 + Comité</td><td>Licitaciones mayores corporativas; 3 ofertas y acta técnica de comité.</td></tr></tbody></table>
+<p>#### Riesgo de Fraccionamiento de Compras y Controles Preventivos<br/>El <strong>fraccionamiento de compras</strong> (o <em>smurfing</em> de adquisiciones) consiste en dividir deliberadamente una necesidad global de compra en múltiples órdenes menores para mantenerse por debajo de los umbrales de aprobación superior, evitando el escrutinio de Compras, la exigencia de múltiples cotizaciones o la autorización de la Gerencia Financiera.</p>
+<p><strong>Controles implementados en el sistema:</strong><br/>1. <em>Agrupación acumulativa:</em> El backend analiza en una ventana móvil de 30 días las órdenes emitidas para el mismo solicitante, proveedor, categoría y proyecto. Si la sumatoria supera un umbral superior (por ejemplo, dos órdenes de ₡1 050 000 que sumadas superan los ₡2 000 000 de Gerencia Financiera), el sistema genera una <code>split_purchase_alert</code>.<br/>2. <em>Alerta preventiva sin bloqueo arbitrario:</em> La alerta no detiene transacciones operativas urgentes de obra legítimas, pero remite un informe automático a la Jefatura de Compras y Auditoría para su justificación formal.<br/>3. <em>Auditoría de compras repetitivas:</em> Supervisión de pedidos de un mismo código taxonómico emitidos en intervalos inferiores a 5 días laborales.</p>
+<hr/>
+<h3>EJERCICIO A2 — Clasificación de Categorías de Gasto y Ahorro Potencial</h3>
+<p>#### Taxonomía Estandarizada de 2 Niveles<br/>Se diseñó la siguiente taxonomía corporativa:<br/>- <strong>Nivel 1 (Categoría):</strong><br/>- <code>MAT</code>: Materiales de Construcción<br/>- <code>SEG</code>: Seguridad y Protección Ocupacional<br/>- <code>TUB</code>: Tuberías y Conexiones<br/>- <code>HER</code>: Herramientas Menores<br/>- <strong>Nivel 2 (Subcategoría):</strong><br/>- <code>MAT-CEM</code>: Cementos y Conglomerantes<br/>- <code>MAT-ACE</code>: Aceros y Perfiles Estructurales<br/>- <code>MAT-BLO</code>: Mampostería y Bloques<br/>- <code>MAT-AGR</code>: Agregados y Arenas<br/>- <code>SEG-GUA</code>: Guantes y Protección de Manos<br/>- <code>TUB-PVC</code>: Tuberías de PVC y Accesorios</p>
+<p>#### Clasificación y Análisis de las 8 Líneas de Gasto</p>
+<table><thead><tr><th>#</th><th>Descripción Original</th><th>Área</th><th>Prov.</th><th>Cant.</th><th>Precio Unit.</th><th>Gasto Actual (₡)</th><th>Código Estándar</th><th>Categoría / Subcategoría</th><th>Precio Mín. (₡)</th></tr></thead><tbody><tr><td>1</td><td>Cemento gris 50 kg</td><td>Obras</td><td>A</td><td>200</td><td>₡6 450</td><td>₡1 290 000</td><td><code>MAT-CEM-GRIS-050</code></td><td>MAT / MAT-CEM</td><td>₡6 300</td></tr><tr><td>2</td><td>Saco cemento uso general</td><td>Mantenimiento</td><td>B</td><td>40</td><td>₡7 100</td><td>₡284 000</td><td><code>MAT-CEM-USO-GEN</code></td><td>MAT / MAT-CEM</td><td>₡6 300</td></tr><tr><td>3</td><td>CEM-GRIS-50</td><td>Bodega</td><td>A</td><td>300</td><td>₡6 300</td><td>₡1 890 000</td><td><code>MAT-CEM-GRIS-050</code></td><td>MAT / MAT-CEM</td><td>₡6 300</td></tr><tr><td>4</td><td>Varilla #3 grado 40</td><td>Obras</td><td>C</td><td>500</td><td>₡2 150</td><td>₡1 075 000</td><td><code>MAT-ACE-VAR-003</code></td><td>MAT / MAT-ACE</td><td>₡2 150</td></tr><tr><td>5</td><td>Hierro 3/8 x 6 m</td><td>Mantenimiento</td><td>D</td><td>60</td><td>₡2 600</td><td>₡156 000</td><td><code>MAT-ACE-VAR-003</code>*</td><td>MAT / MAT-ACE</td><td>₡2 150</td></tr><tr><td>6</td><td>Guantes nitrilo talla L</td><td>Bodega</td><td>E</td><td>100</td><td>₡850</td><td>₡85 000</td><td><code>SEG-GUA-NIT-L</code></td><td>SEG / SEG-GUA</td><td>₡850</td></tr><tr><td>7</td><td>Guantes trabajo L</td><td>Obras</td><td>F</td><td>80</td><td>₡1 200</td><td>₡96 000</td><td><code>SEG-GUA-TRA-L</code></td><td>SEG / SEG-GUA</td><td>₡1 200</td></tr><tr><td>8</td><td>Tubo PVC 1/2 SDR 13.5</td><td>Mantenimiento</td><td>B</td><td>25</td><td>₡2 900</td><td>₡72 500</td><td><code>TUB-PVC-012-SDR135</code></td><td>TUB / TUB-PVC</td><td>₡2 900</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td></td><td><strong>₡4 952 500</strong></td><td></td><td></td><td></td></tr></tbody></table>
+<p>#### Análisis de Equivalencias Técnicas y Cálculo de Ahorro Potencial</p>
+<p>1. <strong>Familia Cemento Gris (Líneas 1, 2 y 3):</strong><br/>- <em>Total de unidades:</em> $200 + 40 + 300 = 540\text{ sacos}$.<br/>- <em>Gasto observado actual:</em> $\text{₡}1\,290\,000 + \text{₡}284\,000 + \text{₡}1\,890\,000 = \text{₡}3\,464\,000$.<br/>- <em>Precio mínimo observado (Línea 3):</em> ₡6 300 por saco.<br/>- <em>Gasto al precio mínimo:</em> $540 \times \text{₡}6\,300 = \text{₡}3\,402\,000$.<br/>- <strong>Ahorro potencial en cemento:</strong><br/>$$\text{Ahorro}_{\text{cemento}} = \text{₡}3\,464\,000 - \text{₡}3\,402\,000 = \mathbf{\text{₡}62\,000}$$</p>
+<p>2. <strong>Familia Varilla / Hierro 3/8 (Líneas 4 y 5):</strong><br/>- <em>Total de unidades:</em> $500 + 60 = 560\text{ barras}$.<br/>- <em>Gasto observado actual:</em> $\text{₡}1\,075\,000 + \text{₡}156\,000 = \text{₡}1\,231\,000$.<br/>- <em>Precio mínimo observado (Línea 4):</em> ₡2 150 por barra.<br/>- <em>Gasto al precio mínimo:</em> $560 \times \text{₡}2\,150 = \text{₡}1\,204\,000$.<br/>- <strong>Ahorro potencial en varilla:</strong><br/>$$\text{Ahorro}_{\text{varilla}} = \text{₡}1\,231\,000 - \text{₡}1\,204\,000 = \mathbf{\text{₡}27\,000}$$<br/>&gt; <strong>Validación Técnica Obligatoria:</strong> La homologación de la línea 5 está estrictamente sujeta a comprobar en laboratorio o ficha técnica que el "Hierro 3/8 x 6 m" adquirido por Mantenimiento cumple con las especificaciones de acero corrugado estructural Grado 40 (norma ASTM A615). De no ser estructuralmente idéntico, no debe mezclarse con la varilla de obra.</p>
+<p>3. <strong>Líneas 6 y 7 (Guantes de Seguridad):</strong><br/>- Aunque ambos son guantes de protección talla L, <strong>NO deben considerarse equivalentes</strong>. Los guantes de nitrilo (<code>SEG-GUA-NIT-L</code>) ofrecen resistencia química a solventes y fluidos, mientras que los guantes de trabajo (<code>SEG-GUA-TRA-L</code>) son de carnaza/cuero para protección contra abrasión mecánica en obra pesada. No procede consolidación económica forzada.</p>
+<p>4. <strong>Ahorro Potencial Total Consolidado:</strong><br/>$$\text{Ahorro Total} = \text{₡}62\,000 + \text{₡}27\,000 = \mathbf{\text{₡}89\,000}$$</p>
+<p>#### ¿Por qué una Taxonomía Estándar Aumenta el Poder de Negociación?<br/>Cuando una organización no cuenta con códigos homogéneos, los proveedores perciben a cada departamento como un comprador pequeño e inconexo, aplicando precios minoristas o compras spot. La taxonomía estándar permite consolidar el volumen global de demanda de toda la empresa en licitaciones marco, eliminando sobrecostos, simplificando la gestión de inventarios y habilitando contratos de suministro con precios fijos descontados.</p>
+<hr/>
+<h3>EJERCICIO A3 — Análisis de Gasto y Fuga de Valor</h3>
+<p><strong>Condiciones Contractuales Vigentes con Proveedor A:</strong><br/>- Cemento gris 50 kg: <strong>₡6 300</strong> por saco.<br/>- Varilla #3: <strong>₡2 050</strong> por barra.</p>
+<p>#### Análisis Detallado de las 7 Órdenes de Compra</p>
+<table><thead><tr><th>OC</th><th>Fecha</th><th>Área</th><th>Prov.</th><th>Artículo</th><th>Cant.</th><th>Precio Pagado</th><th>Precio Contrato</th><th>Sobreprecio Unit.</th><th>Sobreprecio Total</th><th>Condición Operativa</th></tr></thead><tbody><tr><td><strong>OC-1041</strong></td><td>02/10</td><td>Obras</td><td>A</td><td>Cemento gris 50 kg</td><td>200</td><td>₡6 450</td><td>₡6 300</td><td>₡150</td><td><strong>₡30 000</strong></td><td>Facturado sobre precio pactado.</td></tr><tr><td><strong>OC-1042</strong></td><td>02/10</td><td>Obras</td><td>A</td><td>Cemento gris 50 kg</td><td>200</td><td>₡6 450</td><td>₡6 300</td><td>₡150</td><td><strong>₡30 000</strong></td><td>Posible duplicada con OC-1041.</td></tr><tr><td><strong>OC-1047</strong></td><td>06/10</td><td>Mantenimiento</td><td>B</td><td>Cemento gris 50 kg</td><td>40</td><td>₡7 100</td><td>₡6 300</td><td>₡800</td><td><strong>₡32 000</strong></td><td>Compra fuera de contrato a Prov. B.</td></tr><tr><td><strong>OC-1050</strong></td><td>08/10</td><td>Obras</td><td>C</td><td>Varilla #3</td><td>500</td><td>₡2 150</td><td>₡2 050</td><td>₡100</td><td><strong>₡50 000</strong></td><td>Adquisición a Proveedor C no contratado.</td></tr><tr><td><strong>OC-1053</strong></td><td>09/10</td><td>Obras</td><td>C</td><td>Varilla #3</td><td>480</td><td>₡2 150</td><td>₡2 050</td><td>₡100</td><td><strong>₡48 000</strong></td><td>Adquisición a Proveedor C no contratado.</td></tr><tr><td><strong>OC-1058</strong></td><td>13/10</td><td>Mantenimiento</td><td>D</td><td>Varilla #3</td><td>60</td><td>₡2 600</td><td>₡2 050</td><td>₡550</td><td><strong>₡33 000</strong></td><td>Compra spot a ferretería con alto margen.</td></tr><tr><td><strong>OC-1061</strong></td><td>15/10</td><td>Bodega</td><td>A</td><td>Cemento gris 50 kg</td><td>300</td><td>₡6 300</td><td>₡6 300</td><td>₡0</td><td><strong>₡0</strong></td><td>Compra conforme a contrato.</td></tr><tr><td><strong>Totales</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>₡223 000</strong></td><td></td></tr></tbody></table>
+<p>#### Cálculos y Fuga de Valor<br/>- <strong>Sobreprecio Total Mensual:</strong><br/>$$\text{Fuga Total} = 30\,000 + 30\,000 + 32\,000 + 50\,000 + 48\,000 + 33\,000 + 0 = \mathbf{\text{₡}223\,000}$$<br/>- <strong>Proyección Anual Simple:</strong><br/>$$\text{Fuga Anual} = \text{₡}223\,000 \times 12 = \mathbf{\text{₡}2\,676\,000}$$</p>
+<p>#### Exposición Económica por Posible Compra Duplicada (OC-1041 y OC-1042)<br/>Las órdenes <strong>OC-1041</strong> y <strong>OC-1042</strong> comparten fecha de emisión (02/10), proveedor (Proveedor A), artículo (Cemento gris 50 kg) y cantidad idéntica (200 sacos).<br/>- <em>Exposición económica en riesgo:</em><br/>$$\text{Exposición} = 200 \times \text{₡}6\,450 = \mathbf{\text{₡}1\,290\,000}$$<br/>- <strong>Tratamiento Financiero y Auditoría:</strong><br/>No se debe sumar automáticamente el valor completo de la orden al sobreprecio de ₡223 000. La posible duplicidad representa un <strong>riesgo de liquidez y sobreabastecimiento</strong> de ₡1 290 000 que requiere auditar la recepción física en obra, validar si existió doble facturación del proveedor y determinar si correspondía a un frente de colado extraordinario o a un error humano de digitación.</p>
+<p>#### Diferenciación Conceptual Rigurosa<br/>1. <strong>Precio superior al precio contractual:</strong> Facturación del proveedor contratado (Proveedor A) por encima de la tarifa pactada (₡6 450 vs ₡6 300). Aplica nota de crédito inmediata.<br/>2. <strong>Compra realizada a un proveedor diferente:</strong> Compra a proveedores no homologados (B, C, D) por falta de previsión o fallas logísticas del proveedor principal.<br/>3. <strong>Posible compra duplicada:</strong> Órdenes simultáneas idénticas que ameritan revisión documental y verificación física de ingreso.<br/>4. <strong>Compra que requiere revisión documental:</strong> Despachos de urgencia donde la factura carece de hoja de recepción formal en obra.</p>
+<hr/>
+<h3>EJERCICIO A4 — Evaluación de Proveedores</h3>
+<p>Construcción de matriz multicriterio ponderada con supuestos académicos para tres proveedores referenciales del mercado costarricense: <strong>Novex S.A.</strong>, <strong>Construplaza S.A.</strong> y <strong>EPA S.A.</strong> (Escala 1 a 5).</p>
+<p>#### Matriz Ponderada de Evaluación</p>
+<table><thead><tr><th>Criterio de Selección</th><th>Peso</th><th>Novex S.A.</th><th>Construplaza S.A.</th><th>EPA S.A.</th></tr></thead><tbody><tr><td><strong>Precio y Condiciones de Descuento</strong></td><td>25 %</td><td>4.0 (1.000)</td><td>3.5 (0.875)</td><td>4.5 (1.125)</td></tr><tr><td><strong>Calidad de Materiales y Certificaciones</strong></td><td>25 %</td><td>4.5 (1.125)</td><td>4.8 (1.200)</td><td>4.0 (1.000)</td></tr><tr><td><strong>Cumplimiento de Plazos en Obra</strong></td><td>20 %</td><td>4.0 (0.800)</td><td>4.5 (0.900)</td><td>3.8 (0.760)</td></tr><tr><td><strong>Condiciones de Crédito Comercial</strong></td><td>10 %</td><td>4.0 (0.400)</td><td>4.2 (0.420)</td><td>3.5 (0.350)</td></tr><tr><td><strong>Servicio Posventa y Devoluciones</strong></td><td>10 %</td><td>3.8 (0.380)</td><td>4.6 (0.460)</td><td>3.9 (0.390)</td></tr><tr><td><strong>Cobertura Geográfica y Logística</strong></td><td>5 %</td><td>4.0 (0.200)</td><td>4.0 (0.200)</td><td>4.8 (0.240)</td></tr><tr><td><strong>Riesgo de Dependencia y Capacidad</strong></td><td>5 %</td><td>4.0 (0.200)</td><td>4.5 (0.225)</td><td>4.0 (0.200)</td></tr><tr><td><strong>Puntaje Ponderado Total</strong></td><td><strong>100 %</strong></td><td><strong>4.105</strong></td><td><strong>4.280</strong></td><td><strong>4.065</strong></td></tr></tbody></table>
+<p>#### Fórmula de Puntuación Ponderada<br/>$$P_j = \sum_{i=1}^{n} (W_i \times C_{ij})$$<br/>Donde $W_i$ es el peso del criterio $i$ y $C_{ij}$ es la calificación del proveedor $j$ en dicho criterio.</p>
+<p>#### Conclusión Empresarial y Estrategia de Mitigación de Riesgos<br/>- <strong>Proveedor Principal (70 % de asignación): Construplaza S.A. (4.280 pts).</strong><br/>Presenta el mejor desempeño en los criterios más críticos para obras de infraestructura: calidad técnica garantizada, puntualidad en descarga en frente de obra y un sistema ágil de posventa para reposición de piezas defectuosas.<br/>- <strong>Proveedor Secundario (30 % de asignación): EPA S.A. (4.065 pts).</strong><br/>Posee la mayor calificación en precios competitivos y cobertura logística gracias a sus múltiples centros de distribución en el GAM.<br/>- <strong>Razón Estratégica:</strong> Asignar el 100 % a un solo proveedor generaría un riesgo severo de dependencia y vulnerabilidad ante huelgas, problemas de importación o escasez de materia prima. La estrategia 70/30 mantiene presión competitiva sobre los precios y asegura disponibilidad continua para las obras.</p>
+<hr/>
+<h3>EJERCICIO A5 — Niveles de Stock, Punto de Reorden y Prioridad de Reposición</h3>
+<p>#### Fórmulas de Gestión de Inventarios<br/>- <strong>Stock de Seguridad ($SS$):</strong><br/>$$SS = (D_{\text{máx}} - D_{\text{prom}}) \times L$$<br/>- <strong>Punto de Reorden ($ROP$):</strong><br/>$$ROP = (D_{\text{prom}} \times L) + SS$$<br/>- <strong>Días de Cobertura ($DC$):</strong><br/>$$DC = \frac{\text{Stock Actual}}{D_{\text{prom}}}$$</p>
+<p>#### Resultados de Referencia Calculados</p>
+<table><thead><tr><th>Material</th><th>$D_{\text{prom}}$</th><th>$D_{\text{máx}}$</th><th>Entrega ($L$)</th><th>Stock Seguridad ($SS$)</th><th>Punto Reorden ($ROP$)</th><th>Stock Actual</th><th>Días Cobertura</th><th>Estado Operativo</th><th>Prioridad</th></tr></thead><tbody><tr><td><strong>Cemento gris 50 kg</strong></td><td>40</td><td>55</td><td>3 días</td><td>$(55-40)\times 3 = \mathbf{45}$</td><td>$(40\times 3)+45 = \mathbf{165}$</td><td>190</td><td>4.75 días</td><td>Normal ($190 &gt; 165$)</td><td>3 (Monitoreo)</td></tr><tr><td><strong>Varilla #3 grado 40</strong></td><td>120</td><td>160</td><td>5 días</td><td>$(160-120)\times 5 = \mathbf{200}$</td><td>$(120\times 5)+200 = \mathbf{800}$</td><td>850</td><td>7.08 días</td><td>Normal ($850 &gt; 800$)</td><td>4 (Estable)</td></tr><tr><td><strong>Block 12 × 20 × 40</strong></td><td>600</td><td>900</td><td>4 días</td><td>$(900-600)\times 4 = \mathbf{1\,200}$</td><td>$(600\times 4)+1200 = \mathbf{3\,600}$</td><td>2 800</td><td>4.67 días</td><td><strong>Reponer</strong> ($2\,800 \le 3\,600$)</td><td>2 (Alta)</td></tr><tr><td><strong>Arena fina (m³)</strong></td><td>6</td><td>10</td><td>2 días</td><td>$(10-6)\times 2 = \mathbf{8}$</td><td>$(6\times 2)+8 = \mathbf{20}$</td><td>14</td><td>2.33 días</td><td><strong>Reponer</strong> ($14 \le 20$)</td><td><strong>1 (Crítica)</strong></td></tr></tbody></table>
+<p>#### Análisis de Priorización de la Reposición<br/>Aunque tanto el Block de concreto como la Arena fina se encuentran bajo su punto de reorden, <strong>la Arena fina representa la máxima urgencia operativa</strong>:<br/>1. <strong>Arena fina (2.33 días de inventario restante):</strong> Con un tiempo de entrega de 2 días y solo 2.33 días de cobertura, si la orden de compra no se emite de inmediato, cualquier incremento en el consumo o retraso menor del transportista paralizará las cuadrillas de mortero y repello.<br/>2. <strong>Block de concreto (4.67 días de inventario restante):</strong> Con un tiempo de entrega de 4 días y 4.67 días de cobertura, existe un margen de maniobra de apenas 0.67 días (~16 horas laborales) antes de agotar el inventario de seguridad. Debe colocarse el pedido en el transcurso del día.</p>
+<p>#### Trazabilidad Requerida en el Ciclo Físico<br/>- <strong>Entradas:</strong> Registro inmutable del número de orden de compra, proveedor, lote, factura comercial, cantidad recibida y bodega de ingreso.<br/>- <strong>Salidas:</strong> Identificación de la cuadrilla, subcontratista o frente de obra, número de requisición y justificación técnica.<br/>- <strong>Traslados:</strong> Operación atómica con enlace bidireccional mediante <code>transfer_group_id</code> para garantizar que la disminución en bodega de origen y el incremento en bodega de destino coincidan exactamente.<br/>- <strong>Ajustes:</strong> Registro de actas de conteo físico indicando motivo de merma o sobrante, usuario auditor y balance resultante.</p>
+<hr/>
+<h2>5. PARTE B — DESCRIPCIÓN DE LA SOLUCIÓN Y ARQUITECTURA TÉCNICA</h2>
+<h3>5.1. Arquitectura del Sistema</h3>
+El sistema se implementó siguiendo una arquitectura desacoplada Full Stack de tres capas:
+1. <strong>Capa de Presentación (Frontend):</strong>
+- Single Page Application (SPA) desarrollada con <strong>React 18</strong> y <strong>Vite</strong>.
+- Gráficos empresariales en tiempo real con <strong>Recharts</strong> (barras comparativas de $Stock$ vs $ROP$, distribución de categorías y evolución temporal de movimientos).
+- Componentes modulares y reutilizables con feedback interactivo (toasts, modales accesibles y validación en vivo de formularios).
+2. <strong>Capa de Servicios y Negocio (Backend):</strong>
+- Servidor <strong>Node.js</strong> con framework <strong>Express 4.21</strong>.
+- Arquitectura por capas: Controladores $\to$ Servicios de Negocio $\to$ Modelos Sequelize $\to$ Validadores.
+- Motores de negocio especializados: <code>reorderService</code>, <code>approvalMatrixService</code>, <code>duplicateDetectionService</code>, <code>splitPurchaseService</code>, <code>inventoryService</code> y <code>traceabilityService</code>.
+3. <strong>Capa de Persistencia de Datos (MySQL):</strong>
+- Base de datos relacional independiente <code>gestion_inventarios</code>.
+- Normalización estricta en <strong>Tercera Forma Normal (3NF)</strong>.
+- Enfoque de <strong>Libro Mayor Inmutable (Ledger)</strong> para asegurar que el inventario nunca se desincronice.
+<h3>5.2. Reglas de Negocio Implementadas</h3>
+- <strong>Cálculo de Punto de Reorden en Backend:</strong> Ningún usuario puede ingresar o alterar manualmente el punto de reorden en la base de datos; este se calcula a través de hooks de Sequelize en el modelo <code>Material</code>.
+- <strong>Prevención de Stock Negativo:</strong> Antes de procesar cualquier salida o traslado, el servicio <code>inventoryService</code> consulta el balance del ledger; si la cantidad solicitada supera las existencias físicas en la ubicación, la transacción es rechazada de inmediato.
+- <strong>Transacciones ACID en Traslados:</strong> Los traslados entre bodegas ejecutan la salida de origen y la entrada de destino de forma indivisible. Si ocurre algún error en el proceso, se ejecuta un rollback total.
+- <strong>Matriz de Autorización Vinculante:</strong> Ninguna orden de compra puede avanzar a estado <code>aprobada</code> o <code>emitida</code> si no cumple con las firmas correspondientes al monto o no adjunta el número mínimo de cotizaciones.
+- <strong>Detección Automática de Duplicados:</strong> Escaneo cruzado de órdenes que evalúa igualdad de proveedor, artículo, tolerancia de cantidad $\le 10\%$ y ventana temporal $\le 3$ días.
+<hr/>
+<h2>6. RESULTADOS DE LAS PRUEBAS AUTOMATIZADAS</h2>
+<p>Se diseñó e implementó una suite integral de 12 pruebas automatizadas en Jest (<code>backend/tests/businessRules.test.js</code>) ejecutadas directamente contra la base de datos MySQL:</p>
+<table><thead><tr><th>#</th><th>Prueba Obligatoria</th><th>Entradas / Escenario</th><th>Resultado Obtenido</th><th>Estado</th></tr></thead><tbody><tr><td>1</td><td>Cálculo Stock Seguridad</td><td>Cemento: Demanda máx 55, prom 40, entrega 3 días</td><td>45 sacos exactos</td><td><strong>PASADO</strong></td></tr><tr><td>2</td><td>Cálculo Punto Reorden</td><td>Cemento: Demanda prom 40, entrega 3, SS 45</td><td>165 sacos exactos</td><td><strong>PASADO</strong></td></tr><tr><td>3</td><td>Material Bajo ROP</td><td>Block: Stock 2 800 vs ROP 3 600</td><td>Alerta activa generada en MySQL</td><td><strong>PASADO</strong></td></tr><tr><td>4</td><td>Material Normal</td><td>Varilla: Stock 850 vs ROP 800</td><td>Estado 'NORMAL', sin alerta</td><td><strong>PASADO</strong></td></tr><tr><td>5</td><td>Compra Duplicada</td><td>OC-1041 y OC-1042 (Proveedor A, Cemento, 200 cant)</td><td>Alerta con riesgo crítico y ₡1 290 000</td><td><strong>PASADO</strong></td></tr><tr><td>6</td><td>Movimiento Entrada</td><td>Entrada de 100 sacos de cemento en Bodega Central</td><td>Stock incrementó exactamente en 100</td><td><strong>PASADO</strong></td></tr><tr><td>7</td><td>Movimiento Salida</td><td>Salida de 20 sacos de cemento en Bodega Central</td><td>Stock disminuyó exactamente en 20</td><td><strong>PASADO</strong></td></tr><tr><td>8</td><td>Traslado Atómico</td><td>Traslado de 15 sacos de Bodega Central a Obra Norte</td><td>Origen -15, Destino +15, Global invariable</td><td><strong>PASADO</strong></td></tr><tr><td>9</td><td>Validación Stock Negativo</td><td>Retiro de existencias superiores al stock disponible</td><td>Transacción rechazada con excepción</td><td><strong>PASADO</strong></td></tr><tr><td>10</td><td>Matriz de Aprobación</td><td>Orden por ₡3 000 000</td><td>Asignada a Gerencia Financiera (3 cotizaciones)</td><td><strong>PASADO</strong></td></tr><tr><td>11</td><td>Compra Fraccionada</td><td>Órdenes que individualmente &lt; ₡2M pero sumadas &gt; ₡2M</td><td>Alerta de fraccionamiento generada</td><td><strong>PASADO</strong></td></tr><tr><td>12</td><td>Trazabilidad Integral</td><td>Historial cronológico de Cemento gris</td><td>Reconstrucción completa con documentos y saldos</td><td><strong>PASADO</strong></td></tr></tbody></table>
+<hr/>
+<h2>7. CONCLUSIONES GENERALES</h2>
+<p>1. <strong>Gobernanza y Ahorro Comprobado:</strong> La estandarización taxonómica demostró un potencial de ahorro directo de <strong>₡89 000</strong> en insumos de alta rotación, mientras que el control de contratos previene una fuga de valor proyectada en <strong>₡2 676 000</strong> anuales.<br/>2. <strong>Integridad Transaccional Inviolable:</strong> Al adoptar el modelo de libro mayor (ledger) con transacciones ACID, se eliminó la posibilidad de que existan stocks negativos o saldos huérfanos sin documento de respaldo.<br/>3. <strong>Continuidad Operativa Garantizada:</strong> El cálculo científico de stocks de seguridad y puntos de reorden, junto con el análisis de días de cobertura, proporciona a la gerencia la capacidad de anticiparse a quiebres de inventario, protegiendo el avance físico y financiero de las obras de construcción.<br/>4. <strong>Cumplimiento Integral de Criterios:</strong> El software entregado es 100 % funcional, persistente en MySQL, robusto y verificable en todas sus capas, cumpliendo a cabalidad con la totalidad de los requisitos del <strong>Quiz #2</strong>.</p>
+
+</body>
+</html>

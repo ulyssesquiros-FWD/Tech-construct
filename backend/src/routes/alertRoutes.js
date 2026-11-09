@@ -8,3 +8,4 @@ router.post('/:id/revisar', (req, res) => alertController.reviewReorderAlert(req
 router.post('/duplicados/:id/revisar', (req, res) => alertController.reviewDuplicateAlert(req, res));
 
 module.exports = router;
+

@@ -26,3 +26,4 @@ export default function Navbar({ activePageTitle, pendingApprovalsCount = 0 }) {
     </header>
   );
 }
+

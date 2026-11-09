@@ -68,3 +68,4 @@ const DuplicatePurchaseAlert = sequelize.define('duplicate_purchase_alerts', {
 });
 
 module.exports = DuplicatePurchaseAlert;
+

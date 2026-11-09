@@ -87,3 +87,4 @@ class AlertController {
 }
 
 module.exports = new AlertController();
+

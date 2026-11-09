@@ -242,3 +242,4 @@ export default function ReorderAlertsPage({ showToast }) {
     </div>
   );
 }
+

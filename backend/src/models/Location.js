@@ -32,3 +32,4 @@ const Location = sequelize.define('locations', {
 });
 
 module.exports = Location;
+

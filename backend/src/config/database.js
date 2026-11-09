@@ -33,3 +33,4 @@ const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 });
 
 module.exports = sequelize;
+

@@ -6,3 +6,4 @@ router.get('/resumen', (req, res) => dashboardController.getSummary(req, res));
 router.get('/estadisticas', (req, res) => dashboardController.getStatistics(req, res));
 
 module.exports = router;
+

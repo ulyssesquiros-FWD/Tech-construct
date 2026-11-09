@@ -52,3 +52,4 @@ const SplitPurchaseAlert = sequelize.define('split_purchase_alerts', {
 });
 
 module.exports = SplitPurchaseAlert;
+

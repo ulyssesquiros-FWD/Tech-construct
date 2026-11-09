@@ -254,3 +254,4 @@ INSERT INTO `audit_logs` (`id`, `user_id`, `action`, `entity`, `entity_id`, `old
 (2, 4, 'ORDEN_COMPRA_CREADA', 'purchase_orders', 1, NULL, '{"po_number": "OC-1041", "total": 1290000}', '192.168.1.15', '2026-10-02 14:10:00'),
 (3, 4, 'ORDEN_COMPRA_CREADA', 'purchase_orders', 2, NULL, '{"po_number": "OC-1042", "total": 1290000}', '192.168.1.15', '2026-10-02 16:00:00'),
 (4, 7, 'MOVIMIENTO_REGISTRADO', 'inventory_movements', 1, NULL, '{"movement": "MOV-2026-0001", "qty": 250, "material": "MAT-CEM-GRIS-050"}', '192.168.1.40', '2026-10-10 08:05:00');
+

@@ -151,3 +151,4 @@ La aplicación cuenta con una barra de navegación lateral izquierda que da acce
   - *A3: Fuga de Valor:* Sobreprecio de ₡223 000 en 7 órdenes, proyección de ₡2 676 000 y exposición de duplicados de ₡1 290 000.
   - *A4: Evaluación de Proveedores:* Matriz multicriterio ponderada (Construplaza 4.28, Novex 4.10, EPA 4.06).
   - *A5: Puntos de Reorden:* Cálculo de stock de seguridad, ROP y prioridad por cobertura (Arena 2.33 días, Block 4.67 días).
+

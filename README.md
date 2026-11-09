@@ -258,3 +258,4 @@ npm test
 | **Entregable 3 (Guion Demo 5 min)** | `docs/guion_demo.md` | Guion paso a paso con minutaje y acciones para la demostración en vivo. |
 | **Entregable 4 (Guion Presentación 10 min)** | `docs/guion_presentacion.md` | Estructura de 9 puntos para la defensa ejecutiva ante el docente. |
 | **Diagramas de Arquitectura** | `docs/diagrama_erd.mmd` y `docs/circuito_compras.mmd` | Diagramas en Mermaid para visualización en GitHub y herramientas de diseño. |
+

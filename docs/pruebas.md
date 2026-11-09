@@ -199,3 +199,4 @@ Time:        2.376 s
   - Cada evento debe indicar: fecha, usuario responsable, ubicación, cantidad, documento de origen y saldo resultante.
 - **Resultado Obtenido:** Historial completo reconstruido con éxito vinculando usuarios, bodegas y documentos de soporte.
 - **Estado:**  **PASADO**.
+

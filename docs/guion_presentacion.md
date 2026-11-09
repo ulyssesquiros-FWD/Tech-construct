@@ -119,3 +119,4 @@
   2. El modelo relacional en 3NF con libro mayor garantiza la veracidad de los saldos sin riesgo de desincronización.
   3. El sistema cumple al 100 % con los requerimientos técnicos, los 5 ejercicios analíticos y los 12 casos de prueba automatizados del Quiz #2.
 - **Preguntas:** Espacio abierto para dudas y validación por parte del docente evaluador.
+

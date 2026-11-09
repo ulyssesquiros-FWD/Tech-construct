@@ -110,3 +110,4 @@ class TraceabilityService {
 }
 
 module.exports = new TraceabilityService();
+

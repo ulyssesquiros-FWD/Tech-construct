@@ -35,3 +35,4 @@ const PurchaseOrderDetail = sequelize.define('purchase_order_details', {
 });
 
 module.exports = PurchaseOrderDetail;
+

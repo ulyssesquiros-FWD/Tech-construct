@@ -16,3 +16,4 @@ export default function StatCard({ title, value, footer, icon: Icon, color = '#0
     </div>
   );
 }
+

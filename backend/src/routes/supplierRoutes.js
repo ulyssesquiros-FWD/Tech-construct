@@ -9,3 +9,4 @@ router.put('/:id', (req, res) => supplierController.update(req, res));
 router.delete('/:id', (req, res) => supplierController.delete(req, res));
 
 module.exports = router;
+

@@ -40,3 +40,4 @@ const AuditLog = sequelize.define('audit_logs', {
 });
 
 module.exports = AuditLog;
+

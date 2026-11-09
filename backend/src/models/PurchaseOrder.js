@@ -89,3 +89,4 @@ const PurchaseOrder = sequelize.define('purchase_orders', {
 });
 
 module.exports = PurchaseOrder;
+

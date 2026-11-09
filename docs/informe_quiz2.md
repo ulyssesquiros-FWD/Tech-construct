@@ -333,3 +333,4 @@ Se diseñó e implementó una suite integral de 12 pruebas automatizadas en Jest
 2. **Integridad Transaccional Inviolable:** Al adoptar el modelo de libro mayor (ledger) con transacciones ACID, se eliminó la posibilidad de que existan stocks negativos o saldos huérfanos sin documento de respaldo.
 3. **Continuidad Operativa Garantizada:** El cálculo científico de stocks de seguridad y puntos de reorden, junto con el análisis de días de cobertura, proporciona a la gerencia la capacidad de anticiparse a quiebres de inventario, protegiendo el avance físico y financiero de las obras de construcción.
 4. **Cumplimiento Integral de Criterios:** El software entregado es 100 % funcional, persistente en MySQL, robusto y verificable en todas sus capas, cumpliendo a cabalidad con la totalidad de los requisitos del **Quiz #2**.
+

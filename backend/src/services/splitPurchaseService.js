@@ -120,3 +120,4 @@ class SplitPurchaseService {
 }
 
 module.exports = new SplitPurchaseService();
+

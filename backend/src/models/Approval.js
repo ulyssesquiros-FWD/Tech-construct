@@ -45,3 +45,4 @@ const Approval = sequelize.define('approvals', {
 });
 
 module.exports = Approval;
+

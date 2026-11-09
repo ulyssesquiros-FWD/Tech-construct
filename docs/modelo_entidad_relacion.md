@@ -201,3 +201,4 @@ Trazabilidad de seguridad para acciones administrativas y modificaciones de dato
 - `new_values` (JSON)
 - `ip_address` (VARCHAR(45))
 - `created_at` (DATETIME, DEFAULT CURRENT_TIMESTAMP)
+
