@@ -30,3 +30,4 @@ const recordMovementValidation = [
 module.exports = {
   recordMovementValidation
 };
+
