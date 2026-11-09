@@ -282,7 +282,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <strong>Empresa Evaluada</strong>
-          <span>Constructora Del Valle S.A. (Cédula: 3-101-558899)</span>
+          <span>Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos)</span>
         </div>
         <div class="cover-meta-item">
           <strong>Modalidad Arquitectónica</strong>
@@ -320,7 +320,7 @@
 <hr/>
 <p><strong>Institución:</strong> Universidad Técnica / Facultad de Ingeniería Informática</p>
 <p><strong>Curso:</strong> Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</p>
-<p><strong>Empresa de Estudio:</strong> Constructora Del Valle S.A. (Cédula Jurídica: 3-101-558899)</p>
+<p><strong>Empresa de Estudio:</strong> Constructora Del Valle S.A. (Entidad y Cédula Jurídica Ficticias para Fines Académicos: 3-101-558899)</p>
 <p><strong>Caso Seleccionado:</strong> Opción 2 — Control de Inventario para una Empresa de Construcción</p>
 <p><strong>Modalidad Tecnológica:</strong> Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite)</p>
 <p><strong>Moneda del Sistema:</strong> Colones costarricenses (₡)</p>
@@ -418,14 +418,14 @@
 <p>#### Desagregación Analítica de las 7 Órdenes de Compra</p>
 <div class="table-container"><table><thead><tr><th>OC</th><th>Fecha</th><th>Área</th><th>Prov.</th><th>Artículo</th><th>Cant.</th><th>Precio Pagado</th><th>Precio Ref.</th><th>Desviación Unit.</th><th>Desviación Total (₡)</th><th>Clasificación Financiera</th></tr></thead><tbody><tr><td><strong>OC-1041</strong></td><td>02/10</td><td>Obras</td><td>A</td><td>Cemento gris 50 kg</td><td>200</td><td>₡6 450</td><td>₡6 300</td><td>+₡150</td><td><strong>₡30 000</strong></td><td><strong>Incumplimiento de contrato Proveedor A</strong> (Sospecha duplicado)</td></tr><tr><td><strong>OC-1042</strong></td><td>02/10</td><td>Obras</td><td>A</td><td>Cemento gris 50 kg</td><td>200</td><td>₡6 450</td><td>₡6 300</td><td>+₡150</td><td><strong>₡30 000</strong></td><td><strong>Incumplimiento de contrato Proveedor A</strong> (Sospecha duplicado)</td></tr><tr><td><strong>OC-1047</strong></td><td>06/10</td><td>Mantenimiento</td><td>B</td><td>Cemento gris 50 kg</td><td>40</td><td>₡7 100</td><td>₡6 300</td><td>+₡800</td><td><strong>₡32 000</strong></td><td><strong>Desviación compra fuera de contrato (Prov. B)</strong></td></tr><tr><td><strong>OC-1050</strong></td><td>08/10</td><td>Obras</td><td>C</td><td>Varilla #3</td><td>500</td><td>₡2 150</td><td>₡2 050</td><td>+₡100</td><td><strong>₡50 000</strong></td><td><strong>Desviación compra fuera de contrato (Prov. C)</strong></td></tr><tr><td><strong>OC-1053</strong></td><td>09/10</td><td>Obras</td><td>C</td><td>Varilla #3</td><td>480</td><td>₡2 150</td><td>₡2 050</td><td>+₡100</td><td><strong>₡48 000</strong></td><td><strong>Desviación compra fuera de contrato (Prov. C)</strong></td></tr><tr><td><strong>OC-1058</strong></td><td>13/10</td><td>Mantenimiento</td><td>D</td><td>Varilla #3</td><td>60</td><td>₡2 600</td><td>₡2 050</td><td>+₡550</td><td><strong>₡33 000</strong></td><td><strong>Desviación compra spot minorista (Prov. D)</strong></td></tr><tr><td><strong>OC-1061</strong></td><td>15/10</td><td>Bodega</td><td>A</td><td>Cemento gris 50 kg</td><td>300</td><td>₡6 300</td><td>₡6 300</td><td>₡0</td><td><strong>₡0</strong></td><td><strong>Compra conforme a contrato marco</strong></td></tr></tbody></table></div>
 <p>#### Subtotales Analíticos y Proyección Financiera</p>
-<div class="numbered-item"><span class="item-num">1.</span> <strong>Incumplimientos Directos de Contrato con Proveedor A:</strong></div>
-<p><div class="math-display">\text{Sobreprecio Proveedor A} = \text{₡}30\,000 (\text{OC-1041}) + \text{₡}30\,000 (\text{OC-1042}) = \mathbf{\text{₡}60\,000}</div></p>
-<p><em>Acción:</em> Emisión inmediata de Nota de Crédito y reclamo formal al Proveedor A.</p>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Diferencias Respecto al Precio Contractual con Proveedor A:</strong></div>
+<p><div class="math-display">\text{Diferencia Proveedor A} = \text{₡}30\,000 (\text{OC-1041}) + \text{₡}30\,000 (\text{OC-1042}) = \mathbf{\text{₡}60\,000}</div></p>
+<p><em>Tratamiento analítico:</em> Esta variación de ₡150 por saco frente a la tarifa de referencia de ₡6 300 no debe considerarse un crédito automático ni una nota de crédito confirmada. Su recuperación efectiva queda expresamente condicionada a la revisión formal del contrato marco, la auditoría de las facturas electrónicas timbradas y la comprobación de la recepción física en obra mediante el Three-Way Match.</p>
 <div class="numbered-item"><span class="item-num">2.</span> <strong>Desviaciones por Compras Fuera de Contrato a Otros Proveedores (B, C, D):</strong></div>
-<p><div class="math-display">\text{Sobreprecio Terceros} = \text{₡}32\,000 + \text{₡}50\,000 + \text{₡}48\,000 + \text{₡}33\,000 = \mathbf{\text{₡}163\,000}</div></p>
-<p><em>Acción:</em> Centralización de compras y eliminación de pedidos spot no autorizados.</p>
-<div class="numbered-item"><span class="item-num">3.</span> <strong>Fuga Total Mensual Consolidada:</strong> <span class="math-inline">\text{₡}60\,000 + \text{₡}163\,000 = \mathbf{\text{₡}223\,000}</span>.</div>
-<div class="numbered-item"><span class="item-num">4.</span> <strong>Proyección Anual Simple de Fuga:</strong> <span class="math-inline">\text{₡}223\,000 \times 12 = \mathbf{\text{₡}2\,676\,000}</span>.</div>
+<p><div class="math-display">\text{Desviación Terceros} = \text{₡}32\,000 + \text{₡}50\,000 + \text{₡}48\,000 + \text{₡}33\,000 = \mathbf{\text{₡}163\,000}</div></p>
+<p><em>Acción recomendada:</em> Centralización de compras a través del catálogo estandarizado y eliminación de pedidos spot no autorizados.</p>
+<div class="numbered-item"><span class="item-num">3.</span> <strong>Total Consolidado de Diferencias (Fuga Mensual):</strong> <span class="math-inline">\text{₡}60\,000 + \text{₡}163\,000 = \mathbf{\text{₡}223\,000}</span>.</div>
+<div class="numbered-item"><span class="item-num">4.</span> <strong>Proyección Anual Simple:</strong> <span class="math-inline">\text{₡}223\,000 \times 12 = \mathbf{\text{₡}2\,676\,000}</span>.</div>
 <p>#### Exposición Económica por Posible Compra Duplicada</p>
 <div class="bullet-item">• <strong>Órdenes involucradas:</strong> OC-1041 y OC-1042 (Mismo proveedor A, misma fecha 02/10, mismo cemento, 200 sacos cada una).</div>
 <div class="bullet-item">• <strong>Monto de Exposición en Riesgo:</strong> <span class="math-inline">200 \times \text{₡}6\,450 = \mathbf{\text{₡}1\,290\,000}</span>.</div>
@@ -457,6 +457,8 @@
 <h3>5.2. Modelo de Datos en 3NF y Principio del Ledger</h3>
 <p>El stock nunca se actualiza como un campo editable directo en la tabla de materiales. Todo cambio físico proviene de un movimiento inmutable en <code>inventory_movements</code>:</p>
 <p><div class="math-display">\text{Stock Actual} = \sum (\text{Entradas} + \text{Ajustes Positivos}) - \sum (\text{Salidas} + \text{Ajustes Negativos})</div></p>
+<div class="bullet-item">• <strong>Estado Inicial Base (Semilla):</strong> La carga inicial (<code>seed.sql</code>) asienta para el Cemento gris 50 kg una entrada de 250 sacos y una salida de 60 sacos, estableciendo un <strong>saldo inicial conocido y reproducible de 190 sacos</strong> en Bodega Central Coyol, coincidente en su totalidad con el Ejercicio A5.</div>
+<div class="bullet-item">• <strong>Trazabilidad en Demostración:</strong> Cualquier movimiento de prueba en vivo parte de esta base determinística (por ejemplo, una entrada de 50 sacos y una salida de 20 sacos produce un saldo exacto de <strong>220 sacos</strong>; mientras que la ejecución previa de la suite automatizada de pruebas asienta operaciones reales en MySQL que incrementan temporalmente el acumulado a 270 sacos hasta la siguiente reinicialización con <code>npm run db:init</code>).</div>
 <div class="bullet-item">• Las salidas y traslados verifican previamente la existencia disponible; <strong>si la cantidad solicitada excede el saldo real, la transacción se aborta con excepción</strong>.</div>
 <div class="bullet-item">• Los traslados entre bodegas se asientan como pares vinculados en una sola transacción atómica SQL mediante <code>transfer_group_id</code>.</div>
 <h3>5.3. Servicios y Motores de Reglas de Negocio</h3>
@@ -491,7 +493,7 @@ Test Suites: 1 passed, 1 total | Tests: 12 passed, 12 total | Tiempo: 3.56 s</co
 <hr/>
 <h2>7. CONCLUSIONES Y RECOMENDACIONES ESTRATÉGICAS</h2>
 <div class="numbered-item"><span class="item-num">1.</span> <strong>Ahorro Demostrado por Estandarización:</strong> La taxonomía de 2 niveles permite capturar un ahorro directo inmediato de <strong>₡89 000</strong> en cemento y acero estructural.</div>
-<div class="numbered-item"><span class="item-num">2.</span> <strong>Eliminación de Fuga de Valor:</strong> El control de contratos y centralización de compras evita sobrecostos proyectados en <strong>₡2 676 000</strong> anuales, identificando además <strong>₡60 000</strong> en reclamos inmediatos a Proveedor A y <strong>₡1 290 000</strong> en riesgo por duplicidad.</div>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Eliminación de Fuga de Valor:</strong> El control de contratos y centralización de compras previene sobrecostos proyectados en <strong>₡2 676 000</strong> anuales (fuga mensual de <strong>₡223 000</strong>, compuesta por <strong>₡60 000</strong> de diferencia contractual con Proveedor A y <strong>₡163 000</strong> con terceros). Se aísla además un monto de <strong>₡1 290 000</strong> en exposición económica por posible duplicidad de órdenes (OC-1041 y OC-1042), sujeto a la comprobación de recepción física y auditoría documental.</div>
 <div class="numbered-item"><span class="item-num">3.</span> <strong>Continuidad de Obras con Base Matemática:</strong> La priorización por días de cobertura asegura que los recursos de compra se enfoquen primero en la <strong>Arena fina (2.33 días)</strong> y el <strong>Block de concreto (4.67 días)</strong>, blindando el avance físico de los proyectos.</div>
 <div class="numbered-item"><span class="item-num">4.</span> <strong>Solución Técnica Inviolable:</strong> La arquitectura de tres capas implementada con Sequelize y MySQL garantiza integridad referencial, transacciones atómicas y seguridad mediante validadores de entrada y roles de usuario.</div>
   </div>

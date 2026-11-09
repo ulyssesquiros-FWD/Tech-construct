@@ -441,7 +441,7 @@ function generateEntregaPdf() {
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <strong>Empresa Evaluada</strong>
-          <span>Constructora Del Valle S.A. (Cédula: 3-101-558899)</span>
+          <span>Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos)</span>
         </div>
         <div class="cover-meta-item">
           <strong>Modalidad Arquitectónica</strong>

@@ -1,6 +1,6 @@
 # GUÍA MAESTRA DE PREGUNTAS Y RESPUESTAS PARA LA DEFENSA TÉCNICA
 ## QUIZ #2: SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS
-**Empresa:** Constructora Del Valle S.A. | **Total de Preguntas:** 24 Preguntas Técnicas y Arquitectónicas
+**Empresa:** Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos) | **Total de Preguntas:** 24 Preguntas Técnicas y Arquitectónicas
 
 ---
 
@@ -361,7 +361,7 @@ Si la factura cobra ₡6 450 pero la OC aprobada estipula ₡6 300, o si se fact
 #### Pregunta 21: ¿Por qué fue crucial en el ejercicio A3 separar los incumplimientos del Proveedor A de las compras a terceros y no sumar la posible compra duplicada como pérdida consumada?
 **Respuesta Técnica:**
 Desde la perspectiva contable, jurídica y de auditoría forense, mezclar estos conceptos distorsiona los estados financieros:
-1. **Incumplimiento Directo del Proveedor A (₡60 000):** Existe un contrato legal vigente que fija precios en ₡6 300 (cemento) y ₡2 050 (acero). Las órdenes OC-1041 y OC-1042 cobraron ₡6 450 (+₡150 c/u por 400 sacos). Esto constituye una violación contractual líquida y exigible mediante reclamo legal inmediato o retención de facturas.
+1. **Diferencias Respecto al Precio Contractual con Proveedor A (₡60 000):** Existe un contrato marco de referencia que fija precios en ₡6 300 (cemento) y ₡2 050 (acero). Las órdenes OC-1041 y OC-1042 cobraron ₡6 450 (+₡150 c/u por 400 sacos). En auditoría corporativa, esta variación no se clasifica como un crédito líquido y exigible automático ni como una nota de crédito confirmada, sino como una diferencia condicionada a la revisión formal del contrato marco, a la verificación de facturas electrónicas timbradas y a la comprobación de la recepción física efectiva en obra.
 2. **Desviaciones por Compras Fuera de Contrato (₡163 000):** Son compras realizadas a proveedores no contratados (B, C y D) con sobrecostos frente al precio de referencia corporativo. Representan una falla de disciplina interna y gobernanza de compras.
 3. **Exposición por Compra Duplicada (₡1 290 000):** Las órdenes gemelas OC-1041 y OC-1042 representan 200 sacos adicionales en riesgo. Si el material entró a la obra y se utilizó en colados, no hay pérdida de dinero (se tiene el activo físico), sino un problema de liquidez anticipada y sobrestock. Si el proveedor facturó dos veces un solo viaje de 200 sacos, entonces sí existiría cobro indebido. Por ello, la técnica contable exige **aislarlo como exposición contingente sujeta a auditoría física**.
 

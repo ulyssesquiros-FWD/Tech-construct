@@ -1,6 +1,6 @@
 # GUION DE PRESENTACIÓN — DEFENSA TÉCNICA (10 MINUTOS)
 ## QUIZ #2: SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS
-**Empresa:** Constructora Del Valle S.A. | **Expositor:** Equipo de Desarrollo Backend y Arquitectura
+**Empresa:** Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos) | **Expositor:** Equipo de Desarrollo Backend y Arquitectura
 
 ---
 
@@ -73,7 +73,7 @@
 #### DIAPOSITIVA 5: Auditoría Forense de Gasto (A3) (4:00 - 5:15)
 > *"El análisis del ejercicio A3 requirió una rigurosa separación analítica que distingue la naturaleza legal y contable de cada desviación:*
 >
-> *Primero, aislamos los **Incumplimientos Directos del Proveedor A**: las órdenes OC-1041 y OC-1042 se facturaron a ₡6 450 existiendo un contrato formal firmado a ₡6 300. Este sobreprecio de ₡150 por saco genera una fuga de **₡60 000**, la cual es inmediatamente recuperable mediante reclamo comercial y Nota de Crédito.*
+> *Primero, aislamos las **Diferencias Respecto al Precio Contractual del Proveedor A**: las órdenes OC-1041 y OC-1042 se facturaron a ₡6 450 existiendo un precio de referencia firmado a ₡6 300. Esta variación de ₡150 por saco representa una diferencia de **₡60 000**, la cual, bajo criterios rigurosos de auditoría, queda formalmente condicionada a la revisión del contrato marco, a la verificación de facturas electrónicas y a la comprobación de la recepción física en obra antes de tramitar cualquier reclamo o nota de crédito.*
 >
 > *Segundo, cuantificamos las **Desviaciones por Compras Fuera de Contrato**: adquisiciones no centralizadas a los proveedores B, C y compras spot minoristas al Proveedor D, sumando **₡163 000** en sobrecostos evitables. Con ello, la fuga de valor mensual real asciende a **₡223 000**, lo que representa **₡2 676 000** anualizados.*
 >

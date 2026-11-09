@@ -1,6 +1,6 @@
 # PRESENTACIÓN DEFENSA DE PROYECTO — QUIZ #2
 ## SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS Y ABASTECIMIENTO
-**Constructora Del Valle S.A.** | Duración: 10 Minutos
+**Constructora Del Valle S.A.** (Entidad Ficticia para Fines Académicos) | Duración: 10 Minutos
 
 ---
 
@@ -51,7 +51,7 @@
 ---
 
 ### DIAPOSITIVA 5: Auditoría Forense de Gasto (A3) (4:00 - 5:15)
-- **1. Incumplimiento Directo de Proveedor A:** ₡60 000 en sobreprecio sobre OC-1041 y OC-1042 (₡150 extra por cada uno de los 400 sacos). Objeto de reclamo formal y Nota de Crédito.
+- **1. Diferencia Respecto al Contrato de Proveedor A:** ₡60 000 de variación en OC-1041 y OC-1042 (₡150 extra por cada uno de los 400 sacos). *Tratamiento: Condicionado a revisión legal de contrato marco, facturas y recepción física en obra (Three-Way Match).*
 - **2. Compras Fuera de Contrato (Proveedores B, C, D):** ₡163 000 de sobrecosto por adquisiciones dispersas a tarifas minoristas.
 - **3. Fuga Mensual Real:** $\text{₡}60 000 + \text{₡}163 000 = \mathbf{\text{₡}223 000}$ ($\implies \mathbf{\text{₡}2 676 000}$ proyección anual simple).
 - **4. Exposición por Compra Duplicada (OC-1041 y OC-1042):** $\mathbf{\text{₡}1 290 000}$ aislados como riesgo de sobreabastecimiento/liquidez, no como pérdida consumada.

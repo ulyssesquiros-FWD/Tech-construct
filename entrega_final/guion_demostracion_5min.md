@@ -1,6 +1,6 @@
 # GUION TÉCNICO DE DEMOSTRACIÓN EN VIVO (MÁXIMO 5 MINUTOS)
 ## QUIZ #2: SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS
-**Empresa:** Constructora Del Valle S.A. | **Duración Estricta:** 4 minutos 45 segundos (Margen de 15 segundos)
+**Empresa:** Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos) | **Duración Estricta:** 4 minutos 45 segundos (Margen de 15 segundos)
 
 ---
 
@@ -31,7 +31,8 @@
 #### PASO 2: Catálogo Normalizado de Materiales (0:25 - 0:55)
 - **Acción:** Hacer clic en **Materiales** en la barra lateral. En el buscador teclear `Cemento`.
 - **Voz del Demostrador:**
-  > *"Ingresamos al módulo de Materiales. Aquí vemos la aplicación de la taxonomía del ejercicio A2: el Cemento gris está normalizado bajo el código institucional `MAT-CEM-GRIS-050`, y la varilla bajo `MAT-ACE-VAR-003`. Cada ficha almacena de forma persistente su demanda diaria promedio, su tiempo de entrega de 3 días, su stock de seguridad calculado en 45 sacos y su punto de reorden de 165 sacos."*
+  > *"Ingresamos al módulo de Materiales. Aquí vemos la aplicación de la taxonomía del ejercicio A2: el Cemento gris está normalizado bajo el código institucional `MAT-CEM-GRIS-050`, y la varilla bajo `MAT-ACE-VAR-003`. Cada ficha almacena de forma persistente su demanda diaria promedio, su tiempo de entrega de 3 días, su stock de seguridad de 45 sacos y su punto de reorden de 165 sacos.*
+  > *Noten el saldo inicial: en un entorno recién inicializado con los datos semilla (`npm run db:init`), el saldo inicial es de exactamente **190 sacos**, idéntico al ejercicio A5. Si se ejecutaron las pruebas automatizadas previamente, el balance temporal reflejará los asientos reales de test (+80 netos = 270 sacos). En cualquier caso, el comportamiento del Ledger es 100% reproducible y auditable."*
 
 #### PASO 3: Registro de Entrada de Material (0:55 - 1:30)
 - **Acción:** Ir a **Movimientos**, clic en el botón verde **"Registrar Movimiento"**.
@@ -58,7 +59,7 @@
 #### PASO 5: Verificación de Stock Actualizado por Ubicación (2:05 - 2:35)
 - **Acción:** Navegar a **Inventario por Ubicación**. Seleccionar `Bodega Central Coyol`.
 - **Voz del Demostrador:**
-  > *"Comprobamos en tiempo real el Inventario por Ubicación en la Bodega Coyol: el sistema totaliza dinámicamente mediante el patrón Ledger sumando las entradas y restando las salidas. Vemos el incremento exacto neto de 30 unidades respecto al saldo anterior, sin campos estáticos ni valores precalculados desincronizados."*
+  > *"Comprobamos en tiempo real el Inventario por Ubicación en la Bodega Coyol: el sistema totaliza dinámicamente mediante el patrón Ledger sumando las entradas y restando las salidas. Vemos el incremento exacto neto de 30 unidades respecto al saldo anterior (+50 sacos de entrada menos 20 sacos de salida). Si partimos del estado semilla limpio de 190 sacos, el balance actual es exactamente **220 sacos** (o 300 si se corrió previamente el set de tests con 270 de base), demostrando que la base de datos MySQL calcula saldos reales sin campos estáticos."*
 
 #### PASO 6: Detección y Panel de Alertas de Reorden (2:35 - 3:05)
 - **Acción:** Navegar a **Alertas** en el menú.

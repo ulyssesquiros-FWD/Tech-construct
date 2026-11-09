@@ -5,7 +5,7 @@
 
 **Institución:** Universidad Técnica / Facultad de Ingeniería Informática  
 **Curso:** Desarrollo Backend y Arquitectura de Bases de Datos Relacionales  
-**Empresa de Estudio:** Constructora Del Valle S.A. (Cédula Jurídica: 3-101-558899)  
+**Empresa de Estudio:** Constructora Del Valle S.A. (Entidad y Cédula Jurídica Ficticias para Fines Académicos: 3-101-558899)  
 **Caso Seleccionado:** Opción 2 — Control de Inventario para una Empresa de Construcción  
 **Modalidad Tecnológica:** Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite)  
 **Moneda del Sistema:** Colones costarricenses (₡)  
@@ -164,14 +164,14 @@ Se implementó una taxonomía jerárquica de dos niveles:
 | **OC-1061** | 15/10 | Bodega | A | Cemento gris 50 kg | 300 | ₡6 300 | ₡6 300 | ₡0 | **₡0** | **Compra conforme a contrato marco** |
 
 #### Subtotales Analíticos y Proyección Financiera
-1. **Incumplimientos Directos de Contrato con Proveedor A:**  
-   $$\text{Sobreprecio Proveedor A} = \text{₡}30\,000 (\text{OC-1041}) + \text{₡}30\,000 (\text{OC-1042}) = \mathbf{\text{₡}60\,000}$$  
-   *Acción:* Emisión inmediata de Nota de Crédito y reclamo formal al Proveedor A.
+1. **Diferencias Respecto al Precio Contractual con Proveedor A:**  
+   $$\text{Diferencia Proveedor A} = \text{₡}30\,000 (\text{OC-1041}) + \text{₡}30\,000 (\text{OC-1042}) = \mathbf{\text{₡}60\,000}$$  
+   *Tratamiento analítico:* Esta variación de ₡150 por saco frente a la tarifa de referencia de ₡6 300 no debe considerarse un crédito automático ni una nota de crédito confirmada. Su recuperación efectiva queda expresamente condicionada a la revisión formal del contrato marco, la auditoría de las facturas electrónicas timbradas y la comprobación de la recepción física en obra mediante el Three-Way Match.
 2. **Desviaciones por Compras Fuera de Contrato a Otros Proveedores (B, C, D):**  
-   $$\text{Sobreprecio Terceros} = \text{₡}32\,000 + \text{₡}50\,000 + \text{₡}48\,000 + \text{₡}33\,000 = \mathbf{\text{₡}163\,000}$$  
-   *Acción:* Centralización de compras y eliminación de pedidos spot no autorizados.
-3. **Fuga Total Mensual Consolidada:** $\text{₡}60\,000 + \text{₡}163\,000 = \mathbf{\text{₡}223\,000}$.
-4. **Proyección Anual Simple de Fuga:** $\text{₡}223\,000 \times 12 = \mathbf{\text{₡}2\,676\,000}$.
+   $$\text{Desviación Terceros} = \text{₡}32\,000 + \text{₡}50\,000 + \text{₡}48\,000 + \text{₡}33\,000 = \mathbf{\text{₡}163\,000}$$  
+   *Acción recomendada:* Centralización de compras a través del catálogo estandarizado y eliminación de pedidos spot no autorizados.
+3. **Total Consolidado de Diferencias (Fuga Mensual):** $\text{₡}60\,000 + \text{₡}163\,000 = \mathbf{\text{₡}223\,000}$.
+4. **Proyección Anual Simple:** $\text{₡}223\,000 \times 12 = \mathbf{\text{₡}2\,676\,000}$.
 
 #### Exposición Económica por Posible Compra Duplicada
 - **Órdenes involucradas:** OC-1041 y OC-1042 (Mismo proveedor A, misma fecha 02/10, mismo cemento, 200 sacos cada una).
@@ -234,6 +234,8 @@ Matriz con supuestos académicos para proveedores referenciales en Costa Rica (E
 El stock nunca se actualiza como un campo editable directo en la tabla de materiales. Todo cambio físico proviene de un movimiento inmutable en `inventory_movements`:
 $$\text{Stock Actual} = \sum (\text{Entradas} + \text{Ajustes Positivos}) - \sum (\text{Salidas} + \text{Ajustes Negativos})$$
 
+- **Estado Inicial Base (Semilla):** La carga inicial (`seed.sql`) asienta para el Cemento gris 50 kg una entrada de 250 sacos y una salida de 60 sacos, estableciendo un **saldo inicial conocido y reproducible de 190 sacos** en Bodega Central Coyol, coincidente en su totalidad con el Ejercicio A5.
+- **Trazabilidad en Demostración:** Cualquier movimiento de prueba en vivo parte de esta base determinística (por ejemplo, una entrada de 50 sacos y una salida de 20 sacos produce un saldo exacto de **220 sacos**; mientras que la ejecución previa de la suite automatizada de pruebas asienta operaciones reales en MySQL que incrementan temporalmente el acumulado a 270 sacos hasta la siguiente reinicialización con `npm run db:init`).
 - Las salidas y traslados verifican previamente la existencia disponible; **si la cantidad solicitada excede el saldo real, la transacción se aborta con excepción**.
 - Los traslados entre bodegas se asientan como pares vinculados en una sola transacción atómica SQL mediante `transfer_group_id`.
 
@@ -281,7 +283,7 @@ Test Suites: 1 passed, 1 total | Tests: 12 passed, 12 total | Tiempo: 3.56 s
 ## 7. CONCLUSIONES Y RECOMENDACIONES ESTRATÉGICAS
 
 1. **Ahorro Demostrado por Estandarización:** La taxonomía de 2 niveles permite capturar un ahorro directo inmediato de **₡89 000** en cemento y acero estructural.
-2. **Eliminación de Fuga de Valor:** El control de contratos y centralización de compras evita sobrecostos proyectados en **₡2 676 000** anuales, identificando además **₡60 000** en reclamos inmediatos a Proveedor A y **₡1 290 000** en riesgo por duplicidad.
+2. **Eliminación de Fuga de Valor:** El control de contratos y centralización de compras previene sobrecostos proyectados en **₡2 676 000** anuales (fuga mensual de **₡223 000**, compuesta por **₡60 000** de diferencia contractual con Proveedor A y **₡163 000** con terceros). Se aísla además un monto de **₡1 290 000** en exposición económica por posible duplicidad de órdenes (OC-1041 y OC-1042), sujeto a la comprobación de recepción física y auditoría documental.
 3. **Continuidad de Obras con Base Matemática:** La priorización por días de cobertura asegura que los recursos de compra se enfoquen primero en la **Arena fina (2.33 días)** y el **Block de concreto (4.67 días)**, blindando el avance físico de los proyectos.
 4. **Solución Técnica Inviolable:** La arquitectura de tres capas implementada con Sequelize y MySQL garantiza integridad referencial, transacciones atómicas y seguridad mediante validadores de entrada y roles de usuario.
 

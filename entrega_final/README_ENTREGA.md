@@ -1,6 +1,6 @@
 # ENTREGA FINAL Y DEFENSA DE PROYECTO — QUIZ #2
 ## SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS Y ABASTECIMIENTO
-**Constructora Del Valle S.A.** | **Cédula Jurídica:** 3-101-558899
+**Constructora Del Valle S.A.** | **Identificación Jurídica:** Entidad y Cédula Ficticias para Fines Académicos
 
 ---
 
@@ -47,7 +47,7 @@ Todos los documentos, código y recursos para la defensa académica y técnica s
 - **Ahorro Total Directo:** **₡89 000**.
 
 #### Ejercicio A3: Desglose Riguroso de Gasto y Fuga de Valor
-- **1. Incumplimiento Directo Contrato Proveedor A:** OC-1041 y OC-1042 cobradas a ₡6 450 (+₡150 c/u por 400 sacos) $\implies$ **₡60 000** (Reclamo y Nota de Crédito inmediata).
+- **1. Diferencias Respecto al Precio Contractual de Proveedor A:** OC-1041 y OC-1042 cobradas a ₡6 450 (+₡150 c/u por 400 sacos) $\implies$ **₡60 000** (Variación condicionada a la revisión formal del contrato marco, facturas y recepción física en obra).
 - **2. Desviaciones por Compras a Terceros (Prov. B, C, D):** Sobrecostos por compras dispersas fuera de contrato marco $\implies$ **₡163 000**.
 - **3. Fuga Real Mensual Consolidada:** $\text{₡}60 000 + \text{₡}163 000 = \mathbf{\text{₡}223 000}$ ($\implies \mathbf{\text{₡}2 676 000}$ al año).
 - **4. Exposición Económica por Posible Duplicidad (OC-1041 / OC-1042):** $\mathbf{\text{₡}1 290 000}$ (Aislado como riesgo de liquidez y sobreabastecimiento sujeto a auditoría física, **no** como pérdida confirmada).
@@ -75,6 +75,7 @@ Todos los documentos, código y recursos para la defensa académica y técnica s
 - **Persistencia en 3NF y Patrón Ledger:**
   - 14 tablas relacionales con restricciones de clave foránea (`ON DELETE RESTRICT`).
   - El inventario físico se calcula como suma de asientos inmutables en `inventory_movements`.
+  - **Saldo Inicial y Reproducibilidad:** La base de datos semilla (`database/seed.sql`) fija un estado inicial conocido de **190 sacos** para Cemento gris 50 kg en Bodega Central Coyol ($250 - 60 = 190$), exactamente igual al Ejercicio A5. La ejecución previa de `npm test` asienta movimientos reales que elevan temporalmente el acumulado a 270 sacos (+80 netos). Al ejecutar la demo en vivo (+50 entrada, -20 salida), el stock resultante es de **220 sacos** (desde base 190) o 300 sacos (desde base 270), comprobando el cálculo en tiempo real.
   - Traslados atómicos vinculados mediante `transfer_group_id` en una sola transacción SQL.
   - Bloqueo preventivo de stock negativo: las salidas rechazan la transacción si no hay saldo suficiente en la ubicación.
 

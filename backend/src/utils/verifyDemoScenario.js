@@ -20,7 +20,7 @@ async function testDemoScenario() {
     console.log('\nPaso 2: Consultando Cemento gris 50 kg...');
     const cemento = await Material.findOne({ where: { internal_code: 'MAT-CEM-GRIS-050' } });
     const stockInicialCemento = await inventoryService.getCurrentStock(cemento.id);
-    console.log(`- Stock actual Cemento: ${stockInicialCemento} ${cemento.unit}`);
+    console.log(`- Stock actual Cemento: ${stockInicialCemento} ${cemento.unit} (Línea base semilla: 190 saco; post-tests: 270 saco)`);
     console.log(`- Punto de reorden Cemento: ${cemento.reorder_point} ${cemento.unit}`);
 
     // 3. Registrar una entrada de cemento
@@ -41,12 +41,12 @@ async function testDemoScenario() {
     console.log(`- Entrada exitosa! N° Movimiento: ${entradaRes.movement.movement_number}`);
 
     // 4. Registrar una salida
-    console.log('\nPaso 4: Registrando salida de 10 sacos para obra...');
+    console.log('\nPaso 4: Registrando salida de 20 sacos para obra...');
     const salidaRes = await inventoryService.recordMovement({
       material_id: cemento.id,
       location_id: bodegaCentral.id,
       movement_type: 'salida',
-      quantity: 10,
+      quantity: 20,
       unit_cost: 6300,
       user_id: adminUser.id,
       source_document_type: 'requisicion',
@@ -58,8 +58,8 @@ async function testDemoScenario() {
     // 5. Mostrar el stock actualizado
     console.log('\nPaso 5: Verificando nuevo stock calculado...');
     const stockNuevoCemento = await inventoryService.getCurrentStock(cemento.id);
-    console.log(`- Stock inicial: ${stockInicialCemento} -> Saldo tras (+50 -10): ${stockNuevoCemento}`);
-    if (stockNuevoCemento !== stockInicialCemento + 40) {
+    console.log(`- Stock inicial: ${stockInicialCemento} -> Saldo tras (+50 -20): ${stockNuevoCemento}`);
+    if (stockNuevoCemento !== stockInicialCemento + 30) {
       throw new Error('Inconsistencia en el cálculo del stock!');
     }
 
