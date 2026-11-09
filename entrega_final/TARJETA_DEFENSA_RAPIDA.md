@@ -1,6 +1,6 @@
 # TARJETA DE REFERENCIA RÁPIDA PARA LA DEFENSA TÉCNICA
-## QUIZ #2: GESTIÓN DE INVENTARIOS — CONSTRUCTORA DEL VALLE S.A.
-*Material de apoyo de bolsillo para el estudiante / expositor durante la presentación de 10 min y demo de 5 min.*
+## QUIZ #2: GESTIÓN DE INVENTARIOS — TECH-CONSTRUCT S.A.
+*Material de apoyo de bolsillo para Ulysses (Administrador y Expositor) durante la presentación de 10 min y demo de 5 min.*
 
 ---
 
@@ -76,3 +76,4 @@ cd backend && node src/utils/verifyDemoScenario.js
 
 #### P5: "¿Cómo demuestra que su base de datos está en Tercera Forma Normal (3NF)?"
 > *"Porque cumple 1NF (valores atómicos, sin arreglos multivaluados), cumple 2NF (claves foráneas en tablas intermedias como `purchase_order_details`) y cumple 3NF al **eliminar dependencias transitivas**: los datos del proveedor, ubicación o categoría no se duplican en las órdenes o movimientos, sino que se referencian exclusivamente mediante llaves foráneas (`FK`), garantizando cero redundancias y cero anomalías de actualización."*
+

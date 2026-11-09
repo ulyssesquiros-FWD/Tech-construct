@@ -266,8 +266,21 @@
 
   <!-- Top bar -->
   <div class="top-bar">
-    <div><strong>Constructora Del Valle S.A.</strong> | Sistema de Inventarios y Abastecimiento</div>
-    <div id="slide-counter">Diapositiva 1 / 10</div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24" height="24" fill="none">
+        <rect width="64" height="64" rx="14" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+        <path d="M 32 8 L 53 20 L 32 32 L 11 20 Z" fill="#38bdf8" />
+        <path d="M 11 21 L 31 33 L 31 55 L 11 44 Z" fill="#0369a1" />
+        <path d="M 33 33 L 53 21 L 53 44 L 33 55 Z" fill="#fbbf24" />
+      </svg>
+      <div><strong style="color: #ffffff;">TECH<span style="color:#38bdf8;">-</span><span style="color:#fbbf24;">CONSTRUCT</span></strong> | Sistema de Inventarios y Abastecimiento</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="font-size: 12px; color: #cbd5e1; background: rgba(56, 189, 248, 0.1); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2);">
+        👤 Administrador: <strong style="color: #38bdf8;">Ulysses</strong>
+      </div>
+      <div id="slide-counter">Diapositiva 1 / 10</div>
+    </div>
     <div class="progress-bar" id="progress-bar" style="width: 10%;"></div>
   </div>
 
@@ -276,19 +289,36 @@
 
     <!-- SLIDE 1: PORTADA -->
     <div class="slide active" id="slide-1">
-      <div class="slide-header">
-        <span class="slide-badge">Quiz #2 — Defensa Técnica (10 Minutos)</span>
-        <h1 class="slide-title">Sistema Empresarial de Gestión de Inventarios</h1>
-        <p class="slide-subtitle">Solución Full Stack corporativa para compras por obra, reposición matemática y prevención de fraude</p>
+      <div class="slide-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+          <span class="slide-badge">Quiz #2 — Defensa Técnica (10 Minutos)</span>
+          <h1 class="slide-title">Sistema Empresarial de Gestión de Inventarios</h1>
+          <p class="slide-subtitle">Solución Full Stack corporativa para compras por obra, reposición matemática y prevención de fraude</p>
+        </div>
+        <!-- Tech-Construct Header Logo -->
+        <div style="background: rgba(15, 23, 42, 0.8); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="180" height="42" fill="none">
+            <g transform="translate(6, 6)">
+              <path d="M 26 2 L 48 14 L 48 38 L 26 50 L 4 38 L 4 14 Z" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+              <path d="M 26 3 L 47 14 L 26 25 L 5 14 Z" fill="#38bdf8" />
+              <path d="M 5 15 L 25 26 L 25 49 L 5 38 Z" fill="#0369a1" />
+              <circle cx="15" cy="32" r="2.5" fill="#38bdf8" />
+              <path d="M 27 26 L 47 15 L 47 38 L 27 49 Z" fill="#fbbf24" />
+            </g>
+            <text x="68" y="32" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#ffffff">TECH<tspan fill="#38bdf8">-</tspan><tspan fill="#fbbf24">CONSTRUCT</tspan></text>
+            <text x="69" y="47" font-family="system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#94a3b8" letter-spacing="1.5">ENTERPRISE INVENTORY</text>
+          </svg>
+        </div>
       </div>
       <div class="slide-content">
         <div class="grid-2">
           <div class="card">
-            <h3>🏢 Constructora Del Valle S.A.</h3>
-            <p style="font-size: 11px; color: #38bdf8; margin-bottom: 6px;"><em>(Entidad Ficticia — Caso Académico)</em></p>
-            <p>Empresa de referencia para obras civiles, puentes y proyectos de edificación.</p>
+            <h3>🏗️ Tech-Construct S.A.</h3>
+            <p style="font-size: 11px; color: #38bdf8; margin-bottom: 6px;"><em>(Caso de Estudio Empresarial — Administrador: Ulysses)</em></p>
+            <p>Empresa corporativa de infraestructura vial, edificación comercial y obras civiles.</p>
             <ul>
               <li>5 Ubicaciones: Bodega Central Coyol, Taller Calle Blancos, Obra Norte, Obra Sur y Obra Este.</li>
+              <li>Liderazgo y Gestión: <strong>Ulysses</strong> (Administrador General del Sistema).</li>
               <li>Desafío inicial: compras desarticuladas, sobreprecios recurrentes y riesgo de desabastecimiento.</li>
             </ul>
           </div>
@@ -771,8 +801,20 @@
           </div>
         </div>
         <div class="card" style="margin-top: 10px; text-align: center; background: rgba(56, 189, 248, 0.08); border-color: rgba(56, 189, 248, 0.3);">
+          <div style="margin-bottom: 6px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="160" height="38" fill="none">
+              <g transform="translate(6, 6)">
+                <path d="M 26 2 L 48 14 L 48 38 L 26 50 L 4 38 L 4 14 Z" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+                <path d="M 26 3 L 47 14 L 26 25 L 5 14 Z" fill="#38bdf8" />
+                <path d="M 5 15 L 25 26 L 25 49 L 5 38 Z" fill="#0369a1" />
+                <path d="M 27 26 L 47 15 L 47 38 L 27 49 Z" fill="#fbbf24" />
+              </g>
+              <text x="68" y="32" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#ffffff">TECH<tspan fill="#38bdf8">-</tspan><tspan fill="#fbbf24">CONSTRUCT</tspan></text>
+            </svg>
+          </div>
           <h2 style="font-size: 18px; color: #38bdf8;">¡Muchas Gracias!</h2>
-          <p style="color: #cbd5e1; font-size: 13px; margin-top: 4px;">Damos paso a la demostración práctica del sistema en vivo (5 minutos) y sesión de preguntas de defensa.</p>
+          <p style="color: #cbd5e1; font-size: 13px; margin-top: 4px;">Presentado por <strong>Ulysses</strong> (Administrador y Arquitecto del Sistema Tech-Construct).</p>
+          <p style="color: #94a3b8; font-size: 12px; margin-top: 2px;">Damos paso a la demostración práctica del sistema en vivo (5 minutos) y sesión de preguntas de defensa.</p>
         </div>
       </div>
       <div class="slide-footer">

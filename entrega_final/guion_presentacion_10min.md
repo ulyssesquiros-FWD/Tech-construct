@@ -1,6 +1,6 @@
 # GUION DE PRESENTACIÓN — DEFENSA TÉCNICA (10 MINUTOS)
 ## QUIZ #2: SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS
-**Empresa:** Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos) | **Expositor:** Equipo de Desarrollo Backend y Arquitectura
+**Empresa:** Tech-Construct S.A. | **Expositor y Administrador:** Ulysses | **Duración:** 10 Minutos
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Diapositiva | Minuto Inicio | Minuto Fin | Tema Clave a Defender |
 |:---:|:---:|:---:|---|
-| **D1** | 0:00 | 1:00 | Portada, contexto corporativo y resumen de impacto. |
+| **D1** | 0:00 | 1:00 | Portada, contexto corporativo de Tech-Construct y resumen de impacto. |
 | **D2** | 1:00 | 2:00 | Diagnóstico operativo: las 4 vulnerabilidades vs. gobernanza digital. |
 | **D3** | 2:00 | 3:00 | Circuito de 10 etapas, segregación funcional y matriz económica. |
 | **D4** | 3:00 | 4:00 | Taxonomía de 2 niveles y captura demostrada de ₡89 000 en ahorros. |
@@ -24,11 +24,11 @@
 ### GUION VERBAL PASO A PASO
 
 #### DIAPOSITIVA 1: Portada y Contexto Empresarial (0:00 - 1:00)
-> *"Buenos días profesor y compañeros. Hoy presentamos la solución técnica y empresarial desarrollada para el Quiz #2 de Gestión de Inventarios y Abastecimiento, aplicada a la empresa **Constructora Del Valle S.A.**, compañía costarricense especializada en obras civiles, puentes y proyectos comerciales.*
+> *"Buenos días profesor y compañeros. Mi nombre es **Ulysses**, Administrador del Sistema y desarrollador del proyecto. Hoy presento la solución integral empresarial desarrollada para el Quiz #2 de Gestión de Inventarios y Abastecimiento para la compañía **Tech-Construct S.A.**, empresa especializada en obras civiles, puentes y proyectos de edificación comercial.*
 >
 > *Para este proyecto adoptamos el **Camino 2: desarrollo de un backend propio**, estructurando una arquitectura desacoplada con Node.js, Express y Sequelize en el backend, una base de datos MySQL relacional en Tercera Forma Normal, y una Single Page Application moderna con React y Vite.*
 >
-> *Como resultado integral, no solo entregamos un software plenamente funcional, sino una solución analítica que demuestra una captura de **₡89 000** en ahorros inmediatos por estandarización, frena una fuga de valor mensual de **₡223 000**, neutraliza una exposición por compras duplicadas de **₡1 290 000** y valida al 100% sus reglas de negocio mediante una suite de 12 pruebas automatizadas."*
+> *Como resultado integral, no solo entregamos un software corporativo plenamente funcional, sino una solución analítica que demuestra una captura de **₡89 000** en ahorros inmediatos por estandarización, frena una fuga de valor mensual de **₡223 000**, neutraliza una exposición por compras duplicadas de **₡1 290 000** y valida al 100% sus reglas de negocio mediante una suite de 12 pruebas automatizadas."*
 
 ---
 
@@ -127,7 +127,7 @@
 > *"En conclusión, este proyecto demuestra que la ingeniería de software aplicada con rigor metodológico resuelve problemas empresariales reales:*
 > *Entrega un software Full Stack robusto, persistido en MySQL, respaldado por un código limpio, modular y completamente auditable.*
 >
-> *Protegemos el patrimonio de Constructora Del Valle S.A. ahorrando **₡89 000**, previniendo fugas anuales por **₡2 676 000**, blindando **₡1 290 000** contra fraudes o duplicidades y garantizando que ninguna obra se detenga por desabastecimiento de materiales.*
+> *Protegemos el patrimonio de Tech-Construct S.A. ahorrando **₡89 000**, previniendo fugas anuales por **₡2 676 000**, blindando **₡1 290 000** contra fraudes o duplicidades y garantizando que ninguna obra se detenga por desabastecimiento de materiales.*
 >
 > *Muchas gracias por su atención. A continuación, iniciaremos la demostración técnica en vivo de 5 minutos recorriendo el sistema en tiempo real y quedamos a su entera disposición para responder las preguntas de la defensa."*
 

@@ -5,7 +5,8 @@
 
 **Institución:** Universidad Técnica / Facultad de Ingeniería Informática  
 **Curso:** Desarrollo Backend y Arquitectura de Bases de Datos Relacionales  
-**Empresa de Estudio:** Constructora Del Valle S.A. (Entidad y Cédula Jurídica Ficticias para Fines Académicos: 3-101-558899)  
+**Empresa de Estudio:** Tech-Construct S.A.  
+**Administrador del Sistema:** Ulysses  
 **Caso Seleccionado:** Opción 2 — Control de Inventario para una Empresa de Construcción  
 **Modalidad Tecnológica:** Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite)  
 **Moneda del Sistema:** Colones costarricenses (₡)  
@@ -36,7 +37,7 @@
 
 ## 1. Portada y Datos del Proyecto
 
-El presente proyecto entrega una solución corporativa terminada, funcional y auditable para la empresa **Constructora Del Valle S.A.**, dedicada a la edificación de obras civiles, infraestructura vial y proyectos comerciales en Costa Rica.
+El presente proyecto entrega una solución corporativa terminada, funcional y auditable para la empresa **Tech-Construct S.A.**, bajo la administración de **Ulysses**, dedicada a la edificación de obras civiles, infraestructura vial y proyectos comerciales en Costa Rica.
 
 - **Centros de Almacenamiento y Obras Monitoreadas:**
   - *Bodega Central:* Parque Logístico Coyol, Alajuela (Centro de Distribución Primario).
@@ -64,7 +65,7 @@ Diseñar, desarrollar y desplegar una plataforma Full Stack empresarial persisti
 
 ## 3. Descripción del Problema Operativo y Financiero
 
-Constructora Del Valle S.A. enfrentaba fallas estructurales en el control de materiales que amenazaban la rentabilidad de sus contratos:
+Tech-Construct S.A. enfrentaba fallas estructurales en el control de materiales que amenazaban la rentabilidad de sus contratos:
 1. **Descentralización y compra desarticulada:** Los ingenieros de obra y encargados de mantenimiento adquirían insumos por cuenta propia utilizando descripciones coloquiales o códigos de proveedor no estandarizados, fragmentando el volumen de compra.
 2. **Incumplimiento de tarifas pactadas:** A pesar de haber negociado un contrato marco con el Proveedor A con tarifas preferenciales fijas (₡6 300 por saco de cemento y ₡2 050 por varilla #3), se detectaron facturas aprobadas por encima del precio contractual y compras recurrentes a ferreterías locales con márgenes abusivos.
 3. **Vulnerabilidad por órdenes duplicadas:** La falta de validación cruzada permitió emitir dos órdenes idénticas en la misma fecha (OC-1041 y OC-1042), exponiendo a la empresa a un sobrepago de ₡1 290 000.

@@ -1,6 +1,6 @@
 -- =============================================================================
 -- DATOS SEMILLA: gestion_inventarios
--- Empresa: Constructora Del Valle S.A.
+-- Empresa: Tech-Construct S.A.
 -- Cumplimiento de Casos de Prueba y Ejercicios A2, A3 y A5 (Quiz #2)
 -- =============================================================================
 
@@ -40,13 +40,13 @@ INSERT INTO `roles` (`id`, `name`, `description`) VALUES
 -- 2. USUARIOS
 -- -----------------------------------------------------------------------------
 INSERT INTO `users` (`id`, `role_id`, `full_name`, `email`, `password_hash`, `department`, `status`) VALUES
-(1, 1, 'Carlos Monge Abarca', 'admin@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Tecnología', 'activo'),
-(2, 2, 'Ing. Roberto Méndez', 'obras@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Obras Civiles', 'activo'),
-(3, 2, 'Ing. Lucía Valverde', 'mantenimiento@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Mantenimiento', 'activo'),
-(4, 3, 'Lic. Esteban Solís', 'compras@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Adquisiciones', 'activo'),
-(5, 4, 'Licda. Mariana Cordero', 'financiera@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Gerencia Financiera', 'activo'),
-(6, 5, 'Ing. Fernando Del Valle', 'gerencia@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Gerencia General', 'activo'),
-(7, 6, 'Jorge Ramírez Soto', 'bodega@constructoradelvalle.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Logística y Bodega', 'activo');
+(1, 1, 'Ulysses', 'ulysses@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Dirección General / Tecnología', 'activo'),
+(2, 2, 'Ing. Roberto Méndez', 'obras@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Obras Civiles', 'activo'),
+(3, 2, 'Ing. Lucía Valverde', 'mantenimiento@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Mantenimiento', 'activo'),
+(4, 3, 'Lic. Esteban Solís', 'compras@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Adquisiciones', 'activo'),
+(5, 4, 'Licda. Mariana Cordero', 'financiera@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Gerencia Financiera', 'activo'),
+(6, 5, 'Ing. Fernando Del Valle', 'gerencia@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Gerencia General', 'activo'),
+(7, 6, 'Jorge Ramírez Soto', 'bodega@techconstruct.cr', '$2b$10$abcdefghijklmnopqrstuv', 'Logística y Bodega', 'activo');
 
 -- -----------------------------------------------------------------------------
 -- 3. CATEGORÍAS (Taxonomía Estandarizada de 2 Niveles: Categoría -> Subcategoría)

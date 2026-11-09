@@ -269,9 +269,25 @@
 
   <!-- Cover Page -->
   <div class="cover-page">
-    <div class="cover-top">
-      <div class="cover-institution">Universidad Técnica / Facultad de Ingeniería Informática</div>
-      <div class="cover-faculty">Curso: Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</div>
+    <div class="cover-top" style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="cover-institution">Universidad Técnica / Facultad de Ingeniería Informática</div>
+        <div class="cover-faculty">Curso: Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</div>
+      </div>
+      <!-- Corporate Tech-Construct Logo in Cover Top -->
+      <div style="background: rgba(15, 23, 42, 0.7); padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="170" height="38" fill="none">
+          <g transform="translate(6, 6)">
+            <path d="M 26 2 L 48 14 L 48 38 L 26 50 L 4 38 L 4 14 Z" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+            <path d="M 26 3 L 47 14 L 26 25 L 5 14 Z" fill="#38bdf8" />
+            <path d="M 5 15 L 25 26 L 25 49 L 5 38 Z" fill="#0369a1" />
+            <circle cx="15" cy="32" r="2.5" fill="#38bdf8" />
+            <path d="M 27 26 L 47 15 L 47 38 L 27 49 Z" fill="#fbbf24" />
+          </g>
+          <text x="68" y="32" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="20" fill="#ffffff">TECH<tspan fill="#38bdf8">-</tspan><tspan fill="#fbbf24">CONSTRUCT</tspan></text>
+          <text x="69" y="47" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#94a3b8" letter-spacing="1.5">ENTERPRISE INVENTORY</text>
+        </svg>
+      </div>
     </div>
     
     <div class="cover-middle">
@@ -281,8 +297,12 @@
       
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
-          <strong>Empresa Evaluada</strong>
-          <span>Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos)</span>
+          <strong>Empresa</strong>
+          <span>Tech-Construct S.A.</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Administrador del Sistema</strong>
+          <span>Ulysses</span>
         </div>
         <div class="cover-meta-item">
           <strong>Modalidad Arquitectónica</strong>
@@ -297,10 +317,6 @@
           <span>MySQL 9.6 (3NF, Ledger Inmutable, 14 Tablas)</span>
         </div>
         <div class="cover-meta-item">
-          <strong>Moneda Oficial</strong>
-          <span>Colones costarricenses (₡)</span>
-        </div>
-        <div class="cover-meta-item">
           <strong>Estado de Verificación</strong>
           <span>12/12 Pruebas Unitarias & Integración Aprobadas (100%)</span>
         </div>
@@ -309,7 +325,7 @@
 
     <div class="cover-footer">
       <span>San José, Costa Rica</span>
-      <span>Noviembre 2026 — Versión Final Certificada</span>
+      <span>Noviembre 2026 — Versión Final Certificada | Tech-Construct S.A.</span>
     </div>
   </div>
 
@@ -320,7 +336,8 @@
 <hr/>
 <p><strong>Institución:</strong> Universidad Técnica / Facultad de Ingeniería Informática</p>
 <p><strong>Curso:</strong> Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</p>
-<p><strong>Empresa de Estudio:</strong> Constructora Del Valle S.A. (Entidad y Cédula Jurídica Ficticias para Fines Académicos: 3-101-558899)</p>
+<p><strong>Empresa de Estudio:</strong> Tech-Construct S.A.</p>
+<p><strong>Administrador del Sistema:</strong> Ulysses</p>
 <p><strong>Caso Seleccionado:</strong> Opción 2 — Control de Inventario para una Empresa de Construcción</p>
 <p><strong>Modalidad Tecnológica:</strong> Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite)</p>
 <p><strong>Moneda del Sistema:</strong> Colones costarricenses (₡)</p>
@@ -345,7 +362,7 @@
 <div class="numbered-item"><span class="item-num">7.</span> [CONCLUSIONES Y RECOMENDACIONES ESTRATÉGICAS](#7-conclusiones-y-recomendaciones-estratégicas)</div>
 <hr/>
 <h2>1. Portada y Datos del Proyecto</h2>
-<p>El presente proyecto entrega una solución corporativa terminada, funcional y auditable para la empresa <strong>Constructora Del Valle S.A.</strong>, dedicada a la edificación de obras civiles, infraestructura vial y proyectos comerciales en Costa Rica.</p>
+<p>El presente proyecto entrega una solución corporativa terminada, funcional y auditable para la empresa <strong>Tech-Construct S.A.</strong>, bajo la administración de <strong>Ulysses</strong>, dedicada a la edificación de obras civiles, infraestructura vial y proyectos comerciales en Costa Rica.</p>
 <div class="bullet-item">• <strong>Centros de Almacenamiento y Obras Monitoreadas:</strong></div>
 <div class="bullet-item">• <em>Bodega Central:</em> Parque Logístico Coyol, Alajuela (Centro de Distribución Primario).</div>
 <div class="bullet-item">• <em>Bodega de Obras:</em> Calle Blancos, San José (Taller y Encofrados).</div>
@@ -365,7 +382,7 @@
 <div class="numbered-item"><span class="item-num">5.</span> Ejecutar y documentar una suite de 12 pruebas automatizadas comprobando las reglas matemáticas de stock y compras.</div>
 <hr/>
 <h2>3. Descripción del Problema Operativo y Financiero</h2>
-<p>Constructora Del Valle S.A. enfrentaba fallas estructurales en el control de materiales que amenazaban la rentabilidad de sus contratos:</p>
+<p>Tech-Construct S.A. enfrentaba fallas estructurales en el control de materiales que amenazaban la rentabilidad de sus contratos:</p>
 <div class="numbered-item"><span class="item-num">1.</span> <strong>Descentralización y compra desarticulada:</strong> Los ingenieros de obra y encargados de mantenimiento adquirían insumos por cuenta propia utilizando descripciones coloquiales o códigos de proveedor no estandarizados, fragmentando el volumen de compra.</div>
 <div class="numbered-item"><span class="item-num">2.</span> <strong>Incumplimiento de tarifas pactadas:</strong> A pesar de haber negociado un contrato marco con el Proveedor A con tarifas preferenciales fijas (₡6 300 por saco de cemento y ₡2 050 por varilla #3), se detectaron facturas aprobadas por encima del precio contractual y compras recurrentes a ferreterías locales con márgenes abusivos.</div>
 <div class="numbered-item"><span class="item-num">3.</span> <strong>Vulnerabilidad por órdenes duplicadas:</strong> La falta de validación cruzada permitió emitir dos órdenes idénticas en la misma fecha (OC-1041 y OC-1042), exponiendo a la empresa a un sobrepago de ₡1 290 000.</div>

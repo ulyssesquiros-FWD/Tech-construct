@@ -1,11 +1,12 @@
 # PRESENTACIÓN DEFENSA DE PROYECTO — QUIZ #2
 ## SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS Y ABASTECIMIENTO
-**Constructora Del Valle S.A.** (Entidad Ficticia para Fines Académicos) | Duración: 10 Minutos
+**Tech-Construct S.A.** | Administrador del Sistema: **Ulysses** | Duración: 10 Minutos
 
 ---
 
 ### DIAPOSITIVA 1: Portada y Contexto Empresarial (0:00 - 1:00)
-- **Empresa:** Constructora Del Valle S.A. (Proyectos de infraestructura y edificación en Costa Rica).
+- **Empresa:** Tech-Construct S.A. (Infraestructura civil y edificación comercial).
+- **Liderazgo del Proyecto:** Ulysses (Administrador General del Sistema).
 - **Centros de Operación:** Bodega Central Coyol, Taller Calle Blancos, Obra Norte, Obra Sur y Obra Este.
 - **Camino Tecnológico 2:** Backend Propio (Node.js + Express + Sequelize + MySQL + React + Vite).
 - **Cifras Clave:**
@@ -102,5 +103,6 @@
 ### DIAPOSITIVA 10: Conclusiones Estratégicas y Demostración (9:00 - 10:00)
 - **Retorno Operativo y Financiero:** Recuperación inmediata de liquidez, erradicación de compras duplicadas y blindaje de la cadena de suministro.
 - **Madurez de Software:** Sistema Full Stack desacoplado, escalable y persistido íntegramente en base de datos.
-- **Paso Siguiente:** Demostración práctica en vivo de 5 minutos recorriendo el circuito operativo.
+- **Liderazgo Técnico:** Expuesto por **Ulysses**, Administrador del Sistema Tech-Construct.
+- **Paso Siguiente:** Demostración práctica en vivo de 5 minutos recorriendo el circuito operativo en tiempo real.
 

@@ -428,9 +428,25 @@ function generateEntregaPdf() {
 
   <!-- Cover Page -->
   <div class="cover-page">
-    <div class="cover-top">
-      <div class="cover-institution">Universidad Técnica / Facultad de Ingeniería Informática</div>
-      <div class="cover-faculty">Curso: Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</div>
+    <div class="cover-top" style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="cover-institution">Universidad Técnica / Facultad de Ingeniería Informática</div>
+        <div class="cover-faculty">Curso: Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</div>
+      </div>
+      <!-- Corporate Tech-Construct Logo in Cover Top -->
+      <div style="background: rgba(15, 23, 42, 0.7); padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="170" height="38" fill="none">
+          <g transform="translate(6, 6)">
+            <path d="M 26 2 L 48 14 L 48 38 L 26 50 L 4 38 L 4 14 Z" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+            <path d="M 26 3 L 47 14 L 26 25 L 5 14 Z" fill="#38bdf8" />
+            <path d="M 5 15 L 25 26 L 25 49 L 5 38 Z" fill="#0369a1" />
+            <circle cx="15" cy="32" r="2.5" fill="#38bdf8" />
+            <path d="M 27 26 L 47 15 L 47 38 L 27 49 Z" fill="#fbbf24" />
+          </g>
+          <text x="68" y="32" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="20" fill="#ffffff">TECH<tspan fill="#38bdf8">-</tspan><tspan fill="#fbbf24">CONSTRUCT</tspan></text>
+          <text x="69" y="47" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#94a3b8" letter-spacing="1.5">ENTERPRISE INVENTORY</text>
+        </svg>
+      </div>
     </div>
     
     <div class="cover-middle">
@@ -440,8 +456,12 @@ function generateEntregaPdf() {
       
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
-          <strong>Empresa Evaluada</strong>
-          <span>Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos)</span>
+          <strong>Empresa</strong>
+          <span>Tech-Construct S.A.</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Administrador del Sistema</strong>
+          <span>Ulysses</span>
         </div>
         <div class="cover-meta-item">
           <strong>Modalidad Arquitectónica</strong>
@@ -456,10 +476,6 @@ function generateEntregaPdf() {
           <span>MySQL 9.6 (3NF, Ledger Inmutable, 14 Tablas)</span>
         </div>
         <div class="cover-meta-item">
-          <strong>Moneda Oficial</strong>
-          <span>Colones costarricenses (₡)</span>
-        </div>
-        <div class="cover-meta-item">
           <strong>Estado de Verificación</strong>
           <span>12/12 Pruebas Unitarias & Integración Aprobadas (100%)</span>
         </div>
@@ -468,7 +484,7 @@ function generateEntregaPdf() {
 
     <div class="cover-footer">
       <span>San José, Costa Rica</span>
-      <span>Noviembre 2026 — Versión Final Certificada</span>
+      <span>Noviembre 2026 — Versión Final Certificada | Tech-Construct S.A.</span>
     </div>
   </div>
 

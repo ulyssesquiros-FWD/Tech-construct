@@ -34,11 +34,9 @@ export default function Sidebar({ activeSection, onSelectSection, badges = {} })
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <div className="brand-icon">
-          <HardHat size={24} />
-        </div>
+        <img src="/logo-icon.svg" alt="Tech-Construct Logo" style={{ width: '38px', height: '38px' }} />
         <div className="brand-info">
-          <h1>DEL VALLE S.A.</h1>
+          <h1 style={{ letterSpacing: '0.5px', fontSize: '15px' }}>TECH-CONSTRUCT</h1>
           <p>Control de Inventarios</p>
         </div>
       </div>
@@ -66,7 +64,7 @@ export default function Sidebar({ activeSection, onSelectSection, badges = {} })
       </nav>
 
       <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '11.5px', color: '#64748b' }}>
-        <div>Constructora Del Valle S.A.</div>
+        <div style={{ fontWeight: 600, color: '#f1f5f9' }}>Tech-Construct S.A.</div>
         <div style={{ color: '#0284c7', fontWeight: 600 }}>Quiz #2 — Opción 2</div>
       </div>
     </aside>

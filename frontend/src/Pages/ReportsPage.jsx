@@ -11,7 +11,7 @@ export default function ReportsPage() {
           <div>
             <h3 className="card-title">Informes Estratégicos y Análisis de Adquisiciones (Parte A)</h3>
             <p className="card-subtitle">
-              Resolución matemática, justificaciones operativas y controles del Quiz #2 para Constructora Del Valle S.A.
+              Resolución matemática, justificaciones operativas y controles del Quiz #2 para Tech-Construct S.A.
             </p>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default function Navbar({ activePageTitle, pendingApprovalsCount = 0 }) {
     <header className="top-navbar">
       <div className="nav-title-group">
         <h2>{activePageTitle}</h2>
-        <p>Constructora Del Valle S.A. | Sistema de Gestión Empresarial de Inventarios</p>
+        <p>Tech-Construct | Sistema de Gestión Empresarial de Inventarios</p>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -16,10 +16,10 @@ export default function Navbar({ activePageTitle, pendingApprovalsCount = 0 }) {
         </div>
 
         <div className="user-badge">
-          <div className="user-avatar">CM</div>
+          <div className="user-avatar" style={{ background: 'linear-gradient(135deg, #0284c7, #f59e0b)', color: '#ffffff', fontWeight: 800 }}>U</div>
           <div>
-            <div style={{ fontSize: '13px', lineHeight: 1.1 }}>Carlos Monge</div>
-            <div style={{ fontSize: '10.5px', color: '#64748b' }}>Administrador / Compras</div>
+            <div style={{ fontSize: '13px', lineHeight: 1.1, fontWeight: 700 }}>Ulysses</div>
+            <div style={{ fontSize: '10.5px', color: '#0284c7', fontWeight: 600 }}>Administrador / Tech-Construct</div>
           </div>
         </div>
       </div>

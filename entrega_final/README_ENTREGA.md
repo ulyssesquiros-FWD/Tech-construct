@@ -1,6 +1,6 @@
 # ENTREGA FINAL Y DEFENSA DE PROYECTO — QUIZ #2
 ## SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS Y ABASTECIMIENTO
-**Constructora Del Valle S.A.** | **Identificación Jurídica:** Entidad y Cédula Ficticias para Fines Académicos
+**Tech-Construct S.A.** | **Administrador del Sistema:** Ulysses | **Identificación Jurídica:** Entidad Ficticia para Fines Académicos
 
 ---
 

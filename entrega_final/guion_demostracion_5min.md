@@ -1,6 +1,6 @@
 # GUION TÉCNICO DE DEMOSTRACIÓN EN VIVO (MÁXIMO 5 MINUTOS)
 ## QUIZ #2: SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS
-**Empresa:** Constructora Del Valle S.A. (Entidad Ficticia para Fines Académicos) | **Duración Estricta:** 4 minutos 45 segundos (Margen de 15 segundos)
+**Empresa:** Tech-Construct S.A. | **Administrador / Demostrador:** Ulysses | **Duración Estricta:** 4 minutos 45 segundos (Margen de 15 segundos)
 
 ---
 
@@ -26,7 +26,7 @@
 #### PASO 1: Apertura del Dashboard (0:00 - 0:25)
 - **Acción:** Abrir el navegador en `http://localhost:3000`. Mostrar el Dashboard principal.
 - **Voz del Demostrador:**
-  > *"Iniciamos la demostración en el Dashboard gerencial de Constructora Del Valle S.A. Como observamos, todos los datos provienen en tiempo real desde MySQL. Visualizamos el valor económico total del inventario valorado en colones costarricenses, el número de materiales activos, las alertas de reorden prioritarias y las órdenes de compra en proceso, acompañadas de gráficos dinámicos de distribución por categoría."*
+  > *"Iniciamos la demostración en el Dashboard gerencial de Tech-Construct S.A. Mi nombre es Ulysses, administrador del sistema. Como observamos, todos los datos provienen en tiempo real desde MySQL. Visualizamos el valor económico total del inventario valorado en colones costarricenses, el número de materiales activos, las alertas de reorden prioritarias y las órdenes de compra en proceso, acompañadas de gráficos dinámicos de distribución por categoría."*
 
 #### PASO 2: Catálogo Normalizado de Materiales (0:25 - 0:55)
 - **Acción:** Hacer clic en **Materiales** en la barra lateral. En el buscador teclear `Cemento`.
@@ -91,7 +91,7 @@
 - **Voz del Demostrador:**
   > *"Y como vemos en la orden generada y en el panel de Aprobaciones: al superar el umbral de los ₡2 000 000, el sistema le asigna como autoridad obligatoria a la **Gerencia Financiera** y exige un mínimo estricto de **3 cotizaciones comerciales**. Si un usuario intenta aprobarla sin adjuntar las 3 cotizaciones, el backend rechaza la firma con código HTTP 403.*
   >
-  > *Con esto demostramos en 4 minutos y 45 segundos la completa funcionalidad, integridad relacional y gobierno de compras de Constructora Del Valle S.A."*
+  > *Con esto demostramos en 4 minutos y 45 segundos la completa funcionalidad, integridad relacional y gobierno de compras de Tech-Construct S.A."*
 
 ---
 
