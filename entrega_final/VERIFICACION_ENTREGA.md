@@ -184,3 +184,4 @@ Paso 9 y 10: Evaluando orden de ₡3 000 000 con matriz... (Gerencia Financiera,
      npm run db:init
      ```
   4. Tener abierta en el navegador la pestaña del frontend (`http://localhost:3000`), la presentación (`entrega_final/presentacion_quiz2.html`) y el PDF (`entrega_final/informe_quiz2.pdf`) como respaldo visual inmediato.
+
