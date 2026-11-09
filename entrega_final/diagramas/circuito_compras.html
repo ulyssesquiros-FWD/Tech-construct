@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circuito de Compras de 10 Etapas - Constructora Del Valle S.A.</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 24px;
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .header h1 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      background: #e0f2fe;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      margin: 0;
+      font-size: 14px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .circuit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+      border-color: var(--primary);
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .step-role {
+      font-size: 12px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .matrix-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .matrix-section h2 {
+      margin-top: 0;
+      font-size: 18px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+    }
+    td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+    }
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+    .mermaid-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      text-align: center;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <div class="header">
+    <h1>
+      Circuito Empresarial de Abastecimiento (10 Etapas)
+      <span class="badge">Constructora Del Valle S.A.</span>
+    </h1>
+    <p class="subtitle">
+      Flujo corporativo con segregación de funciones, matriz de aprobación vinculante, Three-Way Match y asiento atómico en libro mayor.
+    </p>
+    <div class="controls">
+      <button class="btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+      <a class="btn btn-secondary" href="../informe_quiz2.pdf" target="_blank">Ver Informe PDF</a>
+      <a class="btn btn-secondary" href="diagrama_erd.html">Ver Diagrama ERD</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="mermaid-box">
+      <div class="mermaid">
+flowchart TD
+    Start(["Inicio de Necesidad en Obra/Bodega"]) --> S1["1. Requisición de Materiales<br/><i>(Ingeniero Residente / Bodeguero)</i>"]
+    S1 --> S2["2. Aprobación de Requisición<br/><i>(Jefatura de Área)</i>"]
+    S2 --> S3["3. Solicitud y Comparación de Cotizaciones<br/><i>(Depto. Compras)</i>"]
+    S3 --> S4["4. Generación de Orden de Compra (OC)<br/><i>(Encargado de Compras)</i>"]
+    
+    S4 --> M1{"Matriz de Aprobación por Monto"}
+    M1 -- "Hasta ₡250 000" --> A1["Jefatura Área (1 Cot.)"]
+    M1 -- "₡250 001 a ₡2M" --> A2["Jefatura Compras (2 Cot.)"]
+    M1 -- "₡2M a ₡10M" --> A3["Gerencia Financiera (3 Cot.)"]
+    M1 -- "> ₡10 000 000" --> A4["Gerencia General + Comité (3 Cot.)"]
+    
+    A1 --> S5["5. Aprobación y Emisión de OC"]
+    A2 --> S5
+    A3 --> S5
+    A4 --> S5
+    
+    S5 --> S6["6. Recepción Física en Obra/Bodega<br/><i>(Encargado de Bodega)</i><br/><b>Control: Conteo e Inspección Técnica</b>"]
+    S6 --> S7["7. Validación de Factura Electrónica<br/><i>(Cuentas por Pagar)</i>"]
+    
+    S7 --> S8{"8. Three-Way Match Obligatorio<br/><i>¿Coinciden OC, Recepción y Factura?</i>"}
+    S8 -- "Discrepancia / Sobreprecio" --> Retain["Retención de Pago & Alerta de Auditoría"]
+    S8 -- "Coincidencia Exacta 100%" --> S9["9. Programación y Pago al Proveedor<br/><i>(Tesorería / Finanzas)</i>"]
+    
+    S6 -. "Entrada Inmediata" .-> S10["10. Asiento Atómico en Libro Mayor (Ledger)<br/><i>(Actualización de Stock y Evaluación ROP)</i>"]
+    
+    S9 --> EndOK(["Fin del Circuito de Compra"])
+    S10 --> EndOK
+      </div>
+    </div>
+
+    <!-- 10 Step Detailed Cards -->
+    <div class="circuit-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-title">Requisición de Materiales</div>
+        <div class="step-role">Ingeniero de Obra / Bodega</div>
+        <div class="step-desc">Se genera la solicitud técnica con código estandarizado de catálogo, cantidad, fecha requerida y justificación en obra.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-title">Aprobación de Requisición</div>
+        <div class="step-role">Jefatura del Área Solicitante</div>
+        <div class="step-desc">Verificación contra presupuesto del proyecto y validación técnica de necesidad antes de iniciar cotizaciones.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-title">Cuadro Comparativo Cotizaciones</div>
+        <div class="step-role">Departamento de Compras</div>
+        <div class="step-desc">Solicitud de ofertas a proveedores certificados según el mínimo exigido por la matriz económica.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-title">Generación de Orden de Compra</div>
+        <div class="step-role">Encargado de Compras</div>
+        <div class="step-desc">Creación formal de la OC en estado borrador, adjuntando cotizaciones y seleccionando ubicación destino.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">5</div>
+        <div class="step-title">Aprobación por Matriz</div>
+        <div class="step-role">Autoridad Competente</div>
+        <div class="step-desc">Firma digital según umbral de monto (Jefatura, Compras, Gerencia Financiera o General con Comité).</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">6</div>
+        <div class="step-title">Recepción Física en Obra</div>
+        <div class="step-role">Encargado de Bodega</div>
+        <div class="step-desc">Conteo al 100%, verificación de especificaciones de calidad y emisión de Hoja de Recepción de Materiales.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">7</div>
+        <div class="step-title">Validación de Factura</div>
+        <div class="step-role">Cuentas por Pagar</div>
+        <div class="step-desc">Revisión tributaria de la factura electrónica frente a las condiciones comerciales estipuladas en la OC.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">8</div>
+        <div class="step-title">Three-Way Match</div>
+        <div class="step-role">Auditoría / Contabilidad</div>
+        <div class="step-desc">Cruce de 3 vías: OC autorizada = Cantidad recepcionada = Monto facturado. Si no coincide, se bloquea el pago.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">9</div>
+        <div class="step-title">Programación y Pago</div>
+        <div class="step-role">Tesorería / Finanzas</div>
+        <div class="step-desc">Desembolso bancario según condiciones pactadas de crédito comercial tras superar la conciliación tripartita.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">10</div>
+        <div class="step-title">Asiento Atómico en Ledger</div>
+        <div class="step-role">Motor Transaccional MySQL</div>
+        <div class="step-desc">Registro inmutable en `inventory_movements`, actualización de existencias y reevaluación automática de alertas ROP.</div>
+      </div>
+    </div>
+
+    <!-- Matriz de Aprobación Table -->
+    <div class="matrix-section">
+      <h2>Matriz de Aprobación Vinculante y Cotizaciones Mínimas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rango Económico en Colones (₡)</th>
+            <th>Autoridad Competente</th>
+            <th>Cotizaciones Mínimas</th>
+            <th>Documentos y Controles Requeridos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hasta ₡250 000</strong></td>
+            <td>Jefatura del área solicitante</td>
+            <td>1 cotización</td>
+            <td>Presupuesto operativo del proyecto; proveedor registrado en catálogo.</td>
+          </tr>
+          <tr>
+            <td><strong>₡250 001 a ₡2 000 000</strong></td>
+            <td>Jefatura de Compras</td>
+            <td>2 cotizaciones</td>
+            <td>Cuadro comparativo formal con precios vigentes de al menos 2 suplidores.</td>
+          </tr>
+          <tr>
+            <td><strong>₡2 000 001 a ₡10 000 000</strong></td>
+            <td>Gerencia Financiera</td>
+            <td>3 cotizaciones</td>
+            <td>Análisis de flujo de caja y cuadro de 3 ofertas comerciales certificadas.</td>
+          </tr>
+          <tr>
+            <td><strong>Más de ₡10 000 000</strong></td>
+            <td>Gerencia General + Comité de Adquisiciones</td>
+            <td>3 cotizaciones + Acta</td>
+            <td>Licitación corporativa formal, dictamen técnico favorable y acta firmada.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+</html>

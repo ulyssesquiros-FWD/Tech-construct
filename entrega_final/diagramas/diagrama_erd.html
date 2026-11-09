@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagrama Entidad-Relación (3NF) - Constructora Del Valle S.A.</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --pk-color: #d97706;
+      --fk-color: #2563eb;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .header {
+      max-width: 1300px;
+      margin: 0 auto 24px;
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .header h1 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      background: #e0f2fe;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      margin: 0;
+      font-size: 14px;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn:hover { background: var(--primary-dark); }
+    .btn-secondary { background: #e2e8f0; color: #334155; }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mermaid-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 16px 0 12px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tables-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .table-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .table-card-header {
+      background: #f1f5f9;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .table-domain {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: #e0f2fe;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .table-fields {
+      list-style: none;
+      margin: 0;
+      padding: 8px 14px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 12px;
+    }
+    .table-fields li {
+      padding: 3px 0;
+      border-bottom: 1px dashed #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+    }
+    .table-fields li:last-child {
+      border-bottom: none;
+    }
+    .key-pk { color: var(--pk-color); font-weight: bold; }
+    .key-fk { color: var(--fk-color); font-weight: bold; }
+    .type-muted { color: var(--text-muted); font-size: 11px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <div class="header">
+    <h1>
+      Diagrama Entidad-Relación — Tercera Forma Normal (3NF)
+      <span class="badge">14 Tablas Relacionales</span>
+    </h1>
+    <p class="subtitle">
+      Arquitectura relacional normalizada en MySQL con persistencia inmutable en libro mayor (Ledger Pattern), segregación de roles y control de integridad referencial.
+    </p>
+    <div class="controls">
+      <button class="btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+      <a class="btn btn-secondary" href="circuito_compras.html">Ver Circuito de Compras</a>
+      <a class="btn btn-secondary" href="../informe_quiz2.pdf" target="_blank">Ver Informe PDF</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="mermaid-box">
+      <div class="mermaid">
+erDiagram
+    ROLES ||--o{ USERS : "posee"
+    USERS ||--o{ PURCHASE_ORDERS : "crea"
+    USERS ||--o{ APPROVALS : "autoriza"
+    USERS ||--o{ INVENTORY_MOVEMENTS : "registra"
+    USERS ||--o{ AUDIT_LOGS : "genera"
+
+    CATEGORIES ||--o{ CATEGORIES : "subdivide"
+    CATEGORIES ||--o{ MATERIALS : "clasifica_cat"
+    CATEGORIES ||--o{ MATERIALS : "clasifica_sub"
+    CATEGORIES ||--o{ SPLIT_PURCHASE_ALERTS : "agrupa"
+
+    SUPPLIERS ||--o{ PURCHASE_ORDERS : "suministra"
+    SUPPLIERS ||--o{ DUPLICATE_PURCHASE_ALERTS : "involucrado"
+    SUPPLIERS ||--o{ SPLIT_PURCHASE_ALERTS : "involucrado"
+
+    LOCATIONS ||--o{ PURCHASE_ORDERS : "destina"
+    LOCATIONS ||--o{ INVENTORY_MOVEMENTS : "origen"
+    LOCATIONS ||--o{ INVENTORY_MOVEMENTS : "destino"
+    LOCATIONS ||--o{ REORDER_ALERTS : "alerta_en"
+
+    MATERIALS ||--o{ PURCHASE_ORDER_DETAILS : "solicitado_en"
+    MATERIALS ||--o{ INVENTORY_MOVEMENTS : "movido_en"
+    MATERIALS ||--o{ REORDER_ALERTS : "monitoreado"
+    MATERIALS ||--o{ DUPLICATE_PURCHASE_ALERTS : "afecta"
+
+    PURCHASE_ORDERS ||--o{ PURCHASE_ORDER_DETAILS : "contiene"
+    PURCHASE_ORDERS ||--o{ APPROVALS : "requiere"
+    PURCHASE_ORDERS ||--o{ DUPLICATE_PURCHASE_ALERTS : "orden_1"
+    PURCHASE_ORDERS ||--o{ DUPLICATE_PURCHASE_ALERTS : "orden_2"
+
+    PURCHASE_ORDER_DETAILS ||--o{ INVENTORY_MOVEMENTS : "recepcionado_en"
+      </div>
+    </div>
+
+    <div class="section-title">Diccionario de Estructura de Datos (14 Tablas Normalizadas)</div>
+
+    <div class="tables-grid">
+      <!-- 1. ROLES -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>roles</span>
+          <span class="table-domain">Seguridad</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>name</span> <span class="type-muted">VARCHAR(50) UK</span></li>
+          <li><span>description</span> <span class="type-muted">VARCHAR(255)</span></li>
+        </ul>
+      </div>
+
+      <!-- 2. USERS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>users</span>
+          <span class="table-domain">Seguridad</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> role_id</span> <span class="type-muted">INT</span></li>
+          <li><span>full_name</span> <span class="type-muted">VARCHAR(100)</span></li>
+          <li><span>email</span> <span class="type-muted">VARCHAR(100) UK</span></li>
+          <li><span>password_hash</span> <span class="type-muted">VARCHAR(255)</span></li>
+          <li><span>department</span> <span class="type-muted">VARCHAR(100)</span></li>
+          <li><span>status</span> <span class="type-muted">ENUM(activo,inactivo)</span></li>
+        </ul>
+      </div>
+
+      <!-- 3. CATEGORIES -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>categories</span>
+          <span class="table-domain">Catálogo</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>code</span> <span class="type-muted">VARCHAR(20) UK</span></li>
+          <li><span>name</span> <span class="type-muted">VARCHAR(100)</span></li>
+          <li><span><span class="key-fk">FK</span> parent_id</span> <span class="type-muted">INT NULL</span></li>
+        </ul>
+      </div>
+
+      <!-- 4. MATERIALS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>materials</span>
+          <span class="table-domain">Catálogo</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>internal_code</span> <span class="type-muted">VARCHAR(50) UK</span></li>
+          <li><span>name</span> <span class="type-muted">VARCHAR(150)</span></li>
+          <li><span><span class="key-fk">FK</span> category_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> subcategory_id</span> <span class="type-muted">INT</span></li>
+          <li><span>unit</span> <span class="type-muted">VARCHAR(20)</span></li>
+          <li><span>avg_daily_demand</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>max_daily_demand</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>lead_time_days</span> <span class="type-muted">INT</span></li>
+          <li><span>safety_stock</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>reorder_point</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>standard_price</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+        </ul>
+      </div>
+
+      <!-- 5. LOCATIONS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>locations</span>
+          <span class="table-domain">Logística</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>code</span> <span class="type-muted">VARCHAR(20) UK</span></li>
+          <li><span>name</span> <span class="type-muted">VARCHAR(100)</span></li>
+          <li><span>type</span> <span class="type-muted">ENUM(bodega,obra)</span></li>
+          <li><span>address</span> <span class="type-muted">TEXT</span></li>
+          <li><span>status</span> <span class="type-muted">ENUM</span></li>
+        </ul>
+      </div>
+
+      <!-- 6. SUPPLIERS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>suppliers</span>
+          <span class="table-domain">Compras</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>code</span> <span class="type-muted">VARCHAR(20) UK</span></li>
+          <li><span>commercial_name</span> <span class="type-muted">VARCHAR(150)</span></li>
+          <li><span>tax_id</span> <span class="type-muted">VARCHAR(50) UK</span></li>
+          <li><span>phone / email</span> <span class="type-muted">VARCHAR</span></li>
+          <li><span>rating</span> <span class="type-muted">DECIMAL(3,2)</span></li>
+        </ul>
+      </div>
+
+      <!-- 7. PURCHASE_ORDERS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>purchase_orders</span>
+          <span class="table-domain">Compras</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>po_number</span> <span class="type-muted">VARCHAR(30) UK</span></li>
+          <li><span><span class="key-fk">FK</span> supplier_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> location_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> created_by</span> <span class="type-muted">INT</span></li>
+          <li><span>order_date</span> <span class="type-muted">DATE</span></li>
+          <li><span>subtotal / tax / total</span> <span class="type-muted">DECIMAL</span></li>
+          <li><span>status</span> <span class="type-muted">ENUM</span></li>
+          <li><span>quotations_count</span> <span class="type-muted">INT</span></li>
+          <li><span>required_approver_role</span> <span class="type-muted">VARCHAR</span></li>
+        </ul>
+      </div>
+
+      <!-- 8. PURCHASE_ORDER_DETAILS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>purchase_order_details</span>
+          <span class="table-domain">Compras</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> purchase_order_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> material_id</span> <span class="type-muted">INT</span></li>
+          <li><span>quantity</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>unit_price</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+          <li><span>subtotal</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+          <li><span>received_quantity</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+        </ul>
+      </div>
+
+      <!-- 9. APPROVALS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>approvals</span>
+          <span class="table-domain">Compras</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> purchase_order_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> user_id</span> <span class="type-muted">INT</span></li>
+          <li><span>decision</span> <span class="type-muted">ENUM(aprobada,rechazada)</span></li>
+          <li><span>comments</span> <span class="type-muted">TEXT</span></li>
+          <li><span>decided_at</span> <span class="type-muted">DATETIME</span></li>
+        </ul>
+      </div>
+
+      <!-- 10. INVENTORY_MOVEMENTS (LEDGER) -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>inventory_movements</span>
+          <span class="table-domain">Libro Mayor (Ledger)</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span>movement_type</span> <span class="type-muted">ENUM(entrada,salida,traslado,ajuste)</span></li>
+          <li><span><span class="key-fk">FK</span> material_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> origin_location_id</span> <span class="type-muted">INT NULL</span></li>
+          <li><span><span class="key-fk">FK</span> destination_location_id</span> <span class="type-muted">INT NULL</span></li>
+          <li><span>quantity</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>unit_cost</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+          <li><span>reference_document</span> <span class="type-muted">VARCHAR(100)</span></li>
+          <li><span>transfer_group_id</span> <span class="type-muted">VARCHAR(50) NULL</span></li>
+          <li><span><span class="key-fk">FK</span> user_id</span> <span class="type-muted">INT</span></li>
+        </ul>
+      </div>
+
+      <!-- 11. REORDER_ALERTS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>reorder_alerts</span>
+          <span class="table-domain">Alertas</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> material_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> location_id</span> <span class="type-muted">INT NULL</span></li>
+          <li><span>current_stock</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>reorder_point</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>safety_stock</span> <span class="type-muted">DECIMAL(10,2)</span></li>
+          <li><span>urgency</span> <span class="type-muted">ENUM(baja,media,alta,critica)</span></li>
+          <li><span>status</span> <span class="type-muted">ENUM(activa,resuelta)</span></li>
+        </ul>
+      </div>
+
+      <!-- 12. DUPLICATE_PURCHASE_ALERTS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>duplicate_purchase_alerts</span>
+          <span class="table-domain">Alertas</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> purchase_order_id_1</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> purchase_order_id_2</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> supplier_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> material_id</span> <span class="type-muted">INT</span></li>
+          <li><span>similarity_score</span> <span class="type-muted">DECIMAL(5,2)</span></li>
+          <li><span>potential_risk_amount</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+          <li><span>status</span> <span class="type-muted">ENUM(pendiente,confirmada,descartada)</span></li>
+        </ul>
+      </div>
+
+      <!-- 13. SPLIT_PURCHASE_ALERTS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>split_purchase_alerts</span>
+          <span class="table-domain">Alertas</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> supplier_id</span> <span class="type-muted">INT</span></li>
+          <li><span><span class="key-fk">FK</span> category_id</span> <span class="type-muted">INT</span></li>
+          <li><span>requesting_department</span> <span class="type-muted">VARCHAR(100)</span></li>
+          <li><span>accumulated_amount</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+          <li><span>threshold_amount</span> <span class="type-muted">DECIMAL(12,2)</span></li>
+          <li><span>status</span> <span class="type-muted">ENUM</span></li>
+        </ul>
+      </div>
+
+      <!-- 14. AUDIT_LOGS -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <span>audit_logs</span>
+          <span class="table-domain">Seguridad</span>
+        </div>
+        <ul class="table-fields">
+          <li><span><span class="key-pk">PK</span> id</span> <span class="type-muted">INT AUTO</span></li>
+          <li><span><span class="key-fk">FK</span> user_id</span> <span class="type-muted">INT NULL</span></li>
+          <li><span>action</span> <span class="type-muted">VARCHAR(50)</span></li>
+          <li><span>entity_name</span> <span class="type-muted">VARCHAR(50)</span></li>
+          <li><span>entity_id</span> <span class="type-muted">INT</span></li>
+          <li><span>old_values / new_values</span> <span class="type-muted">JSON</span></li>
+          <li><span>ip_address</span> <span class="type-muted">VARCHAR(45)</span></li>
+          <li><span>created_at</span> <span class="type-muted">DATETIME</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

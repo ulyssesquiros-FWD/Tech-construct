@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1350" width="1000" height="1350">
+  <defs>
+    <style>
+      .title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 22px; font-weight: bold; fill: #0f172a; }
+      .subtitle { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; fill: #64748b; }
+      .box { rx: 8px; ry: 8px; stroke-width: 2px; }
+      .box-blue { fill: #f0f9ff; stroke: #0284c7; }
+      .box-purple { fill: #faf5ff; stroke: #9333ea; }
+      .box-green { fill: #f0fdf4; stroke: #16a34a; }
+      .box-amber { fill: #fffbeb; stroke: #d97706; }
+      .box-red { fill: #fef2f2; stroke: #dc2626; }
+      .diamond { stroke-width: 2px; fill: #fffbeb; stroke: #d97706; }
+      .text-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #0f172a; }
+      .text-sub { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; fill: #475569; }
+      .text-role { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; fill: #0369a1; }
+      .arrow { stroke: #64748b; stroke-width: 2px; fill: none; marker-end: url(#arrowhead); }
+      .arrow-dashed { stroke: #0284c7; stroke-width: 2px; stroke-dasharray: 5,5; fill: none; marker-end: url(#arrowhead-blue); }
+      .arrow-red { stroke: #dc2626; stroke-width: 2px; fill: none; marker-end: url(#arrowhead-red); }
+      .arrow-green { stroke: #16a34a; stroke-width: 2px; fill: none; marker-end: url(#arrowhead-green); }
+      .label-text { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 600; fill: #334155; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0284c7" />
+    </marker>
+    <marker id="arrowhead-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#dc2626" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="1350" fill="#ffffff" />
+  <rect x="20" y="20" width="960" height="1310" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Header -->
+  <text x="50" y="65" class="title">Circuito de Compras de 10 Etapas con Matriz de Aprobación</text>
+  <text x="50" y="88" class="subtitle">Constructora Del Valle S.A. | Segregación de funciones, Three-Way Match y Asiento Atómico en Libro Mayor</text>
+  <line x1="50" y1="105" x2="950" y2="105" stroke="#cbd5e1" stroke-width="1" />
+
+  <!-- Start Node -->
+  <rect x="360" y="125" width="280" height="40" rx="20" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" />
+  <text x="500" y="150" text-anchor="middle" class="text-title" fill="#334155">Inicio de Necesidad en Obra / Bodega</text>
+
+  <!-- Arrow Start to 1 -->
+  <line x1="500" y1="165" x2="500" y2="195" class="arrow" />
+
+  <!-- Step 1 -->
+  <rect x="310" y="195" width="380" height="55" class="box box-blue" />
+  <text x="500" y="218" text-anchor="middle" class="text-title">1. Requisición de Materiales</text>
+  <text x="500" y="236" text-anchor="middle" class="text-role">Ingeniero Residente de Obra / Encargado de Bodega</text>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="500" y1="250" x2="500" y2="280" class="arrow" />
+
+  <!-- Step 2 -->
+  <rect x="310" y="280" width="380" height="55" class="box box-blue" />
+  <text x="500" y="303" text-anchor="middle" class="text-title">2. Aprobación de Requisición</text>
+  <text x="500" y="321" text-anchor="middle" class="text-role">Jefatura del Área Solicitante (Control Presupuestario)</text>
+
+  <!-- Arrow 2 to 3 -->
+  <line x1="500" y1="335" x2="500" y2="365" class="arrow" />
+
+  <!-- Step 3 -->
+  <rect x="310" y="365" width="380" height="55" class="box box-blue" />
+  <text x="500" y="388" text-anchor="middle" class="text-title">3. Solicitud y Comparación de Cotizaciones</text>
+  <text x="500" y="406" text-anchor="middle" class="text-role">Departamento de Compras (Cuadro Comparativo)</text>
+
+  <!-- Arrow 3 to 4 -->
+  <line x1="500" y1="420" x2="500" y2="450" class="arrow" />
+
+  <!-- Step 4 -->
+  <rect x="310" y="450" width="380" height="55" class="box box-blue" />
+  <text x="500" y="473" text-anchor="middle" class="text-title">4. Generación de Orden de Compra (OC)</text>
+  <text x="500" y="491" text-anchor="middle" class="text-role">Encargado de Compras (Estado: Borrador / Pendiente)</text>
+
+  <!-- Arrow 4 to Diamond -->
+  <line x1="500" y1="505" x2="500" y2="540" class="arrow" />
+
+  <!-- Diamond Decision: Matriz de Aprobación -->
+  <polygon points="500,540 670,590 500,640 330,590" class="diamond" />
+  <text x="500" y="585" text-anchor="middle" class="text-title">¿Monto de la Orden?</text>
+  <text x="500" y="602" text-anchor="middle" class="text-sub">Matriz de Aprobación Vinculante</text>
+
+  <!-- 4 Branches of Matrix -->
+  <!-- Branch 1: <= 250k -->
+  <line x1="330" y1="590" x2="160" y2="590" class="arrow" />
+  <line x1="160" y1="590" x2="160" y2="670" class="arrow" />
+  <rect x="60" y="670" width="200" height="60" class="box box-amber" />
+  <text x="160" y="692" text-anchor="middle" class="text-title" font-size="12">Hasta ₡250 000</text>
+  <text x="160" y="708" text-anchor="middle" class="text-role" font-size="11">Jefatura Área</text>
+  <text x="160" y="722" text-anchor="middle" class="text-sub">1 Cotización</text>
+
+  <!-- Branch 2: 250k - 2M -->
+  <line x1="415" y1="615" x2="380" y2="670" class="arrow" />
+  <rect x="280" y="670" width="200" height="60" class="box box-amber" />
+  <text x="380" y="692" text-anchor="middle" class="text-title" font-size="12">₡250 001 - ₡2 000 000</text>
+  <text x="380" y="708" text-anchor="middle" class="text-role" font-size="11">Jefatura Compras</text>
+  <text x="380" y="722" text-anchor="middle" class="text-sub">2 Cotizaciones</text>
+
+  <!-- Branch 3: 2M - 10M -->
+  <line x1="585" y1="615" x2="620" y2="670" class="arrow" />
+  <rect x="520" y="670" width="200" height="60" class="box box-amber" />
+  <text x="620" y="692" text-anchor="middle" class="text-title" font-size="12">₡2 000 001 - ₡10 000 000</text>
+  <text x="620" y="708" text-anchor="middle" class="text-role" font-size="11">Gerencia Financiera</text>
+  <text x="620" y="722" text-anchor="middle" class="text-sub">3 Cotizaciones</text>
+
+  <!-- Branch 4: > 10M -->
+  <line x1="670" y1="590" x2="840" y2="590" class="arrow" />
+  <line x1="840" y1="590" x2="840" y2="670" class="arrow" />
+  <rect x="740" y="670" width="200" height="60" class="box box-amber" />
+  <text x="840" y="692" text-anchor="middle" class="text-title" font-size="12">&gt; ₡10 000 000</text>
+  <text x="840" y="708" text-anchor="middle" class="text-role" font-size="11">Gerencia General + Comité</text>
+  <text x="840" y="722" text-anchor="middle" class="text-sub">3 Cotizaciones + Acta</text>
+
+  <!-- Convergence to Step 5 -->
+  <line x1="160" y1="730" x2="160" y2="760" class="arrow" />
+  <line x1="380" y1="730" x2="380" y2="760" class="arrow" />
+  <line x1="620" y1="730" x2="620" y2="760" class="arrow" />
+  <line x1="840" y1="730" x2="840" y2="760" class="arrow" />
+  <line x1="160" y1="760" x2="840" y2="760" stroke="#64748b" stroke-width="2" />
+  <line x1="500" y1="760" x2="500" y2="785" class="arrow" />
+
+  <!-- Step 5 -->
+  <rect x="310" y="785" width="380" height="55" class="box box-purple" />
+  <text x="500" y="808" text-anchor="middle" class="text-title">5. Aprobación y Emisión de Orden de Compra</text>
+  <text x="500" y="826" text-anchor="middle" class="text-role">Autoridad Competente según Matriz (Estado: Aprobada)</text>
+
+  <!-- Arrow 5 to 6 -->
+  <line x1="500" y1="840" x2="500" y2="870" class="arrow" />
+
+  <!-- Step 6 -->
+  <rect x="310" y="870" width="380" height="55" class="box box-green" />
+  <text x="500" y="893" text-anchor="middle" class="text-title">6. Recepción Física de Materiales en Obra / Bodega</text>
+  <text x="500" y="911" text-anchor="middle" class="text-role">Encargado de Bodega (Conteo 100% e Inspección de Calidad)</text>
+
+  <!-- Branch from Step 6 to Step 10 (Inventory Ledger Entry) -->
+  <path d="M 690,897 L 850,897 L 850,1130 L 690,1130" class="arrow-dashed" />
+  <text x="860" y="1010" class="label-text" fill="#0284c7" transform="rotate(90 860,1010)">Entrada Inmediata a Inventario</text>
+
+  <!-- Arrow 6 to 7 -->
+  <line x1="500" y1="925" x2="500" y2="955" class="arrow" />
+
+  <!-- Step 7 -->
+  <rect x="310" y="955" width="380" height="55" class="box box-blue" />
+  <text x="500" y="978" text-anchor="middle" class="text-title">7. Validación de Factura Electrónica</text>
+  <text x="500" y="996" text-anchor="middle" class="text-role">Cuentas por Pagar (Validación Tributaria y Precios)</text>
+
+  <!-- Arrow 7 to 8 -->
+  <line x1="500" y1="1010" x2="500" y2="1040" class="arrow" />
+
+  <!-- Step 8: Three-Way Match Decision -->
+  <polygon points="500,1040 680,1085 500,1130 320,1085" class="diamond" />
+  <text x="500" y="1078" text-anchor="middle" class="text-title">8. Three-Way Match Obligatorio</text>
+  <text x="500" y="1098" text-anchor="middle" class="text-sub">¿Coinciden OC, Recepción Física y Factura?</text>
+
+  <!-- Three-Way Match False Branch (Discrepancy) -->
+  <line x1="320" y1="1085" x2="160" y2="1085" class="arrow-red" />
+  <rect x="50" y="1060" width="180" height="50" class="box box-red" />
+  <text x="140" y="1082" text-anchor="middle" class="text-title" font-size="12" fill="#dc2626">Retención de Pago</text>
+  <text x="140" y="1098" text-anchor="middle" class="text-sub" font-size="10">Alerta a Auditoría Interna</text>
+
+  <!-- Three-Way Match True Branch (Coincidence) -->
+  <line x1="500" y1="1130" x2="500" y2="1165" class="arrow-green" />
+
+  <!-- Step 9 -->
+  <rect x="310" y="1165" width="380" height="55" class="box box-green" />
+  <text x="500" y="1188" text-anchor="middle" class="text-title">9. Programación y Pago al Proveedor</text>
+  <text x="500" y="1206" text-anchor="middle" class="text-role">Tesorería / Finanzas (Según Plazos de Crédito)</text>
+
+  <!-- Step 10: Ledger Entry -->
+  <rect x="310" y="1105" width="380" height="48" class="box box-blue" style="fill:#e0f2fe; stroke:#0284c7; stroke-dasharray: 4,4;" />
+  <text x="500" y="1125" text-anchor="middle" class="text-title" font-size="13">10. Asiento Atómico en Libro Mayor (Ledger)</text>
+  <text x="500" y="1142" text-anchor="middle" class="text-sub">Actualización en MySQL y Evaluación Reactiva de ROP</text>
+
+  <!-- End Node -->
+  <line x1="500" y1="1220" x2="500" y2="1255" class="arrow" />
+  <rect x="380" y="1255" width="240" height="40" rx="20" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" />
+  <text x="500" y="1280" text-anchor="middle" class="text-title" fill="#334155">Fin del Circuito de Abastecimiento</text>
+
+</svg>

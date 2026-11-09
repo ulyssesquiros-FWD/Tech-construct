@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informe Final Quiz #2 - Constructora Del Valle S.A.</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 1.6cm 1.5cm 1.6cm 1.5cm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+    @page :first {
+      margin: 0;
+      @bottom-right {
+        content: normal;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.45;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+    
+    /* Cover Page */
+    .cover-page {
+      page-break-after: always;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3.5cm 2.5cm 2.5cm;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
+      color: #ffffff;
+      box-sizing: border-box;
+    }
+    .cover-top {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 20px;
+    }
+    .cover-institution {
+      font-size: 13pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 6px;
+    }
+    .cover-faculty {
+      font-size: 10.5pt;
+      color: #94a3b8;
+    }
+    .cover-middle {
+      margin-top: 40px;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 9.5pt;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+    .cover-title {
+      font-size: 24pt;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 12px 0;
+    }
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #cbd5e1;
+      font-weight: 400;
+      margin: 0 0 24px 0;
+      line-height: 1.4;
+    }
+    .cover-meta-grid {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 9.5pt;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+    .cover-meta-item strong {
+      color: #38bdf8;
+      display: block;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .cover-meta-item span {
+      color: #f1f5f9;
+    }
+    .cover-footer {
+      font-size: 9pt;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 14px;
+    }
+
+    /* Content styling */
+    .content-body {
+      padding: 0 5px;
+    }
+    h1 {
+      font-size: 17pt;
+      color: #0f172a;
+      border-bottom: 2.5px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 26px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+    h2 {
+      font-size: 13pt;
+      color: #0369a1;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 11pt;
+      color: #334155;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+    p {
+      margin: 0 0 8px 0;
+      text-align: justify;
+      color: #334155;
+    }
+    strong {
+      color: #0f172a;
+    }
+    .bullet-item, .numbered-item {
+      margin-bottom: 4px;
+      text-align: justify;
+      color: #334155;
+    }
+    .item-num {
+      font-weight: bold;
+      color: #0284c7;
+    }
+    blockquote {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 8px 12px;
+      margin: 10px 0;
+      font-size: 9pt;
+      color: #166534;
+      border-radius: 0 6px 6px 0;
+    }
+    .table-container {
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+      line-height: 1.35;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    td {
+      border: 1px solid #cbd5e1;
+      padding: 5px 8px;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background-color: #f1f5f9;
+      padding: 1px 4px;
+      border-radius: 3px;
+      color: #0284c7;
+      font-size: 8.5pt;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 8pt;
+      line-height: 1.35;
+      overflow-x: auto;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+    pre code {
+      background: transparent;
+      color: #f8fafc;
+      padding: 0;
+    }
+    .math-display {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 6px 12px;
+      margin: 8px 0;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 10pt;
+      text-align: center;
+      color: #0f172a;
+    }
+    .math-inline {
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #e2e8f0;
+      margin: 16px 0;
+    }
+    .diagram-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 12px 0;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+    .diagram-title {
+      font-weight: 700;
+      font-size: 9.5pt;
+      color: #0369a1;
+      margin-bottom: 6px;
+    }
+    .diagram-caption {
+      font-size: 8pt;
+      color: #64748b;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover Page -->
+  <div class="cover-page">
+    <div class="cover-top">
+      <div class="cover-institution">Universidad Técnica / Facultad de Ingeniería Informática</div>
+      <div class="cover-faculty">Curso: Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</div>
+    </div>
+    
+    <div class="cover-middle">
+      <div class="cover-badge">EVALUACIÓN ACADÉMICA Y TÉCNICA — QUIZ #2</div>
+      <div class="cover-title">Sistema Empresarial de Gestión de Inventarios y Abastecimiento</div>
+      <div class="cover-subtitle">Control de compras por obra, cálculo automático de reorden, prevención de fraude/duplicados y trazabilidad atómica en MySQL</div>
+      
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <strong>Empresa Evaluada</strong>
+          <span>Constructora Del Valle S.A. (Cédula: 3-101-558899)</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Modalidad Arquitectónica</strong>
+          <span>Camino 2: Backend Propio (Node.js + Express + Sequelize + MySQL)</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Frontend & Visualización</strong>
+          <span>React 18 + Vite + Recharts + Lucide Icons</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Base de Datos</strong>
+          <span>MySQL 9.6 (3NF, Ledger Inmutable, 14 Tablas)</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Moneda Oficial</strong>
+          <span>Colones costarricenses (₡)</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>Estado de Verificación</strong>
+          <span>12/12 Pruebas Unitarias & Integración Aprobadas (100%)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>San José, Costa Rica</span>
+      <span>Noviembre 2026 — Versión Final Certificada</span>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-body">
+    <h1>SISTEMA EMPRESARIAL DE GESTIÓN DE INVENTARIOS Y ABASTECIMIENTO</h1>
+<h2>INFORME TÉCNICO, ANALÍTICO Y ARQUITECTÓNICO — QUIZ #2</h2>
+<hr/>
+<p><strong>Institución:</strong> Universidad Técnica / Facultad de Ingeniería Informática</p>
+<p><strong>Curso:</strong> Desarrollo Backend y Arquitectura de Bases de Datos Relacionales</p>
+<p><strong>Empresa de Estudio:</strong> Constructora Del Valle S.A. (Cédula Jurídica: 3-101-558899)</p>
+<p><strong>Caso Seleccionado:</strong> Opción 2 — Control de Inventario para una Empresa de Construcción</p>
+<p><strong>Modalidad Tecnológica:</strong> Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite)</p>
+<p><strong>Moneda del Sistema:</strong> Colones costarricenses (₡)</p>
+<p><strong>Fecha de Entrega:</strong> Noviembre 2026</p>
+<hr/>
+<h2>TABLA DE CONTENIDO (ÍNDICE)</h2>
+<div class="numbered-item"><span class="item-num">1.</span> [PORTADA Y DATOS DEL PROYECTO](#1-portada-y-datos-del-proyecto)</div>
+<div class="numbered-item"><span class="item-num">2.</span> [OBJETIVOS EMPRESARIALES Y DEL SISTEMA](#2-objetivos-empresariales-y-del-sistema)</div>
+<div class="numbered-item"><span class="item-num">3.</span> [DESCRIPCIÓN DEL PROBLEMA OPERATIVO Y FINANCIERO](#3-descripción-del-problema-operativo-y-financiero)</div>
+<div class="numbered-item"><span class="item-num">4.</span> [PARTE A — ANÁLISIS DE COMPRAS E INVENTARIOS](#4-parte-a--análisis-de-compras-e-inventarios)</div>
+<div class="bullet-item">• 4.1. [Ejercicio A1: Circuito de Compra y Matriz de Aprobación](#ejercicio-a1--circuito-de-compra-y-matriz-de-aprobación)</div>
+<div class="bullet-item">• 4.2. [Ejercicio A2: Taxonomía y Ahorro Potencial](#ejercicio-a2--clasificación-de-categorías-de-gasto-y-ahorro-potencial)</div>
+<div class="bullet-item">• 4.3. [Ejercicio A3: Análisis Financiero, Fuga de Valor y Duplicados](#ejercicio-a3--análisis-de-gasto-y-fuga-de-valor)</div>
+<div class="bullet-item">• 4.4. [Ejercicio A4: Matriz Ponderada de Proveedores](#ejercicio-a4--evaluación-multicriterio-de-proveedores)</div>
+<div class="bullet-item">• 4.5. [Ejercicio A5: Stock de Seguridad, ROP y Días de Cobertura](#ejercicio-a5--niveles-de-stock-punto-de-reorden-y-priorización)</div>
+<div class="numbered-item"><span class="item-num">5.</span> [PARTE B — ARQUITECTURA TÉCNICA Y DESARROLLO DEL SISTEMA](#5-parte-b--arquitectura-técnica-y-desarrollo-del-sistema)</div>
+<div class="bullet-item">• 5.1. [Arquitectura de Tres Capas](#51-arquitectura-de-tres-capas)</div>
+<div class="bullet-item">• 5.2. [Modelo de Datos en 3NF y Principio del Ledger](#52-modelo-de-datos-en-3nf-y-principio-del-ledger)</div>
+<div class="bullet-item">• 5.3. [Servicios y Motores de Reglas de Negocio](#53-servicios-y-motores-de-reglas-de-negocio)</div>
+<div class="bullet-item">• 5.4. [Diagramas de Arquitectura (ERD y Circuito)](#54-diagramas-de-arquitectura)</div>
+<div class="numbered-item"><span class="item-num">6.</span> [RESULTADOS Y VERIFICACIÓN DE PRUEBAS AUTOMATIZADAS](#6-resultados-y-verificación-de-pruebas-automatizadas)</div>
+<div class="numbered-item"><span class="item-num">7.</span> [CONCLUSIONES Y RECOMENDACIONES ESTRATÉGICAS](#7-conclusiones-y-recomendaciones-estratégicas)</div>
+<hr/>
+<h2>1. Portada y Datos del Proyecto</h2>
+<p>El presente proyecto entrega una solución corporativa terminada, funcional y auditable para la empresa <strong>Constructora Del Valle S.A.</strong>, dedicada a la edificación de obras civiles, infraestructura vial y proyectos comerciales en Costa Rica.</p>
+<div class="bullet-item">• <strong>Centros de Almacenamiento y Obras Monitoreadas:</strong></div>
+<div class="bullet-item">• <em>Bodega Central:</em> Parque Logístico Coyol, Alajuela (Centro de Distribución Primario).</div>
+<div class="bullet-item">• <em>Bodega de Obras:</em> Calle Blancos, San José (Taller y Encofrados).</div>
+<div class="bullet-item">• <em>Obra Norte:</em> Condominio Residencial Las Terrazas, San Isidro de Heredia.</div>
+<div class="bullet-item">• <em>Obra Sur:</em> Paso a Desnivel y Puente Paso Ancho, San José.</div>
+<div class="bullet-item">• <em>Obra Este:</em> Centro Comercial Multiplaza Este, Guachipelín de Escazú.</div>
+<div class="bullet-item">• <strong>Entorno Técnico:</strong> Node.js v22, Express 4.21, Sequelize 6.37, MySQL 9.6, React 18, Vite 5.4, Recharts 2.15, Jest 29.7.</div>
+<hr/>
+<h2>2. Objetivos Empresariales y del Sistema</h2>
+<h3>2.1. Objetivo General</h3>
+<p>Diseñar, desarrollar y desplegar una plataforma Full Stack empresarial persistida en MySQL para el control riguroso de compras, inventarios por ubicación, cálculo automático de puntos de reorden, prevención de compras duplicadas o fraccionadas y trazabilidad inmutable de materiales de construcción.</p>
+<h3>2.2. Objetivos Específicos</h3>
+<div class="numbered-item"><span class="item-num">1.</span> Formalizar y codificar el circuito de abastecimiento de 10 etapas con una matriz de firmas vinculante basada en umbrales económicos.</div>
+<div class="numbered-item"><span class="item-num">2.</span> Establecer una taxonomía normalizada de dos niveles para erradicar la duplicidad de compras y capturar ₡89 000 en ahorros potenciales.</div>
+<div class="numbered-item"><span class="item-num">3.</span> Cuantificar con precisión analítica la fuga de valor en compras, diferenciando los incumplimientos de contrato con el Proveedor A de las compras discrecionales a terceros y aislando la exposición por duplicidad.</div>
+<div class="numbered-item"><span class="item-num">4.</span> Implementar un modelo de datos en Tercera Forma Normal (3NF) bajo la metodología de libro mayor inmutable (<em>ledger</em>), impidiendo la generación de existencias negativas.</div>
+<div class="numbered-item"><span class="item-num">5.</span> Ejecutar y documentar una suite de 12 pruebas automatizadas comprobando las reglas matemáticas de stock y compras.</div>
+<hr/>
+<h2>3. Descripción del Problema Operativo y Financiero</h2>
+<p>Constructora Del Valle S.A. enfrentaba fallas estructurales en el control de materiales que amenazaban la rentabilidad de sus contratos:</p>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Descentralización y compra desarticulada:</strong> Los ingenieros de obra y encargados de mantenimiento adquirían insumos por cuenta propia utilizando descripciones coloquiales o códigos de proveedor no estandarizados, fragmentando el volumen de compra.</div>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Incumplimiento de tarifas pactadas:</strong> A pesar de haber negociado un contrato marco con el Proveedor A con tarifas preferenciales fijas (₡6 300 por saco de cemento y ₡2 050 por varilla #3), se detectaron facturas aprobadas por encima del precio contractual y compras recurrentes a ferreterías locales con márgenes abusivos.</div>
+<div class="numbered-item"><span class="item-num">3.</span> <strong>Vulnerabilidad por órdenes duplicadas:</strong> La falta de validación cruzada permitió emitir dos órdenes idénticas en la misma fecha (OC-1041 y OC-1042), exponiendo a la empresa a un sobrepago de ₡1 290 000.</div>
+<div class="numbered-item"><span class="item-num">4.</span> <strong>Quiebres de stock en faenas críticas:</strong> Al carecer de cálculos de stock de seguridad y puntos de reorden fundamentados en demanda y tiempos de entrega, frentes de colado quedaban varados por falta de arena o bloques, provocando sobrecostos por cuadrillas ociosas y penalizaciones por atraso.</div>
+<hr/>
+<h2>4. PARTE A — ANÁLISIS DE COMPRAS E INVENTARIOS</h2>
+<h3>EJERCICIO A1 — Circuito de Compra y Matriz de Aprobación</h3>
+<p>#### Circuito Corporativo de 10 Etapas</p>
+<p>El flujo de abastecimiento se estructuró para garantizar segregación de funciones, control previo y control posterior:</p>
+<pre><code>[1. Requisición] ➔ [2. Aprob. Requisición] ➔ [3. Cuadro Cotizaciones] ➔ [4. Generación OC]
+       ➔ [5. Aprobación OC por Matriz] ➔ [6. Recepción Física en Obra] ➔ [7. Validación Factura]
+       ➔ [8. Three-Way Match Obligatorio] ➔ [9. Pago a Proveedor] ➔ [10. Asiento Atómico en Ledger]</code></pre>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Requisición de Materiales:</strong> Generada por el residente de obra con código estándar y justificación técnica.</div>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Aprobación de Requisición:</strong> Validación técnica por la jefatura del área frente al presupuesto de la obra.</div>
+<div class="numbered-item"><span class="item-num">3.</span> <strong>Solicitud y Comparación de Cotizaciones:</strong> Compras solicita ofertas formales cumpliendo el número mínimo según el monto.</div>
+<div class="numbered-item"><span class="item-num">4.</span> <strong>Generación de Orden de Compra (OC):</strong> Elaboración del documento vinculante en estado borrador.</div>
+<div class="numbered-item"><span class="item-num">5.</span> <strong>Aprobación de Orden de Compra:</strong> Autorización por la jefatura o gerencia según la matriz económica.</div>
+<div class="numbered-item"><span class="item-num">6.</span> <strong>Recepción de Materiales:</strong> Conteo físico al 100 %, inspección de calidad e ingreso documentado con Hoja de Recepción.</div>
+<div class="numbered-item"><span class="item-num">7.</span> <strong>Validación de Factura:</strong> Cuentas por Pagar comprueba validez tributaria y concordancia de precios.</div>
+<div class="numbered-item"><span class="item-num">8.</span> <strong>Three-Way Match (Conciliación Tripartita):</strong> Validación cruzada obligatoria: <strong>Orden de Compra = Recepción Física = Factura</strong>.</div>
+<div class="numbered-item"><span class="item-num">9.</span> <strong>Pago al Proveedor:</strong> Desembolso programado según plazos comerciales acordados.</div>
+<div class="numbered-item"><span class="item-num">10.</span> <strong>Registro y Actualización en Inventario:</strong> Asiento inmutable en el libro mayor (<code>inventory_movements</code>) actualizando existencias.</div>
+<p>#### Matriz de Aprobación de Compras</p>
+<div class="table-container"><table><thead><tr><th>Rango de Monto en Colones (₡)</th><th>Autoridad Competente</th><th>Cotizaciones Mínimas</th><th>Control y Documento Requerido</th></tr></thead><tbody><tr><td><strong>Hasta ₡250 000</strong></td><td>Jefatura del área solicitante</td><td>1</td><td>Presupuesto operativo; cotización única de proveedor de catálogo.</td></tr><tr><td><strong>₡250 001 a ₡2 000 000</strong></td><td>Jefatura de Compras</td><td>2</td><td>Cuadro comparativo formal con 2 cotizaciones vigentes.</td></tr><tr><td><strong>₡2 000 001 a ₡10 000 000</strong></td><td>Gerencia Financiera</td><td>3</td><td>Análisis de liquidez y cuadro comparativo de 3 proveedores.</td></tr><tr><td><strong>Más de ₡10 000 000</strong></td><td>Gerencia General + Comité</td><td>3 + Comité</td><td>Licitación corporativa, 3 ofertas y dictamen técnico de comité.</td></tr></tbody></table></div>
+<p>#### Riesgo de Fraccionamiento y Controles Preventivos</p>
+<p>El <strong>fraccionamiento de compras</strong> ocurre cuando un funcionario subdivide una adquisición en órdenes consecutivas menores para evitar escalar a una autorización superior.</p>
+<p><strong>Controles implementados:</strong></p>
+<div class="bullet-item">• <strong>Agrupador acumulativo en ventana móvil:</strong> El backend analiza compras emitidas en un lapso de 30 días para un mismo proveedor, área y proyecto. Si la sumatoria supera ₡2 000 000 (Gerencia Financiera) o ₡250 000 (Jefatura de Compras), se dispara una <code>split_purchase_alert</code>.</div>
+<div class="bullet-item">• <strong>Revisión documental:</strong> La alerta se remite a Compras y Auditoría para justificación técnica, evitando frenar operaciones legítimas pero documentando la anomalía.</div>
+<hr/>
+<h3>EJERCICIO A2 — Clasificación de Categorías de Gasto y Ahorro Potencial</h3>
+<p>Se implementó una taxonomía jerárquica de dos niveles:</p>
+<div class="bullet-item">• <strong>Nivel 1:</strong> Categorías maestras (<code>MAT</code> Materiales, <code>SEG</code> Seguridad, <code>TUB</code> Tuberías, <code>HER</code> Herramientas).</div>
+<div class="bullet-item">• <strong>Nivel 2:</strong> Subcategorías (<code>MAT-CEM</code> Cementos, <code>MAT-ACE</code> Aceros, <code>MAT-BLO</code> Mampostería, <code>MAT-AGR</code> Agregados, <code>SEG-GUA</code> Guantes, <code>TUB-PVC</code> Tuberías).</div>
+<p>#### Clasificación y Análisis de las 8 Líneas de Insumos</p>
+<div class="table-container"><table><thead><tr><th>#</th><th>Descripción Original</th><th>Área</th><th>Prov.</th><th>Cant.</th><th>Precio Unit.</th><th>Gasto Total (₡)</th><th>Código Estandarizado</th><th>Precio Mín. (₡)</th><th>Ahorro Potencial (₡)</th></tr></thead><tbody><tr><td>1</td><td>Cemento gris 50 kg</td><td>Obras</td><td>A</td><td>200</td><td>₡6 450</td><td>₡1 290 000</td><td><code>MAT-CEM-GRIS-050</code></td><td>₡6 300</td><td>₡30 000</td></tr><tr><td>2</td><td>Saco cemento uso general</td><td>Mantenimiento</td><td>B</td><td>40</td><td>₡7 100</td><td>₡284 000</td><td><code>MAT-CEM-USO-GEN</code></td><td>₡6 300</td><td>₡32 000</td></tr><tr><td>3</td><td>CEM-GRIS-50</td><td>Bodega</td><td>A</td><td>300</td><td>₡6 300</td><td>₡1 890 000</td><td><code>MAT-CEM-GRIS-050</code></td><td>₡6 300</td><td>₡0</td></tr><tr><td>4</td><td>Varilla #3 grado 40</td><td>Obras</td><td>C</td><td>500</td><td>₡2 150</td><td>₡1 075 000</td><td><code>MAT-ACE-VAR-003</code></td><td>₡2 150</td><td>₡0</td></tr><tr><td>5</td><td>Hierro 3/8 x 6 m</td><td>Mantenimiento</td><td>D</td><td>60</td><td>₡2 600</td><td>₡156 000</td><td><code>MAT-ACE-VAR-003</code>*</td><td>₡2 150</td><td>₡27 000</td></tr><tr><td>6</td><td>Guantes nitrilo talla L</td><td>Bodega</td><td>E</td><td>100</td><td>₡850</td><td>₡85 000</td><td><code>SEG-GUA-NIT-L</code></td><td>₡850</td><td>-</td></tr><tr><td>7</td><td>Guantes trabajo L</td><td>Obras</td><td>F</td><td>80</td><td>₡1 200</td><td>₡96 000</td><td><code>SEG-GUA-TRA-L</code></td><td>₡1 200</td><td>-</td></tr><tr><td>8</td><td>Tubo PVC 1/2 SDR 13.5</td><td>Mantenimiento</td><td>B</td><td>25</td><td>₡2 900</td><td>₡72 500</td><td><code>TUB-PVC-012-SDR135</code></td><td>₡2 900</td><td>-</td></tr><tr><td><strong>Totales</strong></td><td></td><td></td><td></td><td></td><td></td><td><strong>₡4 952 500</strong></td><td></td><td></td><td><strong>₡89 000</strong></td></tr></tbody></table></div>
+<p>#### Justificación y Cálculos de Ahorro</p>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Familia Cemento Gris (540 sacos):</strong> Gasto actual de ₡3 464 000. Al precio mínimo observado de ₡6 300: <span class="math-inline">540 \times \text{₡}6\,300 = \text{₡}3\,402\,000</span>.</div>
+<p><div class="math-display">\text{Ahorro en Cemento} = \text{₡}3\,464\,000 - \text{₡}3\,402\,000 = \mathbf{\text{₡}62\,000}</div></p>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Familia Varilla / Hierro 3/8 (560 barras):</strong> Gasto actual de ₡1 231 000. Al precio mínimo observado de ₡2 150: <span class="math-inline">560 \times \text{₡}2\,150 = \text{₡}1\,204\,000</span>.</div>
+<p><div class="math-display">\text{Ahorro en Varilla} = \text{₡}1\,231\,000 - \text{₡}1\,204\,000 = \mathbf{\text{₡}27\,000}</div></p>
+<blockquote><strong>Validación Técnica:</strong> Este ahorro está condicionado a certificar que el hierro comercial de Mantenimiento cumple la norma ASTM A615 Grado 40. De lo contrario, no debe sustituir varilla estructural.</blockquote>
+<div class="numbered-item"><span class="item-num">3.</span> <strong>No Homologación de Guantes:</strong> Los guantes de nitrilo protegen contra químicos; los de trabajo son de carnaza para abrasión física. No procede consolidación técnica.</div>
+<div class="numbered-item"><span class="item-num">4.</span> <strong>Ahorro Consolidado Total:</strong> <span class="math-inline">\text{₡}62\,000 + \text{₡}27\,000 = \mathbf{\text{₡}89\,000}</span>.</div>
+<hr/>
+<h3>EJERCICIO A3 — Análisis de Gasto y Fuga de Valor</h3>
+<p><strong>Condiciones Contractuales Vigentes con Proveedor A:</strong></p>
+<div class="bullet-item">• Saco Cemento gris 50 kg: <strong>₡6 300</strong></div>
+<div class="bullet-item">• Varilla #3: <strong>₡2 050</strong></div>
+<p>#### Desagregación Analítica de las 7 Órdenes de Compra</p>
+<div class="table-container"><table><thead><tr><th>OC</th><th>Fecha</th><th>Área</th><th>Prov.</th><th>Artículo</th><th>Cant.</th><th>Precio Pagado</th><th>Precio Ref.</th><th>Desviación Unit.</th><th>Desviación Total (₡)</th><th>Clasificación Financiera</th></tr></thead><tbody><tr><td><strong>OC-1041</strong></td><td>02/10</td><td>Obras</td><td>A</td><td>Cemento gris 50 kg</td><td>200</td><td>₡6 450</td><td>₡6 300</td><td>+₡150</td><td><strong>₡30 000</strong></td><td><strong>Incumplimiento de contrato Proveedor A</strong> (Sospecha duplicado)</td></tr><tr><td><strong>OC-1042</strong></td><td>02/10</td><td>Obras</td><td>A</td><td>Cemento gris 50 kg</td><td>200</td><td>₡6 450</td><td>₡6 300</td><td>+₡150</td><td><strong>₡30 000</strong></td><td><strong>Incumplimiento de contrato Proveedor A</strong> (Sospecha duplicado)</td></tr><tr><td><strong>OC-1047</strong></td><td>06/10</td><td>Mantenimiento</td><td>B</td><td>Cemento gris 50 kg</td><td>40</td><td>₡7 100</td><td>₡6 300</td><td>+₡800</td><td><strong>₡32 000</strong></td><td><strong>Desviación compra fuera de contrato (Prov. B)</strong></td></tr><tr><td><strong>OC-1050</strong></td><td>08/10</td><td>Obras</td><td>C</td><td>Varilla #3</td><td>500</td><td>₡2 150</td><td>₡2 050</td><td>+₡100</td><td><strong>₡50 000</strong></td><td><strong>Desviación compra fuera de contrato (Prov. C)</strong></td></tr><tr><td><strong>OC-1053</strong></td><td>09/10</td><td>Obras</td><td>C</td><td>Varilla #3</td><td>480</td><td>₡2 150</td><td>₡2 050</td><td>+₡100</td><td><strong>₡48 000</strong></td><td><strong>Desviación compra fuera de contrato (Prov. C)</strong></td></tr><tr><td><strong>OC-1058</strong></td><td>13/10</td><td>Mantenimiento</td><td>D</td><td>Varilla #3</td><td>60</td><td>₡2 600</td><td>₡2 050</td><td>+₡550</td><td><strong>₡33 000</strong></td><td><strong>Desviación compra spot minorista (Prov. D)</strong></td></tr><tr><td><strong>OC-1061</strong></td><td>15/10</td><td>Bodega</td><td>A</td><td>Cemento gris 50 kg</td><td>300</td><td>₡6 300</td><td>₡6 300</td><td>₡0</td><td><strong>₡0</strong></td><td><strong>Compra conforme a contrato marco</strong></td></tr></tbody></table></div>
+<p>#### Subtotales Analíticos y Proyección Financiera</p>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Incumplimientos Directos de Contrato con Proveedor A:</strong></div>
+<p><div class="math-display">\text{Sobreprecio Proveedor A} = \text{₡}30\,000 (\text{OC-1041}) + \text{₡}30\,000 (\text{OC-1042}) = \mathbf{\text{₡}60\,000}</div></p>
+<p><em>Acción:</em> Emisión inmediata de Nota de Crédito y reclamo formal al Proveedor A.</p>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Desviaciones por Compras Fuera de Contrato a Otros Proveedores (B, C, D):</strong></div>
+<p><div class="math-display">\text{Sobreprecio Terceros} = \text{₡}32\,000 + \text{₡}50\,000 + \text{₡}48\,000 + \text{₡}33\,000 = \mathbf{\text{₡}163\,000}</div></p>
+<p><em>Acción:</em> Centralización de compras y eliminación de pedidos spot no autorizados.</p>
+<div class="numbered-item"><span class="item-num">3.</span> <strong>Fuga Total Mensual Consolidada:</strong> <span class="math-inline">\text{₡}60\,000 + \text{₡}163\,000 = \mathbf{\text{₡}223\,000}</span>.</div>
+<div class="numbered-item"><span class="item-num">4.</span> <strong>Proyección Anual Simple de Fuga:</strong> <span class="math-inline">\text{₡}223\,000 \times 12 = \mathbf{\text{₡}2\,676\,000}</span>.</div>
+<p>#### Exposición Económica por Posible Compra Duplicada</p>
+<div class="bullet-item">• <strong>Órdenes involucradas:</strong> OC-1041 y OC-1042 (Mismo proveedor A, misma fecha 02/10, mismo cemento, 200 sacos cada una).</div>
+<div class="bullet-item">• <strong>Monto de Exposición en Riesgo:</strong> <span class="math-inline">200 \times \text{₡}6\,450 = \mathbf{\text{₡}1\,290\,000}</span>.</div>
+<div class="bullet-item">• <strong>Tratamiento Técnico:</strong> <strong>No debe sumarse como pérdida consumada.</strong> Representa un riesgo de liquidez y sobreabastecimiento. La auditoría física debe validar si ingresaron 400 sacos reales o si existió doble facturación por el mismo camión.</div>
+<hr/>
+<h3>EJERCICIO A4 — Evaluación Multicriterio de Proveedores</h3>
+<p>Matriz con supuestos académicos para proveedores referenciales en Costa Rica (Escala 1 a 5):</p>
+<div class="table-container"><table><thead><tr><th>Criterio Evaluado</th><th>Peso (<span class="math-inline">W_i</span>)</th><th>Novex S.A.</th><th>Construplaza S.A.</th><th>EPA S.A.</th></tr></thead><tbody><tr><td>Precio y Descuentos por Volumen</td><td>25 %</td><td>4.0 (1.000)</td><td>3.5 (0.875)</td><td>4.5 (1.125)</td></tr><tr><td>Calidad y Certificaciones Técnicas</td><td>25 %</td><td>4.5 (1.125)</td><td>4.8 (1.200)</td><td>4.0 (1.000)</td></tr><tr><td>Cumplimiento de Plazos en Obra</td><td>20 %</td><td>4.0 (0.800)</td><td>4.5 (0.900)</td><td>3.8 (0.760)</td></tr><tr><td>Condiciones de Crédito Comercial</td><td>10 %</td><td>4.0 (0.400)</td><td>4.2 (0.420)</td><td>3.5 (0.350)</td></tr><tr><td>Servicio Posventa y Devoluciones</td><td>10 %</td><td>3.8 (0.380)</td><td>4.6 (0.460)</td><td>3.9 (0.390)</td></tr><tr><td>Cobertura Geográfica de Despacho</td><td>5 %</td><td>4.0 (0.200)</td><td>4.0 (0.200)</td><td>4.8 (0.240)</td></tr><tr><td>Riesgo de Dependencia y Capacidad</td><td>5 %</td><td>4.0 (0.200)</td><td>4.5 (0.225)</td><td>4.0 (0.200)</td></tr><tr><td><strong>Puntaje Ponderado Final</strong></td><td><strong>100 %</strong></td><td><strong>4.105</strong></td><td><strong>4.280</strong></td><td><strong>4.065</strong></td></tr></tbody></table></div>
+<p>#### Conclusión Estratégica:</p>
+<div class="bullet-item">• <strong>Proveedor Principal (70 % del volumen adjudicado):</strong> <strong>Construplaza S.A. (4.280)</strong> por su liderazgo en calidad de concreto/acero, cumplimiento puntual de entrega y respaldo posventa en sitio.</div>
+<div class="bullet-item">• <strong>Proveedor Secundario (30 % del volumen adjudicado):</strong> <strong>EPA S.A. (4.065)</strong> por su alta competitividad en precios y cobertura logística mediante múltiples sucursales, reduciendo el riesgo de desabastecimiento.</div>
+<hr/>
+<h3>EJERCICIO A5 — Niveles de Stock, Punto de Reorden y Priorización</h3>
+<p>#### Fórmulas de Control:</p>
+<div class="bullet-item">• <span class="math-inline">\text{Stock de Seguridad } (SS) = (D_{\text{máx}} - D_{\text{prom}}) \times L</span></div>
+<div class="bullet-item">• <span class="math-inline">\text{Punto de Reorden } (ROP) = (D_{\text{prom}} \times L) + SS</span></div>
+<div class="bullet-item">• <span class="math-inline">\text{Días de Cobertura } (DC) = \frac{\text{Stock Actual}}{D_{\text{prom}}}</span></div>
+<p>#### Tabla Maestra de Parámetros de Stock y Cobertura</p>
+<div class="table-container"><table><thead><tr><th>Material</th><th><span class="math-inline">D_{\text{prom}}</span></th><th><span class="math-inline">D_{\text{máx}}</span></th><th>Plazo (<span class="math-inline">L</span>)</th><th><span class="math-inline">SS</span></th><th><span class="math-inline">ROP</span></th><th>Stock Actual</th><th>Cobertura (<span class="math-inline">DC</span>)</th><th>Estado</th><th>Prioridad</th></tr></thead><tbody><tr><td><strong>Arena fina (m³)</strong></td><td>6</td><td>10</td><td>2 días</td><td><span class="math-inline">(10-6)\times 2 = \mathbf{8}</span></td><td><span class="math-inline">(6\times 2)+8 = \mathbf{20}</span></td><td>14</td><td><strong>2.33 días</strong></td><td><strong>Reponer</strong></td><td><strong>1 (Crítica)</strong></td></tr><tr><td><strong>Block 12 × 20 × 40</strong></td><td>600</td><td>900</td><td>4 días</td><td><span class="math-inline">(900-600)\times 4 = \mathbf{1\,200}</span></td><td><span class="math-inline">(600\times 4)+1200 = \mathbf{3\,600}</span></td><td>2 800</td><td><strong>4.67 días</strong></td><td><strong>Reponer</strong></td><td><strong>2 (Alta)</strong></td></tr><tr><td><strong>Cemento gris 50 kg</strong></td><td>40</td><td>55</td><td>3 días</td><td><span class="math-inline">(55-40)\times 3 = \mathbf{45}</span></td><td><span class="math-inline">(40\times 3)+45 = \mathbf{165}</span></td><td>190</td><td><strong>4.75 días</strong></td><td>Normal</td><td>3 (Monitoreo)</td></tr><tr><td><strong>Varilla #3 grado 40</strong></td><td>120</td><td>160</td><td>5 días</td><td><span class="math-inline">(160-120)\times 5 = \mathbf{200}</span></td><td><span class="math-inline">(120\times 5)+200 = \mathbf{800}</span></td><td>850</td><td><strong>7.08 días</strong></td><td>Normal</td><td>4 (Estable)</td></tr></tbody></table></div>
+<p>#### Justificación de Prioridades Operativas:</p>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Arena fina (Prioridad 1):</strong> Con solo <strong>2.33 días de inventario</strong> y un tiempo de reposición de 2 días, cualquier retraso de horas en el transporte causará desabastecimiento directo de morteros y repellos.</div>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Block de concreto (Prioridad 2):</strong> Con <strong>4.67 días de cobertura</strong> y plazo de entrega de 4 días, el margen de maniobra es de 0.67 días (~16 horas laborales) antes de consumir el inventario de seguridad.</div>
+<hr/>
+<h2>5. PARTE B — ARQUITECTURA TÉCNICA Y DESARROLLO DEL SISTEMA</h2>
+<h3>5.1. Arquitectura de Tres Capas</h3>
+<div class="bullet-item">• <strong>Capa Cliente (Frontend):</strong> SPA construida con React 18 y Vite, con componentes desacoplados, tablas responsivas, modales accesibles y gráficos con Recharts.</div>
+<div class="bullet-item">• <strong>Capa Servidor (Backend):</strong> API REST estructurada por capas (Controladores, Servicios, Modelos, Validadores, Middlewares) en Node.js y Express.</div>
+<div class="bullet-item">• <strong>Capa de Persistencia (Base de Datos):</strong> MySQL relacional en Tercera Forma Normal (3NF) gestionada a través de Sequelize ORM.</div>
+<h3>5.2. Modelo de Datos en 3NF y Principio del Ledger</h3>
+<p>El stock nunca se actualiza como un campo editable directo en la tabla de materiales. Todo cambio físico proviene de un movimiento inmutable en <code>inventory_movements</code>:</p>
+<p><div class="math-display">\text{Stock Actual} = \sum (\text{Entradas} + \text{Ajustes Positivos}) - \sum (\text{Salidas} + \text{Ajustes Negativos})</div></p>
+<div class="bullet-item">• Las salidas y traslados verifican previamente la existencia disponible; <strong>si la cantidad solicitada excede el saldo real, la transacción se aborta con excepción</strong>.</div>
+<div class="bullet-item">• Los traslados entre bodegas se asientan como pares vinculados en una sola transacción atómica SQL mediante <code>transfer_group_id</code>.</div>
+<h3>5.3. Servicios y Motores de Reglas de Negocio</h3>
+<div class="bullet-item">• <code>reorderService</code>: Evalúa reactivamente <span class="math-inline">Stock \le ROP</span> y emite alertas automáticas persistentes en MySQL sin duplicar alertas abiertas.</div>
+<div class="bullet-item">• <code>approvalMatrixService</code>: Asigna la autoridad competente y valida que la orden cuente con las cotizaciones mínimas antes de permitir el cambio a estado <code>aprobada</code>.</div>
+<div class="bullet-item">• <code>duplicateDetectionService</code>: Escanea órdenes en ventana de 3 días con tolerancia de cantidad <span class="math-inline">\le 10\%</span> para el mismo proveedor y material.</div>
+<div class="bullet-item">• <code>splitPurchaseService</code>: Detecta compras consecutivas para el mismo proyecto que acumulen montos superiores al umbral de aprobación.</div>
+<h3>5.4. Diagramas de Arquitectura</h3>
+<p>#### Diagrama de Flujo del Circuito de Compras (10 Etapas)</p>
+<p><em>(Ver diagrama interactivo en <code>entrega_final/diagramas/circuito_compras.html</code> y código fuente en <code>docs/circuito_compras.mmd</code>)</em></p>
+<p>#### Diagrama Entidad-Relación (14 Tablas en 3NF)</p>
+<p><em>(Ver diagrama interactivo en <code>entrega_final/diagramas/diagrama_erd.html</code> y código fuente en <code>docs/diagrama_erd.mmd</code>)</em></p>
+<hr/>
+<h2>6. RESULTADOS Y VERIFICACIÓN DE PRUEBAS AUTOMATIZADAS</h2>
+<p>Las 12 pruebas obligatorias se ejecutaron directamente contra MySQL utilizando el framework Jest (<code>backend/tests/businessRules.test.js</code>):</p>
+<pre><code>PASS tests/businessRules.test.js
+  PRUEBAS EMPRESARIALES OBLIGATORIAS - QUIZ #2
+    √ Prueba 1: Cálculo de stock de seguridad para Cemento gris 50 kg (45 sacos)
+    √ Prueba 2: Cálculo de punto de reorden para Cemento gris 50 kg (165 sacos)
+    √ Prueba 3: Material bajo punto de reorden genera alerta (Block: 2800 &lt;= 3600)
+    √ Prueba 4: Material en estado normal no genera alerta falsa (Varilla #3: 850 &gt; 800)
+    √ Prueba 5: Detección de posible compra duplicada (OC-1041 y OC-1042)
+    √ Prueba 6: Movimiento de entrada aumenta existencias en ubicación (+100)
+    √ Prueba 7: Movimiento de salida disminuye existencias en ubicación (-20)
+    √ Prueba 8: Traslado atómico mantiene invariable el stock global
+    √ Prueba 9: Validación de stock negativo rechaza la transacción con excepción
+    √ Prueba 10: Orden por ₡3 000 000 asigna Gerencia Financiera y 3 cotizaciones
+    √ Prueba 11: Detección de compra fraccionada agrupada por proyecto
+    √ Prueba 12: Trazabilidad forense completa reconstruye el historial del material
+
+Test Suites: 1 passed, 1 total | Tests: 12 passed, 12 total | Tiempo: 3.56 s</code></pre>
+<hr/>
+<h2>7. CONCLUSIONES Y RECOMENDACIONES ESTRATÉGICAS</h2>
+<div class="numbered-item"><span class="item-num">1.</span> <strong>Ahorro Demostrado por Estandarización:</strong> La taxonomía de 2 niveles permite capturar un ahorro directo inmediato de <strong>₡89 000</strong> en cemento y acero estructural.</div>
+<div class="numbered-item"><span class="item-num">2.</span> <strong>Eliminación de Fuga de Valor:</strong> El control de contratos y centralización de compras evita sobrecostos proyectados en <strong>₡2 676 000</strong> anuales, identificando además <strong>₡60 000</strong> en reclamos inmediatos a Proveedor A y <strong>₡1 290 000</strong> en riesgo por duplicidad.</div>
+<div class="numbered-item"><span class="item-num">3.</span> <strong>Continuidad de Obras con Base Matemática:</strong> La priorización por días de cobertura asegura que los recursos de compra se enfoquen primero en la <strong>Arena fina (2.33 días)</strong> y el <strong>Block de concreto (4.67 días)</strong>, blindando el avance físico de los proyectos.</div>
+<div class="numbered-item"><span class="item-num">4.</span> <strong>Solución Técnica Inviolable:</strong> La arquitectura de tres capas implementada con Sequelize y MySQL garantiza integridad referencial, transacciones atómicas y seguridad mediante validadores de entrada y roles de usuario.</div>
+  </div>
+
+</body>
+</html>

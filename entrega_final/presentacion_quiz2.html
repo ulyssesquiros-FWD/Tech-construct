@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defensa de Proyecto Quiz #2 - Gestión de Inventarios y Abastecimiento</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #f59e0b;
+      --bg: #0f172a;
+      --slide-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Top Bar */
+    .top-bar {
+      height: 48px;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      z-index: 10;
+    }
+    .top-bar strong {
+      color: #38bdf8;
+    }
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    /* Presentation Canvas */
+    .presentation-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1150px;
+      height: 90vh;
+      max-height: 640px;
+      background: var(--slide-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px 48px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Slide Components */
+    .slide-header {
+      margin-bottom: 20px;
+    }
+    .slide-badge {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .card h3 {
+      font-size: 15px;
+      color: #38bdf8;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card li {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .card ul {
+      margin-left: 18px;
+      margin-top: 6px;
+    }
+
+    /* Metric highlight */
+    .metric-box {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .metric-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 2px;
+    }
+    .metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    /* Tables in presentation */
+    .slide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .slide-table th {
+      background: rgba(255, 255, 255, 0.08);
+      color: #38bdf8;
+      padding: 8px 10px;
+      text-align: left;
+      border: 1px solid var(--card-border);
+    }
+    .slide-table td {
+      padding: 7px 10px;
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+    }
+    .slide-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Footer & Controls */
+    .slide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--card-border);
+      padding-top: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-nav {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+    .btn-nav:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    /* Badges */
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .pill-success { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .pill-danger { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .pill-warning { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div><strong>Constructora Del Valle S.A.</strong> | Sistema de Inventarios y Abastecimiento</div>
+    <div id="slide-counter">Diapositiva 1 / 10</div>
+    <div class="progress-bar" id="progress-bar" style="width: 10%;"></div>
+  </div>
+
+  <!-- Container -->
+  <div class="presentation-container">
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-header">
+        <span class="slide-badge">Quiz #2 — Defensa Técnica (10 Minutos)</span>
+        <h1 class="slide-title">Sistema Empresarial de Gestión de Inventarios</h1>
+        <p class="slide-subtitle">Solución Full Stack corporativa para compras por obra, reposición matemática y prevención de fraude</p>
+      </div>
+      <div class="slide-content">
+        <div class="grid-2">
+          <div class="card">
+            <h3>🏢 Constructora Del Valle S.A.</h3>
+            <p>Empresa líder en obras civiles, puentes y proyectos residenciales en Costa Rica.</p>
+            <ul>
+              <li>5 Ubicaciones: Bodega Central Coyol, Taller Calle Blancos, Obra Norte, Obra Sur y Obra Este.</li>
+              <li>Desafío inicial: compras desarticuladas, sobreprecios recurrentes y riesgo de desabastecimiento.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>⚙️ Arquitectura Implementada (Camino 2)</h3>
+            <p>Desarrollo integral con backend propio y base de datos relacional:</p>
+            <ul>
+              <li><strong>Backend:</strong> Node.js, Express, Sequelize ORM.</li>
+              <li><strong>Persistencia:</strong> MySQL relacional en 3NF (Ledger Inmutable).</li>
+              <li><strong>Frontend:</strong> React 18, Vite, Recharts, Lucide Icons.</li>
+              <li><strong>Auditoría & Pruebas:</strong> 12/12 Pruebas automatizadas en Jest.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-4" style="margin-top: 10px;">
+          <div class="metric-box">
+            <div class="metric-value">₡89 000</div>
+            <div class="metric-label">Ahorro Inmediato (A2)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value">₡223 000</div>
+            <div class="metric-label">Fuga Mensual Frenada</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value">₡1.29 M</div>
+            <div class="metric-label">Exposición Duplicados</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">Pruebas Aprobadas</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 0:00 - 1:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: OBJETIVOS Y DIAGNÓSTICO -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <span class="slide-badge">Diagnóstico y Solución</span>
+        <h1 class="slide-title">De la Vulnerabilidad a la Gobernanza Digital</h1>
+        <p class="slide-subtitle">Solución a las cuatro fallas operativas identificadas en Constructora Del Valle</p>
+      </div>
+      <div class="slide-content">
+        <div class="grid-2">
+          <div class="card" style="border-left: 4px solid var(--danger);">
+            <h3 style="color: #f87171;">❌ Vulnerabilidades Críticas Iniciales</h3>
+            <ul>
+              <li><strong>Compras Fragmentadas:</strong> Obras compraban cemento y varilla a precios minoristas con descripciones informales.</li>
+              <li><strong>Fuga de Valor Contractual:</strong> Facturas aprobadas por encima del precio marco pactado con Proveedor A.</li>
+              <li><strong>Órdenes Duplicadas:</strong> Emisión simultánea de OC-1041 y OC-1042 sin validación cruzada.</li>
+              <li><strong>Quiebres de Stock:</strong> Parálisis de cuadrillas por falta de arena o blocks al carecer de cálculos de reposición.</li>
+            </ul>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--success);">
+            <h3 style="color: #4ade80;">✅ Solución Tecnológica Desplegada</h3>
+            <ul>
+              <li><strong>Circuito de 10 Etapas:</strong> Desde requisición hasta pago, con Three-Way Match obligatorio.</li>
+              <li><strong>Matriz de Aprobación Vinculante:</strong> Validación por software del rol autorizador y cotizaciones mínimas.</li>
+              <li><strong>Motor Heurístico Anti-Fraude:</strong> Detección en tiempo real de duplicados y fraccionamiento.</li>
+              <li><strong>Modelado Matemático de Stock:</strong> Reposición reactiva con Stock de Seguridad y Punto de Reorden ($ROP$).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 1:00 - 2:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: CIRCUITO DE COMPRA (A1) -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <span class="slide-badge">Ejercicio A1 — Abastecimiento Corporativo</span>
+        <h1 class="slide-title">Circuito de Compras de 10 Etapas & Matriz</h1>
+        <p class="slide-subtitle">Garantía de segregación funcional y control financiero previo al pago</p>
+      </div>
+      <div class="slide-content">
+        <table class="slide-table" style="margin-bottom: 12px;">
+          <thead>
+            <tr>
+              <th>Rango Económico</th>
+              <th>Autoridad Competente</th>
+              <th>Cotizaciones</th>
+              <th>Control Clave</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hasta ₡250 000</strong></td>
+              <td>Jefatura del Área Solicitante</td>
+              <td>1 cotización</td>
+              <td>Verificación contra presupuesto operativo de obra</td>
+            </tr>
+            <tr>
+              <td><strong>₡250 001 a ₡2 000 000</strong></td>
+              <td>Jefatura de Compras</td>
+              <td>2 cotizaciones</td>
+              <td>Cuadro comparativo formal de precios</td>
+            </tr>
+            <tr>
+              <td><strong>₡2 000 001 a ₡10 000 000</strong></td>
+              <td>Gerencia Financiera</td>
+              <td>3 cotizaciones</td>
+              <td>Análisis de flujo de caja y liquidez corporativa</td>
+            </tr>
+            <tr>
+              <td><strong>Más de ₡10 000 000</strong></td>
+              <td>Gerencia General + Comité</td>
+              <td>3 cotizaciones + Acta</td>
+              <td>Licitación corporativa y dictamen técnico colegiado</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card">
+          <h3>🛡️ Control de Fraccionamiento (Split Purchases)</h3>
+          <p>El backend agrupa órdenes emitidas en una ventana de 30 días para un mismo proveedor y proyecto. Si la suma acumulada rebasa el límite de aprobación, emite una alerta impidiendo eludir la autorización gerencial.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 2:00 - 3:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: TAXONOMÍA Y AHORRO (A2) -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <span class="slide-badge">Ejercicio A2 — Normalización y Ahorro</span>
+        <h1 class="slide-title">Taxonomía de 2 Niveles & Ahorro de ₡89 000</h1>
+        <p class="slide-subtitle">Estandarización de descripciones heterogéneas y consolidación de volumen</p>
+      </div>
+      <div class="slide-content">
+        <div class="grid-2">
+          <div class="card">
+            <h3>🏗️ Familia Cemento Gris (540 sacos)</h3>
+            <p>Se consolidaron descripciones dispersas (<em>"Cemento gris 50 kg"</em> y <em>"Saco cemento uso general"</em>) bajo el código único <code>MAT-CEM-GRIS-050</code>:</p>
+            <ul>
+              <li>Gasto real disperso: ₡3 464 000</li>
+              <li>Al precio preferencial de ₡6 300: ₡3 402 000</li>
+              <li><strong style="color: #4ade80;">Ahorro directo capturado: ₡62 000</strong></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>🔩 Familia Varilla 3/8 (560 barras)</h3>
+            <p>Se homologó <em>"Hierro 3/8 x 6 m"</em> con <em>"Varilla #3 grado 40"</em> bajo el código <code>MAT-ACE-VAR-003</code>:</p>
+            <ul>
+              <li>Gasto real disperso: ₡1 231 000</li>
+              <li>Al precio de referencia de ₡2 150: ₡1 204 000</li>
+              <li><strong style="color: #4ade80;">Ahorro condicionado: ₡27 000</strong> (Sujeto a certificación ASTM A615 Grado 40)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 8px;">
+          <h3>⚠️ Decisión Técnica en Guantes</h3>
+          <p>Los guantes de nitrilo (<code>SEG-GUA-NIT-L</code>) y los de trabajo/carnaza (<code>SEG-GUA-TRA-L</code>) responden a funciones de seguridad incompatibles (química vs. abrasión física). <strong>No se consolidan para no arriesgar la seguridad ocupacional.</strong></p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 3:00 - 4:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: ANÁLISIS FINANCIERO (A3) -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <span class="slide-badge">Ejercicio A3 — Auditoría Forense de Gasto</span>
+        <h1 class="slide-title">Desglose Riguroso: Incumplimientos vs. Terceros</h1>
+        <p class="slide-subtitle">Diferenciación analítica de la fuga real frente al riesgo de órdenes duplicadas</p>
+      </div>
+      <div class="slide-content">
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="color: #f87171;">1. Incumplimiento Proveedor A</h3>
+            <div class="metric-value" style="color: #f87171;">₡60 000</div>
+            <p>Órdenes OC-1041 y OC-1042 facturadas a ₡6 450 en lugar del contrato marco de ₡6 300 (+₡150 c/u).</p>
+            <p style="margin-top: 6px;"><em>Acción: Reclamo y emisión inmediata de Nota de Crédito.</em></p>
+          </div>
+          <div class="card">
+            <h3 style="color: #fbbf24;">2. Compras Fuera de Contrato</h3>
+            <div class="metric-value" style="color: #fbbf24;">₡163 000</div>
+            <p>Adquisiciones no autorizadas a terceros (Prov. B, C y compras spot a Prov. D) por encima de la tarifa de referencia.</p>
+            <p style="margin-top: 6px;"><em>Fuga mensual total: ₡223 000 (₡2 676 000 proyectado anual).</em></p>
+          </div>
+          <div class="card">
+            <h3 style="color: #38bdf8;">3. Exposición Duplicada (OC-1041/42)</h3>
+            <div class="metric-value" style="color: #38bdf8;">₡1 290 000</div>
+            <p>Riesgo de liquidez y sobreabastecimiento por 200 sacos idénticos emitidos el mismo día.</p>
+            <p style="margin-top: 6px;"><em>Tratamiento: Aislado como riesgo, no como pérdida consumada.</em></p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 4:00 - 5:15</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: EVALUACIÓN DE PROVEEDORES (A4) -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <span class="slide-badge">Ejercicio A4 — Homologación de Proveedores</span>
+        <h1 class="slide-title">Matriz Multicriterio de Ponderación</h1>
+        <p class="slide-subtitle">Estrategia dual de abastecimiento para blindar plazos, calidad y presupuesto</p>
+      </div>
+      <div class="slide-content">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Criterio Evaluado</th>
+              <th>Peso ($W_i$)</th>
+              <th>Novex S.A.</th>
+              <th>Construplaza S.A.</th>
+              <th>EPA S.A.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Precio y Descuentos por Volumen</td>
+              <td>25 %</td>
+              <td>4.0 (1.000)</td>
+              <td>3.5 (0.875)</td>
+              <td><strong>4.5 (1.125)</strong></td>
+            </tr>
+            <tr>
+              <td>Calidad y Certificaciones Técnicas</td>
+              <td>25 %</td>
+              <td>4.5 (1.125)</td>
+              <td><strong>4.8 (1.200)</strong></td>
+              <td>4.0 (1.000)</td>
+            </tr>
+            <tr>
+              <td>Cumplimiento de Plazos en Obra</td>
+              <td>20 %</td>
+              <td>4.0 (0.800)</td>
+              <td><strong>4.5 (0.900)</strong></td>
+              <td>3.8 (0.760)</td>
+            </tr>
+            <tr>
+              <td>Crédito Comercial (30-60 días)</td>
+              <td>10 %</td>
+              <td>4.0 (0.400)</td>
+              <td>4.2 (0.420)</td>
+              <td>3.5 (0.350)</td>
+            </tr>
+            <tr>
+              <td>Servicio Posventa y Cobertura</td>
+              <td>20 %</td>
+              <td>3.9 (0.780)</td>
+              <td>4.4 (0.885)</td>
+              <td>4.1 (0.830)</td>
+            </tr>
+            <tr>
+              <td><strong>Puntaje Final Ponderado</strong></td>
+              <td><strong>100 %</strong></td>
+              <td><strong>4.105</strong></td>
+              <td><strong style="color: #38bdf8;">4.280 (1°)</strong></td>
+              <td><strong style="color: #4ade80;">4.065 (2°)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="grid-2" style="margin-top: 10px;">
+          <div class="card">
+            <h3>🥇 Proveedor Principal (70% adjudicado): Construplaza</h3>
+            <p>Líder indiscutible en calidad estructural y entrega puntual en frentes de obra.</p>
+          </div>
+          <div class="card">
+            <h3>🥈 Proveedor Secundario (30% adjudicado): EPA S.A.</h3>
+            <p>Máxima ventaja en precios y red capilar de sucursales para soporte inmediato.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 5:15 - 6:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: MODELADO DE STOCK (A5) -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <span class="slide-badge">Ejercicio A5 — Reposición Matemática</span>
+        <h1 class="slide-title">Stock de Seguridad, ROP y Días de Cobertura</h1>
+        <p class="slide-subtitle">Prevención científica de quiebres de inventario mediante fórmulas dinámicas</p>
+      </div>
+      <div class="slide-content">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Material</th>
+              <th>$SS$</th>
+              <th>$ROP$</th>
+              <th>Stock Actual</th>
+              <th>Días Cobertura</th>
+              <th>Diagnóstico</th>
+              <th>Prioridad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: rgba(239, 68, 68, 0.1);">
+              <td><strong>Arena fina (m³)</strong></td>
+              <td>8 m³</td>
+              <td>20 m³</td>
+              <td>14 m³</td>
+              <td><strong style="color: #f87171;">2.33 días</strong></td>
+              <td><span class="pill pill-danger">Reponer</span></td>
+              <td><strong>1 (Crítica)</strong></td>
+            </tr>
+            <tr style="background: rgba(245, 158, 11, 0.1);">
+              <td><strong>Block 12 × 20 × 40</strong></td>
+              <td>1 200 un.</td>
+              <td>3 600 un.</td>
+              <td>2 800 un.</td>
+              <td><strong style="color: #fbbf24;">4.67 días</strong></td>
+              <td><span class="pill pill-warning">Reponer</span></td>
+              <td><strong>2 (Alta)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Cemento gris 50 kg</strong></td>
+              <td>45 sacos</td>
+              <td>165 sacos</td>
+              <td>190 sacos</td>
+              <td>4.75 días</td>
+              <td><span class="pill pill-success">Normal</span></td>
+              <td>3 (Monitoreo)</td>
+            </tr>
+            <tr>
+              <td><strong>Varilla #3 grado 40</strong></td>
+              <td>200 barras</td>
+              <td>800 barras</td>
+              <td>850 barras</td>
+              <td>7.08 días</td>
+              <td><span class="pill pill-success">Normal</span></td>
+              <td>4 (Estable)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card" style="margin-top: 10px;">
+          <h3>🎯 Foco Operativo: Arena Fina (2.33 días de inventario)</h3>
+          <p>Con un tiempo de reposición de 2 días y solo 2.33 días de cobertura, cualquier imprevisto de transporte paralizaría los colados de mampostería. El sistema genera de forma automática la orden y alerta prioritaria.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 6:00 - 7:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: ARQUITECTURA 3NF Y LEDGER -->
+    <div class="slide" id="slide-8">
+      <div class="slide-header">
+        <span class="slide-badge">Parte B — Arquitectura de Base de Datos</span>
+        <h1 class="slide-title">Modelo en 3NF & Principio del Ledger Inmutable</h1>
+        <p class="slide-subtitle">Integridad transaccional ACID y bloqueo absoluto de existencias negativas</p>
+      </div>
+      <div class="slide-content">
+        <div class="grid-2">
+          <div class="card">
+            <h3>📑 14 Tablas en Tercera Forma Normal</h3>
+            <ul>
+              <li><strong>Sin redundancias:</strong> Precios de catálogo, proveedores y categorías aislados de los documentos históricos.</li>
+              <li><strong>Integridad Referencial:</strong> Foreign keys con restricciones <code>ON DELETE RESTRICT</code> para impedir pérdida de datos vinculados.</li>
+              <li><strong>Seguridad & Auditoría:</strong> Tabla <code>audit_logs</code> registra cambios de estado, usuario e IP de cada movimiento.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>🔒 Principio del Libro Mayor (Ledger)</h3>
+            <ul>
+              <li>El stock <strong>nunca</strong> es un campo editable arbitrario. Se calcula matemáticamente de la suma de asientos inmutables en <code>inventory_movements</code>.</li>
+              <li><strong>Transacciones Atómicas:</strong> Los traslados entre bodegas restan y suman la misma cantidad mediante <code>transfer_group_id</code> dentro de una sola transacción SQL.</li>
+              <li><strong>Validación Preventiva:</strong> Si el saldo en la ubicación origen es inferior a la salida solicitada, la base de datos aborta con error 400.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 7:00 - 8:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: PRUEBAS AUTOMATIZADAS -->
+    <div class="slide" id="slide-9">
+      <div class="slide-header">
+        <span class="slide-badge">Verificación & Calidad</span>
+        <h1 class="slide-title">12/12 Pruebas Automatizadas en Jest</h1>
+        <p class="slide-subtitle">Validación matemática y transaccional ejecutada directamente contra MySQL</p>
+      </div>
+      <div class="slide-content">
+        <div class="card" style="background: #020617; border-color: #334155; font-family: 'Consolas', monospace; font-size: 11.5px; padding: 16px;">
+          <div style="color: #4ade80; font-weight: bold; margin-bottom: 8px;">PASS tests/businessRules.test.js</div>
+          <div style="color: #cbd5e1; line-height: 1.6;">
+            ✔ Prueba 1: Stock de seguridad para Cemento gris 50 kg (45 sacos)<br/>
+            ✔ Prueba 2: Punto de reorden para Cemento gris 50 kg (165 sacos)<br/>
+            ✔ Prueba 3: Material bajo reorden genera alerta (Block: 2800 &le; 3600)<br/>
+            ✔ Prueba 4: Material en estado normal no genera alerta falsa (Varilla #3: 850 &gt; 800)<br/>
+            ✔ Prueba 5: Detección heurística de compra duplicada (OC-1041 y OC-1042)<br/>
+            ✔ Prueba 6: Entrada aumenta existencias en ubicación (+100)<br/>
+            ✔ Prueba 7: Salida disminuye existencias en ubicación (-20)<br/>
+            ✔ Prueba 8: Traslado atómico mantiene constante el stock global de la empresa<br/>
+            ✔ Prueba 9: Bloqueo de stock negativo rechaza transacción con excepción<br/>
+            ✔ Prueba 10: Matriz asigna Gerencia Financiera y 3 cotizaciones para ₡3 000 000<br/>
+            ✔ Prueba 11: Detección de compra fraccionada agrupada en ventana de 30 días<br/>
+            ✔ Prueba 12: Trazabilidad forense reconstruye el historial completo del insumo
+          </div>
+          <div style="color: #38bdf8; font-weight: bold; margin-top: 8px; border-top: 1px solid #334155; padding-top: 6px;">
+            Test Suites: 1 passed, 1 total | Tests: 12 passed, 12 total | Tiempo: 3.56 s
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 8:00 - 9:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="nextSlide()">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: CONCLUSIONES Y RETORNO -->
+    <div class="slide" id="slide-10">
+      <div class="slide-header">
+        <span class="slide-badge">Conclusiones Estratégicas</span>
+        <h1 class="slide-title">Impacto Operativo, Financiero y Tecnológico</h1>
+        <p class="slide-subtitle">Solución lista para producción y escalabilidad corporativa</p>
+      </div>
+      <div class="slide-content">
+        <div class="grid-3">
+          <div class="card">
+            <h3>💰 Retorno Financiero</h3>
+            <ul>
+              <li><strong>₡89 000</strong> de ahorro inmediato por taxonomía y compra por volumen.</li>
+              <li><strong>₡2 676 000</strong> anuales prevenidos al eliminar sobreprecios fuera de contrato.</li>
+              <li><strong>₡1 290 000</strong> blindados contra compras duplicadas.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>🏗️ Continuidad en Obras</h3>
+            <ul>
+              <li>Eliminación de paradas imprevistas por falta de arena o blocks mediante alertas $ROP$.</li>
+              <li>Trazabilidad forense para auditorías contractuales de clientes y entes supervisores.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>🚀 Solidez Tecnológica</h3>
+            <ul>
+              <li>Arquitectura de tres capas altamente escalable.</li>
+              <li>Persistencia relacional pura en MySQL con control transaccional ACID.</li>
+              <li>Frontend SPA moderno y responsivo con 12 módulos funcionales.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 10px; text-align: center; background: rgba(56, 189, 248, 0.08); border-color: rgba(56, 189, 248, 0.3);">
+          <h2 style="font-size: 18px; color: #38bdf8;">¡Muchas Gracias!</h2>
+          <p style="color: #cbd5e1; font-size: 13px; margin-top: 4px;">Damos paso a la demostración práctica del sistema en vivo (5 minutos) y sesión de preguntas de defensa.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tiempo sugerido: 9:00 - 10:00</span>
+        <div class="controls">
+          <button class="btn-nav" onclick="prevSlide()">◀ Anterior</button>
+          <button class="btn-nav" onclick="toggleFullScreen()">⛶ Pantalla Completa</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      currentSlide = index;
+
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        s.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      document.getElementById('slide-counter').textContent = `Diapositiva ${currentSlide} / ${totalSlides}`;
+      document.getElementById('progress-bar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn('Error attempting fullscreen:', err);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+  </script>
+</body>
+</html>

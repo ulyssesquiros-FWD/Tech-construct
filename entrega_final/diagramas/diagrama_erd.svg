@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 950" width="1400" height="950">
+  <defs>
+    <style>
+      .canvas { fill: #f8fafc; }
+      .header-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 22px; font-weight: bold; fill: #0f172a; }
+      .header-sub { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; fill: #64748b; }
+      .tbl-header { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: bold; fill: #ffffff; }
+      .tbl-bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5px; rx: 6px; }
+      .col-name { font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; fill: #1e293b; }
+      .col-type { font-family: 'Consolas', 'Courier New', monospace; font-size: 10px; fill: #64748b; text-anchor: end; }
+      .pk { font-weight: bold; fill: #d97706; }
+      .fk { font-weight: bold; fill: #2563eb; }
+      .rel-line { stroke: #94a3b8; stroke-width: 1.5px; fill: none; stroke-dasharray: 4,4; }
+      .rel-solid { stroke: #0284c7; stroke-width: 2px; fill: none; }
+      .domain-badge { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 10px; font-weight: 700; fill: #0369a1; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="950" class="canvas" />
+  <rect x="15" y="15" width="1370" height="920" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Header -->
+  <text x="40" y="50" class="header-title">Modelo de Datos en Tercera Forma Normal (3NF) — 14 Tablas Relacionales</text>
+  <text x="40" y="70" class="header-sub">Constructora Del Valle S.A. | Base de datos MySQL `gestion_inventarios` con Libro Mayor Inmutable (Ledger Pattern)</text>
+  <line x1="40" y1="85" x2="1350" y2="85" stroke="#e2e8f0" stroke-width="1" />
+
+  <!-- ================= GROUP 1: SEGURIDAD (ROLES & USERS) ================= -->
+  <!-- Table: ROLES -->
+  <g transform="translate(40, 105)">
+    <rect width="180" height="100" class="tbl-bg" />
+    <rect width="180" height="28" rx="6" fill="#0f172a" />
+    <text x="12" y="19" class="tbl-header">roles</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="168" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">name</text><text x="168" y="64" class="col-type">VARCHAR(50)</text>
+    <text x="12" y="82" class="col-name">description</text><text x="168" y="82" class="col-type">VARCHAR(255)</text>
+  </g>
+
+  <!-- Table: USERS -->
+  <g transform="translate(250, 105)">
+    <rect width="210" height="150" class="tbl-bg" />
+    <rect width="210" height="28" rx="6" fill="#0f172a" />
+    <text x="12" y="19" class="tbl-header">users</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="198" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> role_id</text><text x="198" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name">full_name</text><text x="198" y="82" class="col-type">VARCHAR(100)</text>
+    <text x="12" y="100" class="col-name">email</text><text x="198" y="100" class="col-type">VARCHAR(100)</text>
+    <text x="12" y="118" class="col-name">department</text><text x="198" y="118" class="col-type">VARCHAR(100)</text>
+    <text x="12" y="136" class="col-name">status</text><text x="198" y="136" class="col-type">ENUM</text>
+  </g>
+
+  <!-- Table: AUDIT_LOGS -->
+  <g transform="translate(490, 105)">
+    <rect width="210" height="150" class="tbl-bg" />
+    <rect width="210" height="28" rx="6" fill="#334155" />
+    <text x="12" y="19" class="tbl-header">audit_logs</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="198" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> user_id</text><text x="198" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name">action</text><text x="198" y="82" class="col-type">VARCHAR(50)</text>
+    <text x="12" y="100" class="col-name">entity_name</text><text x="198" y="100" class="col-type">VARCHAR(50)</text>
+    <text x="12" y="118" class="col-name">old_values / new</text><text x="198" y="118" class="col-type">JSON</text>
+    <text x="12" y="136" class="col-name">created_at</text><text x="198" y="136" class="col-type">DATETIME</text>
+  </g>
+
+  <!-- ================= GROUP 2: CATÁLOGO (CATEGORIES & MATERIALS) ================= -->
+  <!-- Table: CATEGORIES -->
+  <g transform="translate(40, 310)">
+    <rect width="190" height="120" class="tbl-bg" />
+    <rect width="190" height="28" rx="6" fill="#0369a1" />
+    <text x="12" y="19" class="tbl-header">categories</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="178" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">code</text><text x="178" y="64" class="col-type">VARCHAR(20)</text>
+    <text x="12" y="82" class="col-name">name</text><text x="178" y="82" class="col-type">VARCHAR(100)</text>
+    <text x="12" y="100" class="col-name"><tspan class="fk">FK</tspan> parent_id</text><text x="178" y="100" class="col-type">INT NULL</text>
+  </g>
+
+  <!-- Table: MATERIALS -->
+  <g transform="translate(260, 310)">
+    <rect width="220" height="240" class="tbl-bg" />
+    <rect width="220" height="28" rx="6" fill="#0369a1" />
+    <text x="12" y="19" class="tbl-header">materials</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="208" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">internal_code</text><text x="208" y="64" class="col-type">VARCHAR(50)</text>
+    <text x="12" y="82" class="col-name">name</text><text x="208" y="82" class="col-type">VARCHAR(150)</text>
+    <text x="12" y="100" class="col-name"><tspan class="fk">FK</tspan> category_id</text><text x="208" y="100" class="col-type">INT</text>
+    <text x="12" y="118" class="col-name"><tspan class="fk">FK</tspan> subcategory_id</text><text x="208" y="118" class="col-type">INT</text>
+    <text x="12" y="136" class="col-name">unit</text><text x="208" y="136" class="col-type">VARCHAR(20)</text>
+    <text x="12" y="154" class="col-name">avg_daily_demand</text><text x="208" y="154" class="col-type">DECIMAL</text>
+    <text x="12" y="172" class="col-name">lead_time_days</text><text x="208" y="172" class="col-type">INT</text>
+    <text x="12" y="190" class="col-name">safety_stock</text><text x="208" y="190" class="col-type">DECIMAL</text>
+    <text x="12" y="208" class="col-name">reorder_point</text><text x="208" y="208" class="col-type">DECIMAL</text>
+    <text x="12" y="226" class="col-name">standard_price</text><text x="208" y="226" class="col-type">DECIMAL</text>
+  </g>
+
+  <!-- ================= GROUP 3: LOGÍSTICA & MOVIMIENTOS (LEDGER) ================= -->
+  <!-- Table: LOCATIONS -->
+  <g transform="translate(510, 310)">
+    <rect width="190" height="130" class="tbl-bg" />
+    <rect width="190" height="28" rx="6" fill="#047857" />
+    <text x="12" y="19" class="tbl-header">locations</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="178" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">code</text><text x="178" y="64" class="col-type">VARCHAR(20)</text>
+    <text x="12" y="82" class="col-name">name</text><text x="178" y="82" class="col-type">VARCHAR(100)</text>
+    <text x="12" y="100" class="col-name">type</text><text x="178" y="100" class="col-type">ENUM(bodega,obra)</text>
+    <text x="12" y="118" class="col-name">status</text><text x="178" y="118" class="col-type">ENUM</text>
+  </g>
+
+  <!-- Table: INVENTORY_MOVEMENTS (LEDGER) -->
+  <g transform="translate(380, 600)">
+    <rect width="250" height="220" class="tbl-bg" style="stroke: #047857; stroke-width: 2px;" />
+    <rect width="250" height="28" rx="6" fill="#047857" />
+    <text x="12" y="19" class="tbl-header">inventory_movements (Ledger)</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="238" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">movement_type</text><text x="238" y="64" class="col-type">ENUM</text>
+    <text x="12" y="82" class="col-name"><tspan class="fk">FK</tspan> material_id</text><text x="238" y="82" class="col-type">INT</text>
+    <text x="12" y="100" class="col-name"><tspan class="fk">FK</tspan> origin_location_id</text><text x="238" y="100" class="col-type">INT NULL</text>
+    <text x="12" y="118" class="col-name"><tspan class="fk">FK</tspan> destination_location_id</text><text x="238" y="118" class="col-type">INT NULL</text>
+    <text x="12" y="136" class="col-name">quantity</text><text x="238" y="136" class="col-type">DECIMAL</text>
+    <text x="12" y="154" class="col-name">unit_cost</text><text x="238" y="154" class="col-type">DECIMAL</text>
+    <text x="12" y="172" class="col-name">reference_document</text><text x="238" y="172" class="col-type">VARCHAR</text>
+    <text x="12" y="190" class="col-name">transfer_group_id</text><text x="238" y="190" class="col-type">VARCHAR NULL</text>
+    <text x="12" y="208" class="col-name"><tspan class="fk">FK</tspan> user_id</text><text x="238" y="208" class="col-type">INT</text>
+  </g>
+
+  <!-- ================= GROUP 4: ABASTECIMIENTO & COMPRAS ================= -->
+  <!-- Table: SUPPLIERS -->
+  <g transform="translate(740, 105)">
+    <rect width="200" height="150" class="tbl-bg" />
+    <rect width="200" height="28" rx="6" fill="#b45309" />
+    <text x="12" y="19" class="tbl-header">suppliers</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="188" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">code</text><text x="188" y="64" class="col-type">VARCHAR(20)</text>
+    <text x="12" y="82" class="col-name">commercial_name</text><text x="188" y="82" class="col-type">VARCHAR(150)</text>
+    <text x="12" y="100" class="col-name">tax_id</text><text x="188" y="100" class="col-type">VARCHAR(50)</text>
+    <text x="12" y="118" class="col-name">rating</text><text x="188" y="118" class="col-type">DECIMAL</text>
+    <text x="12" y="136" class="col-name">status</text><text x="188" y="136" class="col-type">ENUM</text>
+  </g>
+
+  <!-- Table: PURCHASE_ORDERS -->
+  <g transform="translate(740, 310)">
+    <rect width="220" height="220" class="tbl-bg" />
+    <rect width="220" height="28" rx="6" fill="#b45309" />
+    <text x="12" y="19" class="tbl-header">purchase_orders</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="208" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name">po_number</text><text x="208" y="64" class="col-type">VARCHAR(30)</text>
+    <text x="12" y="82" class="col-name"><tspan class="fk">FK</tspan> supplier_id</text><text x="208" y="82" class="col-type">INT</text>
+    <text x="12" y="100" class="col-name"><tspan class="fk">FK</tspan> location_id</text><text x="208" y="100" class="col-type">INT</text>
+    <text x="12" y="118" class="col-name"><tspan class="fk">FK</tspan> created_by</text><text x="208" y="118" class="col-type">INT</text>
+    <text x="12" y="136" class="col-name">order_date</text><text x="208" y="136" class="col-type">DATE</text>
+    <text x="12" y="154" class="col-name">total</text><text x="208" y="154" class="col-type">DECIMAL</text>
+    <text x="12" y="172" class="col-name">status</text><text x="208" y="172" class="col-type">ENUM</text>
+    <text x="12" y="190" class="col-name">quotations_count</text><text x="208" y="190" class="col-type">INT</text>
+    <text x="12" y="208" class="col-name">required_approver_role</text><text x="208" y="208" class="col-type">VARCHAR</text>
+  </g>
+
+  <!-- Table: PURCHASE_ORDER_DETAILS -->
+  <g transform="translate(680, 600)">
+    <rect width="210" height="150" class="tbl-bg" />
+    <rect width="210" height="28" rx="6" fill="#b45309" />
+    <text x="12" y="19" class="tbl-header">purchase_order_details</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="198" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> purchase_order_id</text><text x="198" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name"><tspan class="fk">FK</tspan> material_id</text><text x="198" y="82" class="col-type">INT</text>
+    <text x="12" y="100" class="col-name">quantity</text><text x="198" y="100" class="col-type">DECIMAL</text>
+    <text x="12" y="118" class="col-name">unit_price</text><text x="198" y="118" class="col-type">DECIMAL</text>
+    <text x="12" y="136" class="col-name">subtotal</text><text x="198" y="136" class="col-type">DECIMAL</text>
+  </g>
+
+  <!-- Table: APPROVALS -->
+  <g transform="translate(920, 600)">
+    <rect width="190" height="135" class="tbl-bg" />
+    <rect width="190" height="28" rx="6" fill="#b45309" />
+    <text x="12" y="19" class="tbl-header">approvals</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="178" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> purchase_order_id</text><text x="178" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name"><tspan class="fk">FK</tspan> user_id</text><text x="178" y="82" class="col-type">INT</text>
+    <text x="12" y="100" class="col-name">decision</text><text x="178" y="100" class="col-type">ENUM</text>
+    <text x="12" y="118" class="col-name">decided_at</text><text x="178" y="118" class="col-type">DATETIME</text>
+  </g>
+
+  <!-- ================= GROUP 5: ALERTAS Y MOTORES HEURÍSTICOS ================= -->
+  <!-- Table: REORDER_ALERTS -->
+  <g transform="translate(1000, 105)">
+    <rect width="210" height="150" class="tbl-bg" />
+    <rect width="210" height="28" rx="6" fill="#be123c" />
+    <text x="12" y="19" class="tbl-header">reorder_alerts</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="198" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> material_id</text><text x="198" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name"><tspan class="fk">FK</tspan> location_id</text><text x="198" y="82" class="col-type">INT</text>
+    <text x="12" y="100" class="col-name">current_stock</text><text x="198" y="100" class="col-type">DECIMAL</text>
+    <text x="12" y="118" class="col-name">urgency</text><text x="198" y="118" class="col-type">ENUM</text>
+    <text x="12" y="136" class="col-name">status</text><text x="198" y="136" class="col-type">ENUM</text>
+  </g>
+
+  <!-- Table: DUPLICATE_PURCHASE_ALERTS -->
+  <g transform="translate(1000, 310)">
+    <rect width="220" height="170" class="tbl-bg" />
+    <rect width="220" height="28" rx="6" fill="#be123c" />
+    <text x="12" y="19" class="tbl-header">duplicate_purchase_alerts</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="208" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> purchase_order_id_1</text><text x="208" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name"><tspan class="fk">FK</tspan> purchase_order_id_2</text><text x="208" y="82" class="col-type">INT</text>
+    <text x="12" y="100" class="col-name"><tspan class="fk">FK</tspan> supplier_id</text><text x="208" y="100" class="col-type">INT</text>
+    <text x="12" y="118" class="col-name">similarity_score</text><text x="208" y="118" class="col-type">DECIMAL</text>
+    <text x="12" y="136" class="col-name">potential_risk_amount</text><text x="208" y="136" class="col-type">DECIMAL</text>
+    <text x="12" y="154" class="col-name">status</text><text x="208" y="154" class="col-type">ENUM</text>
+  </g>
+
+  <!-- Table: SPLIT_PURCHASE_ALERTS -->
+  <g transform="translate(1140, 600)">
+    <rect width="210" height="150" class="tbl-bg" />
+    <rect width="210" height="28" rx="6" fill="#be123c" />
+    <text x="12" y="19" class="tbl-header">split_purchase_alerts</text>
+    <text x="12" y="46" class="col-name"><tspan class="pk">PK</tspan> id</text><text x="198" y="46" class="col-type">INT</text>
+    <text x="12" y="64" class="col-name"><tspan class="fk">FK</tspan> supplier_id</text><text x="198" y="64" class="col-type">INT</text>
+    <text x="12" y="82" class="col-name">accumulated_amount</text><text x="198" y="82" class="col-type">DECIMAL</text>
+    <text x="12" y="100" class="col-name">threshold_amount</text><text x="198" y="100" class="col-type">DECIMAL</text>
+    <text x="12" y="118" class="col-name">status</text><text x="198" y="118" class="col-type">ENUM</text>
+  </g>
+
+  <!-- RELATIONSHIP LINES -->
+  <!-- roles -> users -->
+  <line x1="220" y1="150" x2="250" y2="150" class="rel-solid" />
+  <!-- users -> audit_logs -->
+  <line x1="460" y1="150" x2="490" y2="150" class="rel-solid" />
+  <!-- categories -> materials -->
+  <line x1="230" y1="370" x2="260" y2="370" class="rel-solid" />
+  <!-- materials -> inventory_movements -->
+  <path d="M 370,550 L 370,680 L 380,680" class="rel-solid" />
+  <!-- locations -> inventory_movements -->
+  <path d="M 590,440 L 590,600" class="rel-solid" />
+  <!-- suppliers -> purchase_orders -->
+  <line x1="840" y1="255" x2="840" y2="310" class="rel-solid" />
+  <!-- purchase_orders -> purchase_order_details -->
+  <path d="M 800,530 L 800,600" class="rel-solid" />
+  <!-- purchase_orders -> approvals -->
+  <path d="M 910,530 L 910,560 L 970,560 L 970,600" class="rel-solid" />
+
+</svg>
