@@ -1,14 +1,17 @@
-# Sistema Empresarial de Gestión de Inventarios — Constructora Del Valle S.A.
+# Tech-Construct — Sistema Empresarial de Gestión de Inventarios
 
 > **QUIZ #2 — Gestión de Inventarios y Cadena de Suministros**  
+> **Empresa:** Tech-Construct S.A.  
+> **Administrador del Sistema:** Ulysses (`ulysses@techconstruct.cr`)  
 > **Caso Seleccionado:** Opción 2 — Control de inventario para una empresa de construcción.  
 > **Arquitectura:** Camino 2 (Backend Propio: Node.js + Express + Sequelize + MySQL + React + Vite).  
+> **Repositorio Oficial:** [github.com/ulyssesquiros-FWD/Tech-construct](https://github.com/ulyssesquiros-FWD/Tech-construct)  
 
 ---
 
 ## 1. Visión General del Sistema
 
-El sistema es una solución empresarial de tres capas desarrollada para **Constructora Del Valle S.A.** Permite controlar los materiales de construcción por bodega y obra, registrar compras y movimientos en un libro mayor (*ledger*) inmutable, calcular automáticamente los puntos de reorden, detectar compras duplicadas o fraccionadas y consultar la trazabilidad forense de cada material.
+El sistema es una solución empresarial de tres capas desarrollada para **Tech-Construct S.A.** Permite controlar los materiales de construcción por bodega y obra, registrar compras y movimientos en un libro mayor (*ledger*) inmutable, calcular automáticamente los puntos de reorden, detectar compras duplicadas o fraccionadas y consultar la trazabilidad forense de cada material. Administrado por **Ulysses**.
 
 ### Tecnologías Utilizadas
 - **Frontend:** React 18, Vite, Recharts, Lucide Icons, CSS moderno y responsive.
