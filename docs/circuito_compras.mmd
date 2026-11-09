@@ -1,0 +1,35 @@
+flowchart TD
+    Start(["Inicio de Necesidad en Obra/Bodega"]) --> S1["1. Requisición de Materiales<br/><i>(Responsable: Ingeniero de Obra / Bodeguero)</i>"]
+    
+    S1 --> S2["2. Aprobación de Requisición<br/><i>(Responsable: Jefatura de Área)</i>"]
+    
+    S2 --> S3["3. Solicitud y Comparación de Cotizaciones<br/><i>(Responsable: Departamento de Compras)</i>"]
+    
+    S3 --> S4["4. Generación de Orden de Compra (OC)<br/><i>(Responsable: Encargado de Compras)</i>"]
+    
+    S4 --> M1{"Matriz de Aprobación por Monto"}
+    
+    M1 -- "Hasta ₡250 000" --> A1["Jefatura Solicitante (1 Cotización)"]
+    M1 -- "₡250 001 a ₡2 000 000" --> A2["Jefatura de Compras (2 Cotizaciones)"]
+    M1 -- "₡2 000 001 a ₡10 000 000" --> A3["Gerencia Financiera (3 Cotizaciones)"]
+    M1 -- "> ₡10 000 000" --> A4["Gerencia General + Comité (3 Cotizaciones + Acta)"]
+    
+    A1 --> S5["5. Aprobación y Emisión de OC"]
+    A2 --> S5
+    A3 --> S5
+    A4 --> S5
+    
+    S5 --> S6["6. Recepción de Materiales en Sitio/Bodega<br/><i>(Responsable: Encargado de Bodega)</i><br/><b>Control: Conteo físico e inspección técnica</b>"]
+    
+    S6 --> S7["7. Validación de Factura Electrónica<br/><i>(Responsable: Cuentas por Pagar)</i>"]
+    
+    S7 --> S8{"8. Three-Way Match Obligatorio<br/><i>¿Coinciden OC, Recepción y Factura?</i>"}
+    
+    S8 -- "Discrepancia / Sobreprecio / No Recibido" --> Retain["Retención de Pago & Alerta de Auditoría"]
+    
+    S8 -- "Coincidencia Exacta 100%" --> S9["9. Programación y Pago al Proveedor<br/><i>(Responsable: Tesorería / Finanzas)</i>"]
+    
+    S6 -. "Entrada Inmediata" .-> S10["10. Asiento Atómico en Libro Mayor de Inventario<br/><i>(Actualización de Stock y Evaluación de ROP)</i>"]
+    
+    S9 --> EndOK(["Fin del Circuito de Compra"])
+    S10 --> EndOK

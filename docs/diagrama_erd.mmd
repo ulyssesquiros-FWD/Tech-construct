@@ -1,0 +1,194 @@
+erDiagram
+    ROLES ||--o{ USERS : "posee"
+    USERS ||--o{ PURCHASE_ORDERS : "crea"
+    USERS ||--o{ APPROVALS : "autoriza"
+    USERS ||--o{ INVENTORY_MOVEMENTS : "registra"
+    USERS ||--o{ AUDIT_LOGS : "genera"
+
+    CATEGORIES ||--o{ CATEGORIES : "subdivide"
+    CATEGORIES ||--o{ MATERIALS : "clasifica_cat"
+    CATEGORIES ||--o{ MATERIALS : "clasifica_sub"
+    CATEGORIES ||--o{ SPLIT_PURCHASE_ALERTS : "agrupa"
+
+    SUPPLIERS ||--o{ PURCHASE_ORDERS : "suministra"
+    SUPPLIERS ||--o{ DUPLICATE_PURCHASE_ALERTS : "involucrado"
+    SUPPLIERS ||--o{ SPLIT_PURCHASE_ALERTS : "involucrado"
+
+    LOCATIONS ||--o{ PURCHASE_ORDERS : "destina"
+    LOCATIONS ||--o{ INVENTORY_MOVEMENTS : "origen"
+    LOCATIONS ||--o{ INVENTORY_MOVEMENTS : "destino"
+    LOCATIONS ||--o{ REORDER_ALERTS : "alerta_en"
+
+    MATERIALS ||--o{ PURCHASE_ORDER_DETAILS : "solicitado_en"
+    MATERIALS ||--o{ INVENTORY_MOVEMENTS : "movido_en"
+    MATERIALS ||--o{ REORDER_ALERTS : "monitoreado"
+    MATERIALS ||--o{ DUPLICATE_PURCHASE_ALERTS : "afecta"
+
+    PURCHASE_ORDERS ||--o{ PURCHASE_ORDER_DETAILS : "contiene"
+    PURCHASE_ORDERS ||--o{ APPROVALS : "requiere"
+    PURCHASE_ORDERS ||--o{ DUPLICATE_PURCHASE_ALERTS : "orden_1"
+    PURCHASE_ORDERS ||--o{ DUPLICATE_PURCHASE_ALERTS : "orden_2"
+
+    PURCHASE_ORDER_DETAILS ||--o{ INVENTORY_MOVEMENTS : "recepcionado_en"
+
+    ROLES {
+        int id PK
+        string name UK
+        string description
+    }
+
+    USERS {
+        int id PK
+        int role_id FK
+        string full_name
+        string email UK
+        string department
+        enum status
+    }
+
+    CATEGORIES {
+        int id PK
+        string code UK
+        string name
+        int parent_id FK
+    }
+
+    MATERIALS {
+        int id PK
+        string internal_code UK
+        string name
+        int category_id FK
+        int subcategory_id FK
+        string unit
+        decimal avg_daily_demand
+        decimal max_daily_demand
+        int lead_time_days
+        decimal safety_stock
+        decimal reorder_point
+        decimal standard_price
+        enum status
+    }
+
+    LOCATIONS {
+        int id PK
+        string code UK
+        string name
+        enum type
+        string address
+        enum status
+    }
+
+    SUPPLIERS {
+        int id PK
+        string code UK
+        string commercial_name
+        string legal_name
+        string tax_id UK
+        string phone
+        string email
+        enum status
+    }
+
+    PURCHASE_ORDERS {
+        int id PK
+        string po_number UK
+        int supplier_id FK
+        int location_id FK
+        string requesting_department
+        string project_name
+        date order_date
+        decimal total
+        string required_approval_level
+        int required_quotations
+        int attached_quotations_count
+        enum status
+        int created_by FK
+    }
+
+    PURCHASE_ORDER_DETAILS {
+        int id PK
+        int purchase_order_id FK
+        int material_id FK
+        decimal quantity
+        decimal unit_price
+        decimal subtotal
+        decimal received_quantity
+    }
+
+    APPROVALS {
+        int id PK
+        int purchase_order_id FK
+        int user_id FK
+        string approval_level
+        int required_quotations
+        int attached_quotations_count
+        enum status
+        text comments
+        datetime decision_date
+    }
+
+    INVENTORY_MOVEMENTS {
+        int id PK
+        string movement_number UK
+        int material_id FK
+        int location_id FK
+        enum movement_type
+        decimal quantity
+        decimal balance_after
+        datetime movement_date
+        int user_id FK
+        enum source_document_type
+        string source_document_id
+        int destination_location_id FK
+        string transfer_group_id
+        int purchase_order_detail_id FK
+    }
+
+    REORDER_ALERTS {
+        int id PK
+        int material_id FK
+        int location_id FK
+        decimal current_stock
+        decimal reorder_point
+        decimal safety_stock
+        enum status
+        text notes
+    }
+
+    DUPLICATE_PURCHASE_ALERTS {
+        int id PK
+        int purchase_order_id_1 FK
+        int purchase_order_id_2 FK
+        int supplier_id FK
+        int material_id FK
+        decimal qty_1
+        decimal qty_2
+        date date_1
+        date date_2
+        enum risk_level
+        string match_reason
+        enum status
+        int reviewed_by FK
+    }
+
+    SPLIT_PURCHASE_ALERTS {
+        int id PK
+        int supplier_id FK
+        string requesting_department
+        string project_name
+        text detected_orders
+        decimal total_accumulated_amount
+        decimal threshold_exceeded
+        enum status
+    }
+
+    AUDIT_LOGS {
+        int id PK
+        int user_id FK
+        string action
+        string entity
+        int entity_id
+        json old_values
+        json new_values
+        datetime created_at
+    }
