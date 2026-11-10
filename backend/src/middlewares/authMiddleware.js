@@ -3,7 +3,7 @@ const { User, Role } = require('../models');
 const authenticateUser = async (req, res, next) => {
   try {
     // Si viene encabezado de usuario o token de simulación
-    const userId = req.headers['x-user-id'] || 1; // Default a Carlos Monge (Admin) si no se especifica
+    const userId = req.headers['x-user-id'] || 1; // Default a Ulysses Quirós (Admin Tech-Construct) si no se especifica
     const user = await User.findByPk(userId, {
       include: [{ model: Role, as: 'role' }]
     });
